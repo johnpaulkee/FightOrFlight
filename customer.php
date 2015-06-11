@@ -16,10 +16,16 @@
 
       <!-- Menu -->
       <ul>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Help</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#">Purchase Tickets</a></li>
+        <li><a href="#">Become a Frequent Flyer</a></li>
+        <li><a href="#">Check Points</a></li>
+        <li><a href="#">Am I blacklisted?</a></li>	
+        <li><a href="#">Update Credit Card Info</a></li>
+        <li><a href="#">Check Luggage Weight</a></li>
+        <li><a href="#">Boarding Pass Details</a></li>
+        <li><a href="#">Find Airline Headquarters</a></li>
+        <li><a href="#">Plane Details</a></li>
+        <li><a href="#">Bag Tag Details</a></li>
       </ul>
     </div>
 
