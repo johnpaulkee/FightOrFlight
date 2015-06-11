@@ -41,6 +41,30 @@
 	          </ul>
 	        </li>
 	      </ul>
+
+		      <!-- Menu icon -->
+      <div class="icon-close">
+        <img src="http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/close.png">
+      </div>
+
+      <!-- Menu -->
+	<div class="menu">
+      	<ul>
+        	<li><a href="#">Purchase Ticket</a></li>
+       		 <li><a href="#">Become a Frequent Flyer</a></li>
+       		 <li><a href="#">Check Points</a></li>
+       		 <li><a href="#">Purchased Tickets Details</a></li>		
+       		 <li><a href="#">Are you blacklisted?</a></li>		
+       		 <li><a href="#">Purchased Tickets Details</a></li>		
+       		 <li><a href="#">Update your Credit Card Information</a></li>	
+       		 <li><a href="#">Check Luggage Weight</a></li>		
+       		 <li><a href="#">Lookup Boarding Pass Details</a></li>		
+       		 <li><a href="#">Check Airline Headquarters</a></li>		
+       		 <li><a href="#">Check Plane Details</a></li>		
+       		 <li><a href="#">Purchased Tickets Details </a></li>		
+     	 </ul>
+	    </div>
+
 	      <form class="navbar-form navbar-left" role="search">
 	        <div class="form-group">
 	          <input type="text" class="form-control" placeholder="Search">
@@ -64,7 +88,7 @@
 	  </div><!-- /.container-fluid -->
 	</nav>
 
-	<?php echo "Test!" ?>
+	<?php include 'oracle-test.php'; ?>
 
 	</body>
 
