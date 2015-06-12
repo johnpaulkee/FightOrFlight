@@ -1,5 +1,5 @@
 <html>
-  <?php include 'header.php'; ?>
+  <?php include 'head.php'; ?>
   <body>
 
     <div class="menu">
