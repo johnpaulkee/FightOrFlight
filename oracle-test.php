@@ -127,7 +127,12 @@ function printResult($result) { //prints results from a select statement
 	 echo "<tr><th>ID</th><th>Name</th></tr>";
 
 	 while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-	       echo "<tr><td>" . $row["NID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]" 
+	 	   echo "<br>";
+	       echo $row[0] . "<br>";
+	       echo $row[1] . "<br>";
+	       echo $row[2] . "<br>";
+	       echo $row[3] . "<br>";
+	       echo $row[4] . "<br>";
 	       }
 	       echo "</table>";
 
@@ -202,7 +207,7 @@ if ($db_conn) {
 																																																																																																				     			 header("location: oracle-test.php");
 																																																																																																							 } else {
 																																																																																																							   // Select data...
-																																																																																																							      $result = executePlainSQL("select * from tab1");
+																																																																																																							      $result = executePlainSQL("select * from customer");
 																																																																																																							      	      printResult($result);
 																																																																																																								      }
 
