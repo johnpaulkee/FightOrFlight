@@ -31,6 +31,20 @@
            <li><a href="#">Airline Headquarter Location</a></li>    
            <li><a href="#">Lookup Boarding Pass Details</a></li>    
        </ul>
+        <ul>
+          <li><a href="#">Purchase Ticket</a></li>
+           <li><a href="#">Become a Frequent Flyer</a></li>
+           <li><a href="#">Check Points</a></li>
+           <li><a href="#">Purchased Tickets Details</a></li>   
+           <li><a href="#">Are you blacklisted?</a></li>    
+           <li><a href="#">Purchased Tickets Details</a></li>   
+           <li><a href="#">Update your Credit Card Information</a></li> 
+           <li><a href="#">Check Luggage Weight</a></li>    
+           <li><a href="#">Lookup Boarding Pass Details</a></li>    
+           <li><a href="#">Check Airline Headquarters</a></li>    
+           <li><a href="#">Check Plane Details</a></li>   
+           <li><a href="#">Purchased Tickets Details </a></li>    
+       </ul>
       </div>
 
         <form class="navbar-form navbar-left" role="search">
