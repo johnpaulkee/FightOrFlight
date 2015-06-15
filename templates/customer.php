@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-      
+
     
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="../js/app.js"></script>
@@ -69,7 +69,7 @@
   $(document).ready(function(){
 
       $("#purchase_ticket").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").load("customer_data.php").fadeIn('slow');
       });
 
       $("#freq_flyer").click(function() {
