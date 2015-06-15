@@ -90,9 +90,8 @@ $success = False;
 }
 
 function printResult($result) { //prints results from a select statement
-	echo "<br>Got data from table tab1:<br>";
+	echo "<br>Got data from table Customer: <br>";
 	echo "<table>";
-	echo "<tr><th>ID</th><th>Name</th></tr>";
 
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
 		echo "<br>";

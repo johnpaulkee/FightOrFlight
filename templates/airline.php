@@ -11,14 +11,14 @@
 
     <!-- Menu -->
     <ul>
-      <li><a href="#" id="add_ticket">Add Tickets</a> </li>
-      <li><a href="#" id="distribute_boarding_pass">Distribute boarding passes </a> </li>
-      <li><a href="#" id="check_details">View Airline Employee Details </a> </li>
-      <li><a href="#" id="assign_discounts">Assign Airline Employee Discount</a> </li>
-      <li><a href="#" id="update_freq_flyer">Update Customer Frequent Flyer Points</a> </li>
-      <li><a href="#" id="join_alliance">Join an Alliance</a> </li>
-      <li><a href="#" id="headquarter_in">Set Headquarters</a> </li>
-      <li><a href="#" id="airport_details">View Airport Details </a> </li>
+      <li><a href="javascript:void(0)" id="add_ticket">Add Tickets</a> </li>
+      <li><a href="javascript:void(0)" id="distribute_boarding_pass">Distribute boarding passes </a> </li>
+      <li><a href="javascript:void(0)" id="check_details">View Airline Employee Details </a> </li>
+      <li><a href="javascript:void(0)" id="assign_discounts">Assign Airline Employee Discount</a> </li>
+      <li><a href="javascript:void(0)" id="update_freq_flyer">Update Customer Frequent Flyer Points</a> </li>
+      <li><a href="javascript:void(0)" id="join_alliance">Join an Alliance</a> </li>
+      <li><a href="javascript:void(0)" id="headquarter_in">Set Headquarters</a> </li>
+      <li><a href="javascript:void(0)" id="airport_details">View Airport Details </a> </li>
     </ul>
   </div>
 
