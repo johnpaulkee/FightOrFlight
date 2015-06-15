@@ -65,35 +65,43 @@
   $(document).ready(function(){
 
       $("#add_ticket").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
       $("#distribute_boarding_pass").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
       $("#check_details").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
       $("#assign_discounts").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
       $("#update_freq_flyer").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
       $("#join_alliance").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
       $("#headquarter_in").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
       $("#airport_details").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
  });
