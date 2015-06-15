@@ -26,6 +26,7 @@ body {
           background-size: cover;
 }
 
+
 .menu ul {
   border-top: 1px solid #636366;
   list-style: none;
@@ -69,4 +70,10 @@ body {
 
 .icon-menu i {
   margin-right: 5px;
+}
+
+.scroller {
+  height: 400px;
+  overflow-y: scroll;
+  
 }
