@@ -1,7 +1,7 @@
 <html>
 
 <?php
-include "header.php";
+include "head.php";
 ?>
 
 <table class="table table-striped"> 
