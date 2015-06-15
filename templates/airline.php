@@ -11,14 +11,14 @@
 
     <!-- Menu -->
     <ul>
-      <li><a href="#" id="add_ticket">  Add Tickets so that customers can purchase them </a> </li>
-      <li><a href="#" id="distribute_boarding_pass">  Distribute boarding passes </a> </li>
-      <li><a href="#" id="myLink">  Check up details on their Airline Employees </a> </li>
-      <li><a href="#" id="myLink">  Assign discounts for each airline employee </a> </li>
-      <li><a href="#" id="myLink">  Update Customer’s Frequent Flyer Points </a> </li>
-      <li><a href="#" id="myLink"> Join an Alliance </a> </li>
-      <li><a href="#" id="myLink"> Choose the country that they want their headquarters in </a> </li>
-      <li><a href="#" id="myLink"> Lookup Airport Details </a> </li>
+      <li><a href="#" id="add_ticket">Add Tickets</a> </li>
+      <li><a href="#" id="distribute_boarding_pass">Distribute boarding passes </a> </li>
+      <li><a href="#" id="check_details">View Airline Employee Details </a> </li>
+      <li><a href="#" id="assign_discounts">Assign Airline Employee Discount</a> </li>
+      <li><a href="#" id="update_freq_flyer">Update Customer Frequent Flyer Points</a> </li>
+      <li><a href="#" id="join_alliance">Join an Alliance</a> </li>
+      <li><a href="#" id="headquarter_in">Set Headquarters</a> </li>
+      <li><a href="#" id="airport_details">View Airport Details </a> </li>
     </ul>
   </div>
 
@@ -65,10 +65,35 @@
   $(document).ready(function(){
 
       $("#add_ticket").click(function() {
-          $("#form_generation").empty();
-          $("#form_generation").load("tester.php", function(){
-            $("#form_generation").fadeIn('slow');
-          });
+        $("#form_generation").load("tester.php").fadeIn('slow');
+      });
+
+      $("#distribute_boarding_pass").click(function() {
+        $("#form_generation").load("tester.php").fadeIn('slow');
+      });
+
+      $("#check_details").click(function() {
+        $("#form_generation").load("tester.php").fadeIn('slow');
+      });
+
+      $("#assign_discounts").click(function() {
+        $("#form_generation").load("tester.php").fadeIn('slow');
+      });
+
+      $("#update_freq_flyer").click(function() {
+        $("#form_generation").load("tester.php").fadeIn('slow');
+      });
+
+      $("#join_alliance").click(function() {
+        $("#form_generation").load("tester.php").fadeIn('slow');
+      });
+
+      $("#headquarter_in").click(function() {
+        $("#form_generation").load("tester.php").fadeIn('slow');
+      });
+
+      $("#airport_details").click(function() {
+        $("#form_generation").load("tester.php").fadeIn('slow');
       });
 
  });
