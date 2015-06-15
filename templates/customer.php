@@ -34,7 +34,7 @@
 
       <div class="container">
       <div class="panel panel-default transparentbody">
-      <div class="panel-heading">Panel heading</div>
+      <div class="panel-heading">Customer Data</div>
       <div class="panel-body scroller" id="form_generation">
           Panel content
           Panel content
