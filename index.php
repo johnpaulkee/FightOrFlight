@@ -63,7 +63,6 @@
         <div class="text-vertical-center">
             <h1> Fight Or Flights </h1>
            
-            <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
         </div>
     </header>
 
@@ -72,8 +71,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-                    <p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
+                    <h2>Buy your next travel fares on FightOrFlight</h2>
+                    <p class="lead"> We have the cheapest tickets that any consumer can buy</p>
                 </div>
             </div>
             <!-- /.row -->
@@ -87,61 +86,49 @@
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-10 col-lg-offset-1">
-                    <h2>Our Services</h2>
+                    <h2>Services</h2>
                     <hr class="small">
                     <div class="row">
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-4 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-cloud fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
-                                    <strong>Service Name</strong>
+                                    <strong>Customers</strong>
                                 </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
+                                <p>Purchase and Manage Your Tickets</p>
+                          <!--       <a href="#" class="btn btn-light">Learn More</a> -->
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-4 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-compass fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
-                                    <strong>Service Name</strong>
+                                    <strong>Airline Employees</strong>
                                 </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
+                                <p>Purchase or Update Tickets</p>
+                                <!-- <a href="#" class="btn btn-light">Learn More</a> -->
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-4 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-flask fa-stack-1x text-primary"></i>
                             </span>
                                 <h4>
-                                    <strong>Service Name</strong>
+                                    <strong>Airlines</strong>
                                 </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
+                                <p>Sell Tickets</p>
+                                <!-- <a href="#" class="btn btn-light">Learn More</a> -->
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
+                        
                     </div>
                     <!-- /.row (nested) -->
                 </div>
@@ -152,14 +139,15 @@
         <!-- /.container -->
     </section>
 
-    <!-- Callout -->
+    <!-- Callout
     <aside class="callout">
         <div class="text-vertical-center">
             <h1>Vertically Centered Text</h1>
         </div>
     </aside>
+    -->
 
-    <!-- Portfolio -->
+    <!-- Portfolio 
     <section id="portfolio" class="portfolio">
         <div class="container">
             <div class="row">
@@ -196,17 +184,17 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.row (nested) -->
+                    
                     <a href="#" class="btn btn-dark">View More Items</a>
                 </div>
-                <!-- /.col-lg-10 -->
+               
             </div>
-            <!-- /.row -->
+            
         </div>
-        <!-- /.container -->
-    </section>
+        
+    </section> -->
 
-    <!-- Call to Action -->
+    <!-- 
     <aside class="call-to-action bg-primary">
         <div class="container">
             <div class="row">
@@ -218,6 +206,7 @@
             </div>
         </div>
     </aside>
+    Call to Action -->
 
     <!-- Map -->
     <section id="contact" class="map">
@@ -234,10 +223,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Start Bootstrap</strong>
+                    <h4><strong>FightOrFlights</strong>
                     </h4>
-                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
-                    <ul class="list-unstyled">
+                    <p>UBC 304<br>Relational Databases Project</p>
+                    <!-- <ul class="list-unstyled">
                         <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
                         <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
                         </li>
@@ -255,7 +244,7 @@
                         </li>
                     </ul>
                     <hr class="small">
-                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
+                    <p class="text-muted">Copyright &copy; Your Website 2014</p> -->
                 </div>
             </div>
         </div>
