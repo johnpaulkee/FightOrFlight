@@ -11,14 +11,14 @@
 
     <!-- Menu -->
     <ul>
-      <li><a href="#" id="add_ticket">Add Tickets</a> </li>
-      <li><a href="#" id="distribute_boarding_pass">Distribute boarding passes </a> </li>
-      <li><a href="#" id="check_details">View Airline Employee Details </a> </li>
-      <li><a href="#" id="assign_discounts">Assign Airline Employee Discount</a> </li>
-      <li><a href="#" id="update_freq_flyer">Update Customer Frequent Flyer Points</a> </li>
-      <li><a href="#" id="join_alliance">Join an Alliance</a> </li>
-      <li><a href="#" id="headquarter_in">Set Headquarters</a> </li>
-      <li><a href="#" id="airport_details">View Airport Details </a> </li>
+      <li><a href="javascript:void(0)" id="add_ticket">Add Tickets</a> </li>
+      <li><a href="javascript:void(0)" id="distribute_boarding_pass">Distribute boarding passes </a> </li>
+      <li><a href="javascript:void(0)" id="check_details">View Airline Employee Details </a> </li>
+      <li><a href="javascript:void(0)" id="assign_discounts">Assign Airline Employee Discount</a> </li>
+      <li><a href="javascript:void(0)" id="update_freq_flyer">Update Customer Frequent Flyer Points</a> </li>
+      <li><a href="javascript:void(0)" id="join_alliance">Join an Alliance</a> </li>
+      <li><a href="javascript:void(0)" id="headquarter_in">Set Headquarters</a> </li>
+      <li><a href="javascript:void(0)" id="airport_details">View Airport Details </a> </li>
     </ul>
   </div>
 
@@ -65,35 +65,43 @@
   $(document).ready(function(){
 
       $("#add_ticket").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
       $("#distribute_boarding_pass").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
       $("#check_details").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
       $("#assign_discounts").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
       $("#update_freq_flyer").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
       $("#join_alliance").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
       $("#headquarter_in").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
       $("#airport_details").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").empty();
+        $("#form_generation").load("tester.php");
       });
 
  });
