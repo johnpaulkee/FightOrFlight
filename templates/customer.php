@@ -38,7 +38,7 @@
       <div class="panel-heading"> Welcome back Customer</div>
       <div class="panel-body scroller" id="form_generation">
           <?php
-            include 'customer_data.php';
+            include 'customer_templates/customer_data.php';
           ?>
         </div>
       </div>
@@ -54,47 +54,47 @@
   $(document).ready(function(){
 
       $("#cust_info").click(function() {
-        $("#form_generation").load("customer_data.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/customer_data.php").fadeIn('slow');
       });
 
       $("#purchase_ticket").click(function() {
-        $("#form_generation").load("purchase_tickets.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/purchase_tickets.php").fadeIn('slow');
       });
 
       $("#freq_flyer").click(function() {
-        $("#form_generation").load("frequent_flyer.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/frequent_flyer.php").fadeIn('slow');
       });
 
       $("#check_points").click(function() {
-        $("#form_generation").load("check_points.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/check_points.php").fadeIn('slow');
       });
 
       $("#blacklist").click(function() {
-        $("#form_generation").load("blacklisted.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/blacklisted.php").fadeIn('slow');
       });
 
       $("#update_cred").click(function() {
-        $("#form_generation").load("cred_card.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/cred_card.php").fadeIn('slow');
       });
 
       $("#lugg_weight").click(function() {
-        $("#form_generation").load("lugg_weight.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/lugg_weight.php").fadeIn('slow');
       });
 
       $("#bp_details").click(function() {
-        $("#form_generation").load("board_pass.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/board_pass.php").fadeIn('slow');
       });
 
       $("#find_airline_head").click(function() {
-        $("#form_generation").load("airline_headquarters.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/airline_headquarters.php").fadeIn('slow');
       });
 
       $("#plane_details").click(function() {
-        $("#form_generation").load("plane_details.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/plane_details.php").fadeIn('slow');
       });
 
       $("#bagtag_details").click(function() {
-        $("#form_generation").load("bag_tag_details.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/bag_tag_details.php").fadeIn('slow');
       });
 
  });
