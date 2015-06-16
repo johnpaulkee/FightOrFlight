@@ -55,7 +55,8 @@ function printResult($result) { //prints results from a select statement
 
 // Connect Oracle...
 if ($db_conn) {
-  $result = executePlainSQL("SELECT airline_code, airline_name, name from Airline_Headquartered_In where airline_name LIKE'%".$airline."%'");
+  $query = "SELECT airline_code, airline_name, name from Airline_Headquartered_In where airline_name LIKE'%".$airline."%'";
+  $result = executePlainSQL($query);
   printResult($result);
 }
 
