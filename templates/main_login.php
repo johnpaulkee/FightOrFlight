@@ -39,4 +39,7 @@ include "head.php";
     </form>
   </tr>
 </table>
+<?php
+phpinfo();
+?>
 </html>

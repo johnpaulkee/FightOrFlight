@@ -43,6 +43,7 @@
           echo $_SESSION["type"];
           echo "you're a beauty";
           print_r($_SESSION);
+          echo $GLOBALS["test"];
         ?>
       </div>
       <div class="panel-body scroller" id="form_generation">
