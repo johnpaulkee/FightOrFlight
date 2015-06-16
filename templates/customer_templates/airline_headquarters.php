@@ -34,16 +34,16 @@ include "head.php";
 	
 	$("#airline_head_form").submit(function() {
 
-    var url = "customer_templates/check_headquarters.php"; // the script where you handle the form input.
+    var url = $(this).attr("action"); // the script where you handle the form input.
 
     $.ajax({
            type: "POST",
-           url: url,
-           data: $("#idForm").serialize(), // serializes the form's elements.
+           url: $(this).attr("action"),
+           data: $("#airline_head_form").serialize(), // serializes the form's elements.
            success: function(data)
            {
-           		alert("SUCCESS");
-              $("#form_result").load("customer_templates/check_headquarters.php"); // show response from the php script.
+           		alert("SUCCESsdfsS");
+              $("#formresult").html(data); // show response from the php script.
            }
          });
 
