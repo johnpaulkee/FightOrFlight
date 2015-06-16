@@ -7,6 +7,7 @@
  	$password = $_POST['mypassword'];
  	$type = $_POST['userType'];
  	$table = "";
+ 	$redirect = -1;
 
  	function executePlainSQL($cmdstr) { 
 			//echo "<br>running ".$cmdstr."<br>";
@@ -32,14 +33,18 @@
 
 	if($type == "customer") {
 		$table = "Customer_Login";
+		$redirect=0;
 	} else if ($type == "airlineemployee") {
 		$table = "Airline_Employee_Login";
+		$redirect=1;
 	} else if ($type == "airline") {
 		$table = "Airline_Login";
+		$redirect=2;
 	}
 
 	if($table == ""){
 		echo " ERROR: Login type not specified";
+		header('Location: /~u8a9/FightOrFlight/templates/main_login.php');  
 	} else {
 
 	$query = "SELECT username FROM ".$table." WHERE username='".$username."' AND password='".$password."'";
@@ -50,8 +55,18 @@
 	}
 	while(($row = oci_fetch_row($result)) != false){
 		echo $row[0];
+		echo "success";
+		if($redirect == 0){
+			echo "redirecting to customer";
+			header('Location :/~u8a9/FightOrFlight/templates/customer.php');
+		} else if ($redirect == 1){
+			header('Location :/~u8a9/FightOrFlight/templates/airline_employee.php');
+			echo "redirecting to airline employee";
+		} else if ($redirect == 2){
+			echo "redirecting to airline";
+			header('Location :/~u8a9/FightOrFlight/templates/airline.php');
+		}
 	}
-
 
 }
 
