@@ -4,9 +4,8 @@
 	<select class="form-control">
 		<?php
 		$bd_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
-		$query = "SELECT plane_ID, capacity, company, airline_code
-				  FROM Airline_Headquartered_In a, Plane_Owned_By p
-				  WHERE a.airline_code = p.airline_code";
+		$query = "SELECT *
+				  FROM Airline_Headquartered_In a";
 		$statement = OCIParse($db_conn, $query);
 		$result = OCIExecute($statement, OCI_DEFAULT);
 		while(($row = oci_fetch_row($statement)) != false) {
