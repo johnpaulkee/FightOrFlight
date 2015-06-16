@@ -46,7 +46,7 @@
 	$result = executePlainSQL($query);
 	if(oci_fetch_row($result) == false){
 		echo "Please re-enter your credentials";
-		http_redirect('./main_login.php, array("fake' => "faseashell"), false, 0);
+		header('Location: /templates/main_login.php');  
 	}
 	while(($row = oci_fetch_row($result)) != false){
 		echo $row[0];
