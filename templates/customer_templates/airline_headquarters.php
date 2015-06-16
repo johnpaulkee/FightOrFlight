@@ -34,7 +34,7 @@ include "head.php";
 	
 	$("#airline_head_form").submit(function() {
 
-    var url = "customer_templates/check_headquarters.php"; // the script where you handle the form input.
+    var url = "/customer_templates/check_headquarters.php"; // the script where you handle the form input.
 
     $.ajax({
            type: "POST",
