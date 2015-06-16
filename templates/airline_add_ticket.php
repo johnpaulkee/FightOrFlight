@@ -26,9 +26,7 @@
 			return $statement;
 		}
 
-		$bd_conn = OCILogon("ora_u8a9", "a32101131", "ug");
-		$query = "SELECT *
-				  FROM Airline_Headquartered_In";
+		$query = "SELECT * FROM Airline_Headquartered_In";
 		$result = executePlainSQL($query, $result);
 		while(($row = oci_fetch_row($statement)) != false) {
 			$option = '<option value="'.$row[2].$row[0].'">'.$row[0].$row[1].$row[2].'</option>';
