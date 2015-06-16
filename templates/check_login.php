@@ -5,6 +5,7 @@
   <body>
   <?php
  	// Define user and pass
+ 	$_SESSION["favcolor"] = "green";
 	$username = $_POST['myusername'];
  	$password = $_POST['mypassword'];
  	$type = $_POST['userType'];

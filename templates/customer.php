@@ -13,6 +13,7 @@
 
       <!-- Menu -->
       <ul>
+        <li><?php echo "Favorite color is " . $_SESSION["favcolor"] . ".<br>"; ?></li>
         <li><a href="javascript:void(0)" id = "cust_info">My Account</a></li>
         <li><a href="javascript:void(0)" id = "purchase_ticket">Purchase Tickets</a></li>
         <li><a href="javascript:void(0)" id = "freq_flyer">Become a Frequent Flyer</a></li>
