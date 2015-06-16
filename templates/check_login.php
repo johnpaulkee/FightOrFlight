@@ -40,14 +40,15 @@
 
 	if($table == ""){
 		echo " ERROR: Login type not specified";
-		header('Location: ./main_login.php');
-		die();
 	} else {
 
 	$query = "SELECT username FROM ".$table." WHERE username = '".$username."' AND password = '".$password."'";
 	$result = executePlainSQL($query);
 	if(oci_fetch_row($result) == false){
 		echo "Please re-enter your credentials";
+		header('Location: ./main_login.php');
+		die();
+
 	}
 	while(($row = oci_fetch_row($result)) != false){
 		echo $row[0];
