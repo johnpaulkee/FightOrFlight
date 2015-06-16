@@ -58,6 +58,7 @@ if ($db_conn) {
   $query = "SELECT airline_name, name from Airline_Headquartered_In where airline_name LIKE'%".$airline."%'";
   $result = executePlainSQL($query);
   echo $result;
+  echo $airline;
   printResult($result);
 }
 
