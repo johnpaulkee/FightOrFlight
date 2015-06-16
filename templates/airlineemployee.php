@@ -11,6 +11,7 @@
 
       <!-- Menu -->
       <ul>
+        <li><a href="javascript:void(0)" id="my_account">My Account</a></li>
         <li><a href="javascript:void(0)" id="sell_ticket">Sell Ticket</a></li>
         <li><a href="javascript:void(0)" id="customer_details">Customer Details</a></li>
         <li><a href="javascript:void(0)" id="airline_details">Airline Details</a></li>
