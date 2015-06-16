@@ -26,7 +26,7 @@
 			return $statement;
 		}
 
-		$query = "SELECT plane_ID, capacity, company, airline_code 
+		$query = "SELECT plane_ID, capacity, company, p.airline_code 
 				  FROM Airline_Headquartered_In a, Plane_Owned_By p
 				  WHERE a.airline_code = p.airline_code";
 		$result = executePlainSQL($query, $result);
