@@ -67,7 +67,7 @@
 				echo "redirecting to airline";
 				//header('Location :/~u8a9/FightOrFlight/templates/airline.php');
 			}
-		} while(($row = oci_fetch_row($result)) != false)
+		} while(($row = oci_fetch_row($result)) != false);
 	}
 	echo "debuggin";
 }
