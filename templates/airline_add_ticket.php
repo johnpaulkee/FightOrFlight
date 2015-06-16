@@ -35,7 +35,7 @@
 			echo $option;
 		}
 		oci_free_statement($statement);
-		oci_close($con);
+		oci_close($db_con);
 		?>
 	</select>
 	<label> Set Price </label>
