@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+<?php session_start(); ?>
 
 <html>
  <head></head>
@@ -65,15 +63,18 @@ session_start();
 				$_SESSION["type"]="customer";
 				$_SESSION["id"]=$row[0];
 				header('Location: /~u8a9/FightOrFlight/templates/customer.php');
+				exit();
 			} else if ($redirect == 1){
 				$_SESSION["type"]="airline_employee";
 				$_SESSION["id"]=$row[0];
 				$_SESSION["emp_airliline"]=$row[1];
 				header('Location: /~u8a9/FightOrFlight/templates/airlineemployee.php');
+				exit();
 			} else if ($redirect == 2){
 				$_SESSION["type"]="airline";
 				$_SESSION["id"]=$row[0];
 				header('Location: /~u8a9/FightOrFlight/templates/airline.php');
+				exit();
 			}
 		} while(($row = oci_fetch_row($result)) != false);
 	}
