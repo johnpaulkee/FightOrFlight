@@ -1,4 +1,4 @@
-<form method="post" action="airline_templates/add_ticket.php">
+<form>
 	<label> Select Plane </label>
 	<select class="form-control">
 		<?php
@@ -38,6 +38,4 @@
 		oci_close($db_con);
 		?>
 	</select>
-	<label> Set Price </label>
-	<p>$</p><input type="number" name="price" min="0">
 </form>
