@@ -1,5 +1,4 @@
-<?php session_start(); 
-			$_SESSION["favcolor"] = "green";
+<?php session_start(); $_SESSION["favcolor"] = "green";
 ?>
 
 <html>
@@ -7,7 +6,6 @@
   <body>
   <?php
  	// Define user and pass
- 	$_SESSION["favcolor"] = "red";
 	$username = $_POST['myusername'];
  	$password = $_POST['mypassword'];
  	$type = $_POST['userType'];
