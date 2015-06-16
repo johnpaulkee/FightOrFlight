@@ -42,6 +42,7 @@ session_start();
       <div class="panel-heading"> Welcome back Customer         
         <?php
           echo $_SESSION["type"]." ".$$_SESSION["id"];
+          echo "you're a beauty";
         ?>
       </div>
       <div class="panel-body scroller" id="form_generation">
