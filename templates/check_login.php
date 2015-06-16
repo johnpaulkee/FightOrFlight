@@ -60,20 +60,20 @@
 	} else {
 		do{
 			if($redirect == 0){
-				$_SESSION["type"]="customer";
-				$_SESSION["id"]=$row[0];
+				$_POST["type"]="customer";
+				$_POST["id"]=$row[0];
 				header('Location: ../templates/customer.php');
 				exit();
 			} else if ($redirect == 1){
-				$_SESSION["type"]="airline_employee";
-				$_SESSION["id"]=$row[0];
-				$_SESSION["emp_airliline"]=$row[1];
+				$_POST["type"]="airline_employee";
+				$_POST["id"]=$row[0];
+				$_POST["emp_airliline"]=$row[1];
 				header('Location: ../templates/airlineemployee.php');
 
 				exit();
 			} else if ($redirect == 2){
-				$_SESSION["type"]="airline";
-				$_SESSION["id"]=$row[0];
+				$_POST["type"]="airline";
+				$_POST["id"]=$row[0];
 				header('Location: ../templates/airline.php');
 				exit();
 			}

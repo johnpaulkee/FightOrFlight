@@ -39,10 +39,9 @@
       <div class="panel panel-default transparentbody">
       <div class="panel-heading"> Welcome back Customer         
         <?php
-          echo $_SESSION["type"]." ".$_SESSION["id"];
-          echo $_SESSION["type"];
+          echo $_POST["type"]." ".$_POST["id"];
+          echo $_POST["type"];
           echo "you're a beauty";
-          print_r($_SESSION);
           echo $GLOBALS["test"];
         ?>
       </div>
