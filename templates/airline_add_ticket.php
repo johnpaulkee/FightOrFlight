@@ -5,7 +5,7 @@
 		<?php
 			function executePlainSQL($cmdstr) { 
 			//echo "<br>running ".$cmdstr."<br>";
-			$db_con = OCILogon("ora_u8a9", "a32101131", "ug");
+			$db_con = OCILogon("ora_i4u9a", "a34129122", "ug");
 			$statement = OCIParse($db_con, $cmdstr); //There is a set of comments at the end of the file that describe some of the OCI specific functions and how they work
 
 			if (!$statement) {
