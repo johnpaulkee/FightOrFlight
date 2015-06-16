@@ -43,7 +43,7 @@ include "head.php";
            success: function(data)
            {
            		alert("SUCCESS");
-              $("#form_result").load("customer_templates/check_headquarters.php");; // show response from the php script.
+              $("#form_result").load("customer_templates/check_headquarters.php"); // show response from the php script.
            }
          });
 
