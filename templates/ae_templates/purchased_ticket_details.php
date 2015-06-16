@@ -1,0 +1,1 @@
+<p> Purchased ticket details </p>
