@@ -53,23 +53,23 @@
 	if(oci_fetch_row($result) == false){
 		echo "Please re-enter your credentials";
 		header('Location: /~u8a9/FightOrFlight/templates/main_login.php');  
+	} else {
+		do{
+			echo $row[0];
+			echo "success";
+			if($redirect == 0){
+				echo "redirecting to customer";
+				//header('Location :/~u8a9/FightOrFlight/templates/customer.php');
+			} else if ($redirect == 1){
+				//header('Location :/~u8a9/FightOrFlight/templates/airline_employee.php');
+				echo "redirecting to airline employee";
+			} else if ($redirect == 2){
+				echo "redirecting to airline";
+				//header('Location :/~u8a9/FightOrFlight/templates/airline.php');
+			}
+		} while(($row = oci_fetch_row($result)) != false)
 	}
 	echo "debuggin";
-	while(($row = oci_fetch_row($result)) != false){
-		echo $row[0];
-		echo "success";
-		if($redirect == 0){
-			echo "redirecting to customer";
-			//header('Location :/~u8a9/FightOrFlight/templates/customer.php');
-		} else if ($redirect == 1){
-			//header('Location :/~u8a9/FightOrFlight/templates/airline_employee.php');
-			echo "redirecting to airline employee";
-		} else if ($redirect == 2){
-			echo "redirecting to airline";
-			//header('Location :/~u8a9/FightOrFlight/templates/airline.php');
-		}
-	}
-
 }
 
 
