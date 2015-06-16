@@ -59,11 +59,4 @@ if ($db_conn) {
   printResult($result);
 }
 
-//Commit to save changes...
-} else {
-  echo "cannot connect";
-$e = OCI_Error(); // For OCILogon errors pass no handle
-echo htmlentities($e['message']);
-}
-
 ?>
