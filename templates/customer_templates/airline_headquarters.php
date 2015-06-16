@@ -42,7 +42,8 @@ include "head.php";
            data: $("#idForm").serialize(), // serializes the form's elements.
            success: function(data)
            {
-               $("#form_result").load("customer_templates/check_headquarters.php");; // show response from the php script.
+           		alert("SUCCESS");
+              $("#form_result").load("customer_templates/check_headquarters.php");; // show response from the php script.
            }
          });
 
