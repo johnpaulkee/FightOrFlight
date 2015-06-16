@@ -64,7 +64,7 @@
 				$_POST["type"]="customer";
 				$_POST["id"]=$row[0];
 				header('Location: ../templates/customer.php');
-				exit();
+				die();
 			} else if ($redirect == 1){
 				$_POST["type"]="airline_employee";
 				$_POST["id"]=$row[0];
