@@ -36,7 +36,7 @@
 			echo $option;
 		}
 		oci_free_statement($statement);
-		oci_close($conn);
+		oci_close($con);
 		?>
 	</select>
 </form>
