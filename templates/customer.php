@@ -41,8 +41,10 @@ session_start();
       <div class="panel panel-default transparentbody">
       <div class="panel-heading"> Welcome back Customer         
         <?php
-          echo $_SESSION["type"]." ".$$_SESSION["id"];
+          echo $_SESSION["type"]." ".$_SESSION["id"];
+          echo $_SESSION["type"];
           echo "you're a beauty";
+          print_r($_SESSION);
         ?>
       </div>
       <div class="panel-body scroller" id="form_generation">
