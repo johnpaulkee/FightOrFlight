@@ -1,4 +1,4 @@
-<form>
+<form method="post" action="airline_templates/add_tickets.php">
 	<label> Select Plane </label>
 	<select class="form-control">
 		<?php
@@ -31,11 +31,34 @@
 		$result = executePlainSQL($query, $result);
 		echo $result;
 		while(($row = oci_fetch_row($result)) != false) {
-			$option = '<option value="'.$row[3].$row[0].'">'.$row[0].", ".$row[1].", ".$row[2].'</option>';
+			$option = '<option value="'.$row[1]'">'.$row[0].", ".$row[1].", ".$row[2].'</option>';
 			echo $option;
 		}
 		oci_free_statement($statement);
 		oci_close($con);
 		?>
 	</select>
+	<label> Set Price </label>
+	<p>$</p><input type="number" name="price" min="0">
 </form>
+
+<script>
+	
+	$("#airline_head_form").submit(function() {
+
+    var url = $(this).attr("action"); // the script where you handle the form input.
+
+    $.ajax({
+           type: "POST",
+           url: $(this).attr("action"),
+           data: $("#airline_head_form").serialize(), // serializes the form's elements.
+           success: function(data)
+           {
+           		alert("SUCCESsdfsS");
+              $("#formresult").html(data); // show response from the php script.
+           }
+         });
+
+    return false; // avoid to execute the actual submit of the form.
+});
+</script>
