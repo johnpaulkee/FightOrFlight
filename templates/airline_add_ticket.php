@@ -41,24 +41,3 @@
 	<label> Set Price </label>
 	<p>$</p><input type="number" name="price" min="0">
 </form>
-
-<script>
-	
-	$("#airline_head_form").submit(function() {
-
-    var url = $(this).attr("action"); // the script where you handle the form input.
-
-    $.ajax({
-           type: "POST",
-           url: $(this).attr("action"),
-           data: $("#airline_head_form").serialize(), // serializes the form's elements.
-           success: function(data)
-           {
-           		alert("SUCCESsdfsS");
-              $("#formresult").html(data); // show response from the php script.
-           }
-         });
-
-    return false; // avoid to execute the actual submit of the form.
-});
-</script>
