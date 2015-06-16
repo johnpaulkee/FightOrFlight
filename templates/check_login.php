@@ -49,10 +49,12 @@
 
 	$query = "SELECT username FROM ".$table." WHERE username='".$username."' AND password='".$password."'";
 	$result = executePlainSQL($query);
+	echo "going into if";
 	if(oci_fetch_row($result) == false){
 		echo "Please re-enter your credentials";
 		header('Location: /~u8a9/FightOrFlight/templates/main_login.php');  
 	}
+	echo "debuggin";
 	while(($row = oci_fetch_row($result)) != false){
 		echo $row[0];
 		echo "success";
