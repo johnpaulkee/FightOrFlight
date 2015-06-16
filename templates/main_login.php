@@ -24,11 +24,12 @@ include "head.php";
             <td><input name="mypassword" type="text" id="mypassword"></td>
           </tr>
           <tr>
-            <select name="userType">
-              <option value="A">Airline</option>
-              <option value="C">Customer</option>
-              <option value="E">Employee</option>
-            </select>
+            <input type="radio" name="userType" value="customer">Customer
+            <br>
+            <input type="radio" name="userType" value="airlineemployee">Airline Employee
+            <br>
+            <input type="radio" name="userType" value="airline">Airline
+            <br>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td><input type="submit" name="Submit" value="Login"></td>
