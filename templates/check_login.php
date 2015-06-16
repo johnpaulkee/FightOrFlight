@@ -47,8 +47,6 @@
 	if(oci_fetch_row($result) == false){
 		echo "Please re-enter your credentials";
 		header('Location: ./main_login.php');
-		die();
-
 	}
 	while(($row = oci_fetch_row($result)) != false){
 		echo $row[0];
