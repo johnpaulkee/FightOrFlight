@@ -45,17 +45,17 @@ function printResult($result) { //prints results from a select statement
     echo "<tr>";
     echo "<td>" . $row[0] . "</td>";
     echo "<td>" . $row[1] . "</td>";
-    echo "<td>" . $row[2] . "</td>";
     echo "</tr>";
   }
   echo "</tbody>";
   echo "</table>";
+  echo $result;
 
 }
 
 // Connect Oracle...
 if ($db_conn) {
-  $query = "SELECT airline_code, airline_name, name from Airline_Headquartered_In where airline_name LIKE'%".$airline."%'";
+  $query = "SELECT airline_name, name from Airline_Headquartered_In where airline_name LIKE'%".$airline."%'";
   $result = executePlainSQL($query);
   printResult($result);
 }
