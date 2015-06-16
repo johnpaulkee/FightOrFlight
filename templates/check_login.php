@@ -27,7 +27,7 @@
 				echo htmlentities($e['message']);
 				$success = False;
 			} else {}
-			return $r;
+			return $statement;
 	}
 
 	if($type == "customer") {
@@ -44,8 +44,10 @@
 
 	$query = "SELECT username FROM ".$table." WHERE username = '".$username."' AND password = '".$password."'";
 	$result = executePlainSQL($query);
-	echo $result;
-	echo $query;
+	while(($row = oci_fetch_row($result)) != false){
+		echo $row[0];
+	}
+
 
 }
 
