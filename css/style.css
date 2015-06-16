@@ -6,6 +6,10 @@ body {
   position: relative;
 }
 
+.panel {
+  border-radius: 0 !important;
+}
+
 /* Initial menu */
 .menu {
   background: black;

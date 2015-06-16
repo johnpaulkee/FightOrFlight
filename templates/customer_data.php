@@ -91,16 +91,27 @@ $success = False;
 
 function printResult($result) { //prints results from a select statement
 	echo "<br>Got data from table Customer: <br>";
-	echo "<table>";
 
+	echo "<table class = 'table table-striped'>";
+	echo "<thead>";
+	echo "<tr>";
+	echo "<th>CustomerID</th>";
+	echo "<th>Blacklisted</th>";
+	echo "<th>Name</th>";
+	echo "<th>Credit Card</th>";
+	echo "</tr>";
+	echo "</thead>";
+	echo "<tbody>";
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-		echo "<br>";
-		echo $row[0] . "<br>";
-		echo $row[1] . "<br>";
-		echo $row[2] . "<br>";
-		echo $row[3] . "<br>";
-		echo $row[4] . "<br>";
+		echo "<tr>";
+		echo "<td>" . $row[0] . "</td>";
+		echo "<td>" . $row[1] . "</td>";
+		echo "<td>" . $row[2] . "</td>";
+		echo "<td>" . $row[3] . "</td>";
+		echo "<td>" . $row[4] . "</td>";
+		echo "</tr>";
 	}
+	echo "</tbody>";
 	echo "</table>";
 
 }
@@ -174,6 +185,17 @@ if ($_POST && $success) {
 } else {
 	$result = executePlainSQL("select * from Customer");
 	printResult($result);
+	$result = executePlainSQL("select * from customer_login");
+	printResult($result);
+	$result = executePlainSQL("select * from country");
+	printResult($result);
+	$result = executePlainSQL("select * from Airline_Headquartered_In");
+	printResult($result);
+	$result = executePlainSQL("select * from Airline_Employee_Employed_With");
+	printResult($result);
+	$result = executePlainSQL("select * from Airline_Employee_Login");
+	printResult($result);
+
 }
 
 //Commit to save changes...
