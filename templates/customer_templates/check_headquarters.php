@@ -159,7 +159,7 @@ OCICommit($db_conn);
 if ($_POST && $success) {
   header("location: oracle-test.php");
 } else {
-  $result = executePlainSQL("SELECT airline_code, airline_name, name from Airline_Headquartered_In where name ="' .$airline '"");
+  $result = executePlainSQL("SELECT airline_code, airline_name, name from Airline_Headquartered_In where airline_name ="' .$airline '"");
   printResult($result);
 }
 
