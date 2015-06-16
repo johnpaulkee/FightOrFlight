@@ -28,7 +28,7 @@
 
 		$query = "SELECT * FROM Airline_Headquartered_In";
 		$result = executePlainSQL($query, $result);
-		while(($row = oci_fetch_row($statement)) != false) {
+		while(($row = oci_fetch_row($result)) != false) {
 			$option = '<option value="'.$row[2].$row[0].'">'.$row[0].$row[1].$row[2].'</option>';
 			echo($option);
 		}
