@@ -9,7 +9,7 @@ include "head.php";
 <table class="table table-striped"> 
   <tablewidth="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
   <tr>
-    <form name="form1" method="post" action="check_headquarters.php">
+    <form name="form1" method="post" action="check_headquarters.php" id="airline_head_form">
       <td>
         <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
           <tr>
@@ -25,5 +25,25 @@ include "head.php";
     </form>
   </tr>
 </table>
+
+<script>
+	
+	$("#airline_head_form").submit(function() {
+
+    var url = "check_headquarters.php"; // the script where you handle the form input.
+
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: $("#idForm").serialize(), // serializes the form's elements.
+           success: function(data)
+           {
+               console.log(data); // show response from the php script.
+           }
+         });
+
+    return false; // avoid to execute the actual submit of the form.
+});
+</script>
 </html>
 
