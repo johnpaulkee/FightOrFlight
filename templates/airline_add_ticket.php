@@ -5,7 +5,7 @@
 		<?php
 			function executePlainSQL($cmdstr) { 
 			//echo "<br>running ".$cmdstr."<br>";
-			$db_con = OCILogon("ora_u8a9", "a32101131", "ug");
+			$db_con = OCILogon("ora_i4u9a", "a34129122", "ug");
 			$statement = OCIParse($db_con, $cmdstr); //There is a set of comments at the end of the file that describe some of the OCI specific functions and how they work
 
 			if (!$statement) {
@@ -26,13 +26,14 @@
 			return $statement;
 		}
 
-		$bd_conn = OCILogon("ora_u8a9", "a32101131", "ug");
-		$query = "SELECT *
-				  FROM Airline_Headquartered_In";
+		$query = "SELECT plane_ID, capacity, company, p.airline_code 
+				  FROM Airline_Headquartered_In a, Plane_Owned_By p
+				  WHERE a.airline_code = p.airline_code";
 		$result = executePlainSQL($query, $result);
-		while(($row = oci_fetch_row($statement)) != false) {
-			$option = '<option value="'.$row[2].$row[0].'">'.$row[0].$row[1].$row[2].'</option>';
-			echo($option);
+		echo $result;
+		while(($row = oci_fetch_row($result)) != false) {
+			$option = '<option value="'.$row[3].$row[0].'">'.$row[0].", ".$row[1].", ".$row[2].'</option>';
+			echo $option;
 		}
 		oci_free_statement($statement);
 		oci_close($conn);
