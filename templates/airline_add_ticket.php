@@ -1,6 +1,6 @@
 <form>
 
-	<label> Select Planet </label>
+	<label> Select Plane </label>
 	<select class="form-control">
 		<?php
 			function executePlainSQL($cmdstr) { 
@@ -26,11 +26,13 @@
 			return $statement;
 		}
 
-		$query = "SELECT * FROM Airline_Headquartered_In";
+		$query = "SELECT plane_ID, capacity, company, airline_code 
+				  FROM Airline_Headquartered_In a, Plane_Owned_By p
+				  WHERE a.airline_code = p.airline_code";
 		$result = executePlainSQL($query, $result);
 		echo $result;
 		while(($row = oci_fetch_row($result)) != false) {
-			$option = '<option value="'.$row[2].$row[0].'">'.$row[0].$row[1].$row[2].'</option>';
+			$option = '<option value="'.$row[3].$row[0].'">'.$row[0].$row[1].$row[2].'</option>';
 			echo $option;
 		}
 		oci_free_statement($statement);
