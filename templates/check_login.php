@@ -45,7 +45,7 @@
 
 	$query = "SELECT username FROM ".$table." WHERE username = '".$username."' AND password = '".$password."'";
 	$result = executePlainSQL($query);
-	echo $result;
+	//echo $result;
 
 }
 
