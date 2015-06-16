@@ -36,7 +36,7 @@
 	} else if ($type == "airlineemployee") {
 		$table = "Airline_Employee_Login";
 	} else if ($type == "airline") {
-		$table = "Airline_Login"
+		$table = "Airline_Login";
 	}
 
 	if($table == ""){
