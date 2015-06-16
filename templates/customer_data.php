@@ -90,15 +90,14 @@ $success = False;
 }
 
 function printResult($result) { //prints results from a select statement
-	echo "<br><center> Got data from table Customer: </center><br>";
+	echo "<h3><center> Hello Customer, here are your details: </center></h3>";
 
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
 	echo "<tr>";
-	echo "<th>CustomerID</th>";
-	echo "<th>Blacklisted</th>";
-	echo "<th>Name</th>";
-	echo "<th>Credit Card</th>";
+	echo "<th>Username</th>";
+	echo "<th>Cust_ID</th>";
+	echo "<th>Password</th>";
 	echo "</tr>";
 	echo "</thead>";
 	echo "<tbody>";
@@ -183,7 +182,7 @@ OCICommit($db_conn);
 if ($_POST && $success) {
 	header("location: oracle-test.php");
 } else {
-	$result = executePlainSQL("SELECT * from customer");
+	$result = executePlainSQL("SELECT * from customer_login");
 	printResult($result);
 }
 

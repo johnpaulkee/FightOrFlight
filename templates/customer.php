@@ -35,7 +35,7 @@
 
       <div class="container">
       <div class="panel panel-default transparentbody">
-      <div class="panel-heading">Customer Data</div>
+      <div class="panel-heading"> Welcome back Customer</div>
       <div class="panel-body scroller" id="form_generation">
           <?php
             include 'customer_data.php';
