@@ -42,7 +42,7 @@
 		echo " ERROR: Login type not specified";
 	} else {
 
-	$query = "SELECT username FROM ".$table." WHERE username = '".$username."' AND password = '".$password."'";
+	$query = "SELECT username FROM ".$table." WHERE username='".$username."' AND password='".$password."'";
 	$result = executePlainSQL($query);
 	if(oci_fetch_row($result) == false){
 		echo "Please re-enter your credentials";
