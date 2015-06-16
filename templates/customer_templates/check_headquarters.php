@@ -3,7 +3,7 @@ $success = True; //keep track of errors so it redirects the page only if there a
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 
   // Define user and pass
-$airline = ucfirst($_POST['airlinename']);
+$airline = ucfirst($_POST['airline']);
 
 function executePlainSQL($cmdstr) { 
   //echo "<br>running ".$cmdstr."<br>";

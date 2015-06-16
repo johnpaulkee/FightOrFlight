@@ -18,7 +18,7 @@ include "head.php";
             <td><input name="airlinename" type="text" id="airline"></td>
           </tr>
           <tr>
-            <td><input type="submit" name="Submit" value="Login"></td>
+            <td><input type="submit" name="Submit" value="search"></td>
           </tr>
         </table>
       </td>
