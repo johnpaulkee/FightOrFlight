@@ -90,7 +90,7 @@ $success = False;
 }
 
 function printResult($result) { //prints results from a select statement
-	echo "<br>Got data from table Customer: <br>";
+	echo "<br><center> Got data from table Customer: </center><br>";
 
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
@@ -183,19 +183,8 @@ OCICommit($db_conn);
 if ($_POST && $success) {
 	header("location: oracle-test.php");
 } else {
-	$result = executePlainSQL("select * from Customer");
+	$result = executePlainSQL("SELECT * from customer");
 	printResult($result);
-	$result = executePlainSQL("select * from customer_login");
-	printResult($result);
-	$result = executePlainSQL("select * from country");
-	printResult($result);
-	$result = executePlainSQL("select * from Airline_Headquartered_In");
-	printResult($result);
-	$result = executePlainSQL("select * from Airline_Employee_Employed_With");
-	printResult($result);
-	$result = executePlainSQL("select * from Airline_Employee_Login");
-	printResult($result);
-
 }
 
 //Commit to save changes...

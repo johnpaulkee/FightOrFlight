@@ -11,6 +11,7 @@
 
       <!-- Menu -->
       <ul>
+        <li><a href="javascript:void(0)" id = "cust_info">My Account</a></li>
         <li><a href="javascript:void(0)" id = "purchase_ticket">Purchase Tickets</a></li>
         <li><a href="javascript:void(0)" id = "freq_flyer">Become a Frequent Flyer</a></li>
         <li><a href="javascript:void(0)" id = "check_points">Check Points</a></li>
@@ -36,25 +37,9 @@
       <div class="panel panel-default transparentbody">
       <div class="panel-heading">Customer Data</div>
       <div class="panel-body scroller" id="form_generation">
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
+          <?php
+            include 'customer_data.php';
+          ?>
         </div>
       </div>
     </div>
@@ -68,44 +53,48 @@
 
   $(document).ready(function(){
 
-      $("#purchase_ticket").click(function() {
+      $("#cust_info").click(function() {
         $("#form_generation").load("customer_data.php").fadeIn('slow');
       });
 
+      $("#purchase_ticket").click(function() {
+        $("#form_generation").load("purchase_tickets.php").fadeIn('slow');
+      });
+
       $("#freq_flyer").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").load("frequent_flyer.php").fadeIn('slow');
       });
 
       $("#check_points").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").load("check_points.php").fadeIn('slow');
       });
 
       $("#blacklist").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").load("blacklisted.php").fadeIn('slow');
       });
 
       $("#update_cred").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").load("cred_card.php").fadeIn('slow');
       });
 
       $("#lugg_weight").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").load("lugg_weight.php").fadeIn('slow');
       });
 
       $("#bp_details").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").load("board_pass.php").fadeIn('slow');
       });
 
       $("#find_airline_head").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").load("airline_headquarters.php").fadeIn('slow');
       });
 
       $("#plane_details").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").load("plane_details.php").fadeIn('slow');
       });
 
       $("#bagtag_details").click(function() {
-        $("#form_generation").load("tester.php").fadeIn('slow');
+        $("#form_generation").load("bag_tag_details.php").fadeIn('slow');
       });
 
  });

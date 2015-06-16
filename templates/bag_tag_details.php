@@ -1,0 +1,1 @@
+<p> Here are your bag tag details </p>
