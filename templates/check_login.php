@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <html>
  <head></head>
   <body>
@@ -58,7 +62,6 @@
 	} else {
 		do{
 			if($redirect == 0){
-				session_start();
 				$_SESSION["type"]="customer";
 				$_SESSION["id"]=$row[0];
 				header('Location: /~u8a9/FightOrFlight/templates/customer.php');

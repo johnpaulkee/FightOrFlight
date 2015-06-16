@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <html>
   <?php include 'head.php'; ?>
   <body>
@@ -37,7 +41,6 @@
       <div class="panel panel-default transparentbody">
       <div class="panel-heading"> Welcome back Customer         
         <?php
-          session_start();
           echo $_SESSION["type"]." ".$$_SESSION["id"];
         ?>
       </div>
