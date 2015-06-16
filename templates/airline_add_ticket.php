@@ -1,5 +1,4 @@
 <form>
-
 	<label> Select Plane </label>
 	<select class="form-control">
 		<?php
@@ -36,7 +35,7 @@
 			echo $option;
 		}
 		oci_free_statement($statement);
-		oci_close($conn);
+		oci_close($con);
 		?>
 	</select>
 </form>
