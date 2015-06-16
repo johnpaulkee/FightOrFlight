@@ -22,6 +22,10 @@
         <li><a href="javascript:void(0)" id = "find_airline_head">Find Airline Headquarters</a></li>
         <li><a href="javascript:void(0)" id = "plane_details">Plane Details</a></li>
         <li><a href="javascript:void(0)" id = "bagtag_details">Bag Tag Details</a></li>
+        <?php
+          session_start();
+          echo "<li>".$_SESSION["type"]." ".$$_SESSION["id"]." </li>";
+        ?>
       </ul>
     </div>
 

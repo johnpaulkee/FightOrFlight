@@ -33,12 +33,15 @@
 
 	if($type == "customer") {
 		$table = "Customer_Login";
+		$id = "cust_ID";
 		$redirect=0;
 	} else if ($type == "airlineemployee") {
 		$table = "Airline_Employee_Login";
+		$id = "employeeID, airline_code";
 		$redirect=1;
 	} else if ($type == "airline") {
 		$table = "Airline_Login";
+		$id = "airline_code";
 		$redirect=2;
 	}
 
@@ -47,19 +50,26 @@
 		header('Location: /~u8a9/FightOrFlight/templates/main_login.php');  
 	} else {
 
-	$query = "SELECT username FROM ".$table." WHERE username='".$username."' AND password='".$password."'";
+	$query = "SELECT ".$id." FROM ".$table." WHERE username='".$username."' AND password='".$password."'";
 	$result = executePlainSQL($query);
 	if(($row = oci_fetch_row($result)) == false){
 		echo "Please re-enter your credentials";
 		header('Location: /~u8a9/FightOrFlight/templates/main_login.php');  
 	} else {
 		do{
-			echo $row[0];
 			if($redirect == 0){
+				session_start();
+				$_SESSION["type"]="customer";
+				$_SESSION["id"]=$row[0];
 				header('Location: /~u8a9/FightOrFlight/templates/customer.php');
 			} else if ($redirect == 1){
-				header('Location: /~u8a9/FightOrFlight/templates/airline_employee.php');
+				$_SESSION["type"]="airline_employee";
+				$_SESSION["id"]=$row[0];
+				$_SESSION["emp_airliline"]=$row[1];
+				header('Location: /~u8a9/FightOrFlight/templates/airlineemployee.php');
 			} else if ($redirect == 2){
+				$_SESSION["type"]="airline";
+				$_SESSION["id"]=$row[0];
 				header('Location: /~u8a9/FightOrFlight/templates/airline.php');
 			}
 		} while(($row = oci_fetch_row($result)) != false);
