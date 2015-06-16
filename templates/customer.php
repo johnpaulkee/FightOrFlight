@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <html>
   <?php include 'head.php'; ?>
   <body>
@@ -35,7 +39,12 @@
 
       <div class="container">
       <div class="panel panel-default transparentbody">
-      <div class="panel-heading"> Welcome back Customer</div>
+      <div class="panel-heading"> Welcome back Customer         
+        <?php
+          echo $_SESSION["type"]." ".$$_SESSION["id"];
+          echo "you're a beauty";
+        ?>
+      </div>
       <div class="panel-body scroller" id="form_generation">
           <?php
             include 'customer_templates/customer_data.php';
