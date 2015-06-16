@@ -32,7 +32,7 @@
 		$result = executePlainSQL($query, $result);
 		echo $result;
 		while(($row = oci_fetch_row($result)) != false) {
-			$option = '<option value="'.$row[3].$row[0].'">'.$row[0].$row[1].$row[2].'</option>';
+			$option = '<option value="'.$row[3].$row[0].'">'.$row[0].", ".$row[1].", ".$row[2].'</option>';
 			echo $option;
 		}
 		oci_free_statement($statement);
