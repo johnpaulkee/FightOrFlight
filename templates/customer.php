@@ -35,7 +35,12 @@
 
       <div class="container">
       <div class="panel panel-default transparentbody">
-      <div class="panel-heading"> Welcome back Customer</div>
+      <div class="panel-heading"> Welcome back Customer         
+        <?php
+          session_start();
+          echo $_SESSION["type"]." ".$$_SESSION["id"];
+        ?>
+      </div>
       <div class="panel-body scroller" id="form_generation">
           <?php
             include 'customer_templates/customer_data.php';
