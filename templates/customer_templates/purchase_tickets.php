@@ -24,7 +24,32 @@
 		<input type="submit" value="update" name="updatesubmit"></p>
 		<input type="submit" value="run hardcoded queries" name="dostuff"></p>
 </form> -->
+<html>
 
+<?php
+include "head.php";
+?>
+
+<table class="table table-striped"> 
+  <tablewidth="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+  <tr>
+    <form name="form1" method="post" action="check_login.php">
+      <td>
+        <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
+          <tr>
+            <td>Please type in the Airline Name</td>
+            <td>:</td>
+            <td><input name="airlinename" type="text" id="airline"></td>
+          </tr>
+          <tr>
+            <td><input type="submit" name="Submit" value="Login"></td>
+          </tr>
+        </table>
+      </td>
+    </form>
+  </tr>
+</table>
+</html>
 <?php
 $success = True; //keep track of errors so it redirects the page only if there are no errors
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
