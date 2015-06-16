@@ -63,16 +63,23 @@
 				$_SESSION["type"]="customer";
 				$_SESSION["id"]=$row[0];
 				header('Location: ../templates/customer.php');
+				session_write_close();
+				session_regenerate_id(true);
 				exit();
 			} else if ($redirect == 1){
 				$_SESSION["type"]="airline_employee";
 				$_SESSION["id"]=$row[0];
 				$_SESSION["emp_airliline"]=$row[1];
 				header('Location: ../templates/airlineemployee.php');
+				session_write_close();
+				session_regenerate_id(true);
+				exit();
 			} else if ($redirect == 2){
 				$_SESSION["type"]="airline";
 				$_SESSION["id"]=$row[0];
 				header('Location: ../templates/airline.php');
+				session_write_close();
+				session_regenerate_id(true);
 				exit();
 			}
 		} while(($row = oci_fetch_row($result)) != false);
