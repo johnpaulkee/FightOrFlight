@@ -56,11 +56,11 @@
 		do{
 			echo $row[0];
 			if($redirect == 0){
-				header('Location :/~u8a9/FightOrFlight/templates/customer.php');
+				header('Location: /~u8a9/FightOrFlight/templates/customer.php');
 			} else if ($redirect == 1){
-				header('Location :/~u8a9/FightOrFlight/templates/airline_employee.php');
+				header('Location: /~u8a9/FightOrFlight/templates/airline_employee.php');
 			} else if ($redirect == 2){
-				header('Location :/~u8a9/FightOrFlight/templates/airline.php');
+				header('Location: /~u8a9/FightOrFlight/templates/airline.php');
 			}
 		} while(($row = oci_fetch_row($result)) != false);
 	}
