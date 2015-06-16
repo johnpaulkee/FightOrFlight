@@ -1,6 +1,6 @@
 <form>
 
-	<label> Select Plane </label>
+	<label> Select Planet </label>
 	<select class="form-control">
 		<?php
 			function executePlainSQL($cmdstr) { 
