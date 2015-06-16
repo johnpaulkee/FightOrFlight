@@ -81,7 +81,7 @@
 	}
 }
 
-$test = "testing123";
+$GLOBALS["test"] = "testing123";
 
  ?>
  </body>
