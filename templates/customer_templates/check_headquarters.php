@@ -41,7 +41,7 @@ function printResult($result) { //prints results from a select statement
   echo "</tr>";
   echo "</thead>";
   echo "<tbody>";
-  while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+  while (($row = oci_fetch_row($result)) != false) {
     echo "<tr>";
     echo "<td>" . $row[0] . "</td>";
     echo "<td>" . $row[1] . "</td>";
