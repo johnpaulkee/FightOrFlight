@@ -46,7 +46,7 @@
 	$result = executePlainSQL($query);
 	if(oci_fetch_row($result) == false){
 		echo "Please re-enter your credentials";
-		header('Location: /templates/main_login.php');  
+		header('Location: /home/i/i4u9a/public_html/FightOrFlight/templates/main_login.php');  
 	}
 	while(($row = oci_fetch_row($result)) != false){
 		echo $row[0];
