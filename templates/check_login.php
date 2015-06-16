@@ -43,7 +43,7 @@
 		echo " ERROR: Login type not specified";
 	} else {
 
-	$query = "SELECT username FROM ".$table.' WHERE username = "'.$username.'" AND password = '.'"'.$password.'"';
+	$query = "SELECT username FROM ".$table." WHERE username = '".$username."' AND password = '".$password."'";
 	$result = executePlainSQL($query);
 	echo $result;
 
