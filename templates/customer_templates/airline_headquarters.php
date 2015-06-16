@@ -26,12 +26,15 @@ include "head.php";
     </form>
   </tr>
 </table>
+<div class="container" id="formresult">
+	
+</div>
 
 <script>
 	
 	$("#airline_head_form").submit(function() {
 
-    var url = "check_headquarters.php"; // the script where you handle the form input.
+    var url = "customer_templates/check_headquarters.php"; // the script where you handle the form input.
 
     $.ajax({
            type: "POST",
@@ -39,7 +42,7 @@ include "head.php";
            data: $("#idForm").serialize(), // serializes the form's elements.
            success: function(data)
            {
-               console.log(data); // show response from the php script.
+               $("#form_result").load("customer_templates/check_headquarters.php");; // show response from the php script.
            }
          });
 
