@@ -28,6 +28,31 @@ function executePlainSQL($cmdstr) {
   return $statement;
 }
 
+function printResult($result) { //prints results from a select statement
+  echo "<h3><center> Here are the available tickets that you can purchase: </center></h3>";
+
+  echo "<table class = 'table table-striped'>";
+  echo "<thead>";
+  echo "<tr>";
+  echo "<th>tID</th>";
+  echo "<th>Seat Location</th>";
+  echo "<th>Class</th>";
+  echo "<th>Price</th>";
+  echo "</tr>";
+  echo "</thead>";
+  echo "<tbody>";
+  while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+    echo "<tr>";
+    echo "<td>" . $row[0] . "</td>";
+    echo "<td>" . $row[1] . "</td>";
+    echo "</tr>";
+  }
+  echo "</tbody>";
+  echo "</table>";
+  echo $result;
+
+}
+
 // Connect Oracle...
 if ($db_conn) {
   $query = "SELECT airline_name, name from Airline_Headquartered_In where airline_name LIKE'%".$airline."%'";
