@@ -34,11 +34,10 @@
 
       <div class="container">
       <div class="panel panel-default transparentbody">
-      <div class="panel-heading"> Welcome back <b>
+      <div class="panel-heading"> Welcome back 
       <?php 
       echo $_COOKIE['username'];
       ?>
-      </b>
       </div>
       <div class="panel-body scroller" id="form_generation">
           <?php
@@ -62,7 +61,7 @@
       });
 
       $("#purchase_ticket").click(function() {
-        $("#form_generation").load("../templates/customer_templates/purchase_ticket_form.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/purchase_tickets.php").fadeIn('slow');
       });
 
       $("#freq_flyer").click(function() {
@@ -86,7 +85,7 @@
       });
 
       $("#find_airline_head").click(function() {
-        $("#form_generation").load("../templates/customer_templates/airline_headquarters.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/airline_headquarters_form.php").fadeIn('slow');
       });
 
       $("#plane_details").click(function() {
