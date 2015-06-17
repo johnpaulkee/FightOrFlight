@@ -73,7 +73,6 @@ if ($db_conn) {
   echo $price;
   echo $capacity;
   for($i=0; $i<$economy; $i++){
-    echo "testing";
     if($s2 == "A"){
       $s2="B";
     } else if ($s2 == "B"){
@@ -86,8 +85,10 @@ if ($db_conn) {
       $s2 = "F";
     }
     if($k%6 == 0){
-      $s1 = $s1 + 1;
       $s2 = "A";
+    }
+    if($k%10 == 0){
+      $s1 = $s1+1;
     }
     $s3 = ($s3 + 1) % 10;
     $s1 = $s1 % 10;
@@ -95,11 +96,9 @@ if ($db_conn) {
     $primarykey = $primarykey + 1;
     $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
     $result = executePlainSQL($query);
-    echo $result;
   }
   $query = "SELECT * FROM Ticket";
   $result = executePlainSQL($query);
-  echo $result;
   printResult($result);
 }
 
