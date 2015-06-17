@@ -1,5 +1,11 @@
 <html>
-<?php include 'head.php'; ?>
+<?php include 'head.php'; 
+$type = $_COOKIE['type'];
+      if ($type != "airline") {
+          header("Location: ../templates/not_authorized.html");
+          die();
+      }
+?>
 <body>
 
   <div class="menu">
