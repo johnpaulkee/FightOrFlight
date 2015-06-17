@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <html>
   <?php include 'head.php'; ?>
   <body>
@@ -13,7 +11,6 @@
 
       <!-- Menu -->
       <ul>
-        <li><?php session_start(); echo "Favorite color is " . $_SESSION["favcolor"] . ".<br>"; ?></li>
         <li><a href="javascript:void(0)" id = "cust_info">My Account</a></li>
         <li><a href="javascript:void(0)" id = "purchase_ticket">Purchase Tickets</a></li>
         <li><a href="javascript:void(0)" id = "freq_flyer">Become a Frequent Flyer</a></li>
@@ -38,13 +35,10 @@
 
       <div class="container">
       <div class="panel panel-default transparentbody">
-      <div class="panel-heading"> Welcome back Customer         
-        <?php
-          echo $_POST["type"]." ".$_POST["id"];
-          echo $_POST["type"];
-          echo "you're a beauty";
-          echo $GLOBALS["test"];
-        ?>
+      <div class="panel-heading"> Welcome back 
+      <?php 
+      echo $_COOKIE['username'];
+      ?>
       </div>
       <div class="panel-body scroller" id="form_generation">
           <?php

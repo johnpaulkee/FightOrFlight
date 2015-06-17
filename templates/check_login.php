@@ -1,6 +1,3 @@
-<?php session_start(); $_SESSION["favcolor"] = "green";
-?>
-
 <html>
  <head></head>
   <body>
@@ -59,6 +56,9 @@
 		echo "Please re-enter your credentials";
 		header('Location: ../templates/main_login.php');  
 	} else {
+		$cookie_name = "username";
+		$cookie_value = $username;
+		setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/');
 		do{
 			if($redirect == 0){
 				$_POST["type"]="customer";
@@ -71,18 +71,16 @@
 				$_POST["emp_airliline"]=$row[1];
 				header('Location: ../templates/airlineemployee.php');
 
-				exit();
+				die();
 			} else if ($redirect == 2){
 				$_POST["type"]="airline";
 				$_POST["id"]=$row[0];
 				header('Location: ../templates/airline.php');
-				exit();
+				die();
 			}
 		} while(($row = oci_fetch_row($result)) != false);
 	}
 }
-
-$GLOBALS["test"] = "testing123";
 
  ?>
  </body>

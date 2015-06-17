@@ -36,7 +36,11 @@
 
       <div class="container">
       <div class="panel panel-default transparentbody">
-      <div class="panel-heading"> Welcome back Customer</div>
+      <div class="panel-heading"> Welcome back 
+      <?php 
+      echo $_COOKIE['username'];
+      ?>
+      </div>
       <div class="panel-body scroller" id="form_generation">
           <?php
             include 'ae_templates/airline_employee_data.php';

@@ -1,4 +1,4 @@
-<html>
+ai<html>
 <?php include 'head.php'; ?>
 <body>
 
@@ -31,7 +31,11 @@
     </div>
     <div class="container">
       <div class="panel panel-default transparentbody">
-      <div class="panel-heading">Panel heading</div>
+      <div class="panel-heading">Welcome back
+      <?php 
+      echo $_COOKIE['username'];
+      ?>
+      </div>
       <div class="panel-body" id="form_generation">
           Panel content
           Panel content
