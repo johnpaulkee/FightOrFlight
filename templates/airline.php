@@ -36,7 +36,7 @@ ai<html>
       echo $_COOKIE['username'];
       ?>
       </div>
-      <div class="panel-body" id="form_generation">
+      <div class="panel-body scroller" id="form_generation">
           Panel content
           Panel content
           Panel content
