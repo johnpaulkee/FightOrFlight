@@ -68,7 +68,7 @@ $type = $_COOKIE['type'];
 
       $("#check_details").click(function() {
         $("#form_generation").empty();
-        $("#form_generation").load("airline_templates/headquarter_in_form.php");
+        $("#form_generation").load("airline_templates/employee_member_form.php");
       });
 
       $("#assign_discounts").click(function() {
