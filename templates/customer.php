@@ -32,9 +32,11 @@
       <div class="container">
       <div class="panel panel-default transparentbody">
       <div class="panel-heading"> Welcome back 
+      <b>
       <?php 
       echo $_COOKIE['username'];
       ?>
+      </b>
       </div>
       <div class="panel-body scroller" id="form_generation">
           <?php
