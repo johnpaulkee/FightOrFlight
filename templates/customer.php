@@ -1,5 +1,6 @@
 <html>
-  <?php include 'head.php'; 
+  <?php 
+    include 'head.php'; 
     $type = $_COOKIE['type'];
     if ($type != "customer") {
       header("Location: ../templates/not_authorized.html");
@@ -40,12 +41,12 @@
       <?php 
       echo $_COOKIE['username'];
       ?>
-      </b>cu
+      </b>
       </div>
       <div class="panel-body scroller" id="form_generation">
-          <?php
+        <?php
             include 'customer_templates/customer_data.php';
-          ?>
+          ?> 
         </div>
       </div>
     </div>
@@ -80,6 +81,6 @@
       });
 
  });
-  </script>
+   </script>
 
 </html>

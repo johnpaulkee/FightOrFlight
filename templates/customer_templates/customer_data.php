@@ -1,40 +1,10 @@
-<<<<<<< HEAD
 <?php
-=======
-<!-- 
-<p>If you wish to reset the table press on the reset button. If this is the first time you're running this page, you MUST use reset</p>
-<form method="POST" action="oracle-test.php">
+$type = $_COOKIE['type'];
+if ($type != "customer") {
+	header("Location: ../templates/not_authorized.html");
+	die();
+}
 
-	<p><input type="submit" value="Reset" name="reset"></p>
-</form>
-
-<p>Insert values into tab1 below:</p>
-<p><font size="2"> Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-	Name</font></p>
-<form method="POST" action="oracle-test.php">
-		<p><input type="text" name="insNo" size="6"><input type="text" name="insName" 
-			size="18">
-			<input type="submit" value="insert" name="insertsubmit"></p>
-</form>
-
-<p> Update the name by inserting the old and new values below: </p>
-<p><font size="2"> Old Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-	New Name</font></p>
-
-<form method="POST" action="oracle-test.php">
-	<p><input type="text" name="oldName" size="6"><input type="text" name="newName" 
-		size="18">
-		<input type="submit" value="update" name="updatesubmit"></p>
-		<input type="submit" value="run hardcoded queries" name="dostuff"></p>
-	</form> -->
-
-	<?php
-	$type = $_COOKIE['type'];
-    if ($type != "customer") {
-      header("Location: ../templates/not_authorized.html");
-      die();
-    }
->>>>>>> 9f41213e721a6315f18eb86b64b11ab2843229ca
 $success = True; //keep track of errors so it redirects the page only if there are no errors
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 
@@ -242,20 +212,20 @@ if ($_POST && $success) {
 	$drop_cred_view = "DROP VIEW cred_card_details";
 	$drop_cred_result = executePlainSQL($drop_cred_view);
 	$create_cred_view = "CREATE VIEW cred_card_details as  
-						SELECT c.credit_card_number 
-						FROM customer c, customer_login cl 
-						WHERE c.cust_ID = cl.cust_ID and cl.username = '".$_COOKIE['username']."'";
+	SELECT c.credit_card_number 
+	FROM customer c, customer_login cl 
+	WHERE c.cust_ID = cl.cust_ID and cl.username = '".$_COOKIE['username']."'";
 	$cred_view_result = executePlainSQL($create_cred_view);
 
 	// TODO - update with user input
 	$update_cred = "UPDATE cred_card_details
-					SET credit_card_number='333222111'";
+	SET credit_card_number='333222111'";
 	$update_cred_result = executePlainSQL($update_cred);
 
 	$query = "SELECT credit_card_number FROM cred_card_details";
-    $cred_card = executePlainSQL($query);
+	$cred_card = executePlainSQL($query);
 
-    printCredCardDetails($cred_card);
+	printCredCardDetails($cred_card);
 
 	$query_tickets = "SELECT t.seat, t.class, p.capacity, p.company
 	FROM customer_login cl, customer_purchase cp, ticket t, plane_owned_by p, is_with i
