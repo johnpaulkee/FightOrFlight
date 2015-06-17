@@ -39,12 +39,12 @@ function executeBoundSQL($cmdstr, $list) {
 	foreach ($list as $tuple) {
 		foreach ($tuple as $bind => $val) {
 			OCIBindByName($statement, $bind, $val);
-	unset ($val); 
-}
+			unset ($val); 
+		}
 
-$r = OCIExecute($statement, OCI_DEFAULT);
-if (!$r) {
-	echo "<br>Cannot execute the following command: " . $cmdstr . "<br>";
+		$r = OCIExecute($statement, OCI_DEFAULT);
+		if (!$r) {
+			echo "<br>Cannot execute the following command: " . $cmdstr . "<br>";
 $e = OCI_Error($statement); // For OCIExecute errors pass the statementhandle
 echo htmlentities($e['message']);
 echo "<br>";
@@ -78,18 +78,13 @@ function printResult($result) { //prints results from a select statement
 	}
 	echo "</tbody>";
 	echo "</table>";
-
 }
 
-// Connect Oracle...
 if ($db_conn) {
-
 	if (array_key_exists('reset', $_POST)) {
-// Drop old table...
 		echo "<br> dropping table <br>";
 		executePlainSQL("Drop table tab1");
 
-// Create new table...
 		echo "<br> creating new table <br>";
 		executePlainSQL("create table tab1 (nid number, name varchar2(30), primary key (nid))");
 		OCICommit($db_conn);
