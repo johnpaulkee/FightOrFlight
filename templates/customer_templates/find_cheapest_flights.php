@@ -56,10 +56,10 @@ function printResult($result) { //prints results from a select statement
 // Connect Oracle...
 if ($db_conn) {
 	$query = "SELECT MIN(t.price) as minPrice, t.tID 
-	FROM Ticket t, Comprised_Of c, Airport_LocatedIn a 
+	FROM Ticket t
 	WHERE t.tID IN (SELECT t1.tID 
 					FROM Ticket t1, Comprised_Of c1, Airport_LocatedIn a1 
-					WHERE t1.tID = c1.tID AND c1.from_airport_code = '".$airport."'")
+					WHERE t1.tID = c1.tID AND c1.from_airport_code = '".$airport."')
 	GROUP BY t.tID";
 	$result = executePlainSQL($query);
 	echo $result;
