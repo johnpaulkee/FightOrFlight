@@ -59,7 +59,7 @@ if ($db_conn) {
 	FROM Ticket t, Comprised_Of c, Airport_LocatedIn a 
 	WHERE t.tID IN (SELECT t1.tID 
 					FROM Ticket t1, Comprised_Of c1, Airport_LocatedIn a1 
-					WHERE t1.tID = c1.tID AND c1.from_airport_code = '".$airport."' AND a1.airport_code = c1.to_airport_code)
+					WHERE t1.tID = c1.tID AND c1.from_airport_code = '".$airport."'")
 	GROUP BY t.tID";
 	$result = executePlainSQL($query);
 	echo $result;
