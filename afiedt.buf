@@ -1,0 +1,6 @@
+SELECT cp.tID
+			   FROM customer_login cl, customer_purchase cp
+			   WHERE cl.username = '".$_COOKIE['username']."' and
+			   		 cp.cust
+
+/
