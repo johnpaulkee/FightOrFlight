@@ -123,19 +123,21 @@ function executePlainSQL($cmdstr) {
       }
    for($i=0; $i<$first_num; $i++){
     $seat = generateSeat();
-    $primarykey = $GLOBALS['primarykey'] + 1;
+    $primarykey = $primarykey + 1;
     $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'First', '".$first_price."')";
     $result = executePlainSQL($query);
   }
   for($i=0; $i<$business_num; $i++){
     $seat = generateSeat();
-    $primarykey = $GLOBALS['primarykey'] + 1;
+    $primarykey = $primarykey + 1;
     $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
     $result = executePlainSQL($query);
   }
       $query1 = "SELECT * FROM Ticket";
       $result1 = executePlainSQL($query1);
       printResult($result1);
+      oci_commit($db_conn);
+      OCILogoff($db_conn);
     }
 
     ?>
