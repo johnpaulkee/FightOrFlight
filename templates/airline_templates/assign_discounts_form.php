@@ -47,7 +47,7 @@
   <p>%<input type="text" name="discountvalue"></p>
   <input type="submit" value="Submit">
 </form>
-
+<div id="formresult"></div>
 
 <script>
   $("#disc_form").submit(function() {
