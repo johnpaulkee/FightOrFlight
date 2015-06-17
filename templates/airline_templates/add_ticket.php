@@ -13,6 +13,33 @@ $business_num = ucfirst($_POST['business']);
 $business_price = ucfirst($_POST['business_price']);
 $economy = $capacity - $first_num - $business_num;
 
+function printResult($result) { //prints results from a select statement
+  echo "<h3><center> Here are the available tickets that you can purchase: </center></h3>";
+
+  echo "<table class = 'table table-striped'>";
+  echo "<thead>";
+  echo "<tr>";
+  echo "<th>tID</th>";
+  echo "<th>Seat</th>";
+  echo "<th>Class</th>";
+  echo "<th>Price</th>";
+  echo "</tr>";
+  echo "</thead>";
+  echo "<tbody>";
+  while (($row = oci_fetch_row($result)) != false) {
+    echo "<tr>";
+    echo "<td>" . $row[0] . "</td>";
+    echo "<td>" . $row[1] . "</td>";
+    echo "<td>" . $row[2] . "</td>";
+    echo "<td>" . $row[3] . "</td>";
+    echo "</tr>";
+  }
+  echo "</tbody>";
+  echo "</table>";
+  echo $result;
+
+}
+
 // Connect Oracle...
 if ($db_conn) {
   $k = 0;
@@ -40,6 +67,9 @@ if ($db_conn) {
     $query = "INSERT INTO Tickets(seat, class, price) VALUES ('".$seat."', 'Economy', '".$price."')";
     $result = executePlainSQL($query);
   }
+  $query = "SELECT * FROM Tickets";
+  $result = executePlainSQL($query);
+  printResult($result);
 }
 
 ?>
