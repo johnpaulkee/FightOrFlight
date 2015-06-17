@@ -58,9 +58,9 @@ if ($db_conn) {
 	$result1 = executePlainSQL($view_query);
 	$drop_narrowed_view = "DROP VIEW cheap_tickets";
 	$result2 = executePlainSQL($drop_narrowed_view);
-	$create_view = "CREATE VIEW cheap_tickets AS SELECT MIN(t.price) as minPrice, t.tID FROM Ticket t, outbound_tickets o WHERE t.tID = o.tID";
+	$create_view = "CREATE VIEW cheap_tickets AS SELECT MIN(t.price) as minPrice, t.tID FROM Ticket t, outbound_tickets o WHERE t.tID = o.tID GROUP BY t.tID";
 	$result3 = executePlainSQL($create_view);
-	$query = "SELECT t.price, t.tID FROM cheap_tickets c, Ticket t, Comprised_Of c WHERE t.price = c.minPrice AND t.tID = c.tID";
+	$query = "SELECT t.tID FROM Ticket t, Comprised_Of c WHERE t.tID = c.tID AND c.from_aiport_code = '".$airport."' AND t.price = (SELECT MIN(minPrice) FROM cheap_tickets c");
 	$result4 = executePlainSQL($query);
 	printResult($result4);
 	// while(($row = oci_fetch_row($result)) != false){
