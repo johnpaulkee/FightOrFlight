@@ -68,7 +68,10 @@ if ($db_conn) {
   $s1 = 0;
   $s2 = "A";
   $s3 = 0;
+  echo $economy;
+  echo $price;
   for($i=0; $i<$economy; $i++){
+    echo "testing";
     if($s2 == "A"){
       $s2="B";
     } else if ($s2 == "B"){
