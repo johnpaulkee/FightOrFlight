@@ -10,6 +10,7 @@
 		while(($row = oci_fetch_row($result)) != false) {
 			$option = '<input type="radio" name="plane" value="'.$row[1].",".$row[0].'">'.$row[0].", ".$row[1].", ".$row[2].'<br>';
 			echo $option;
+			echo "<h3>".$_COOKIE['id']."</h3>";
 		}
 		?>
 	<label>Economy Ticket Price</label>
