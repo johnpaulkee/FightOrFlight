@@ -73,8 +73,8 @@
         $("#form_generation").load("../templates/customer_templates/check_points.php").fadeIn('slow');
       });
 
-      $("#update_cred").click(function() {
-        $("#form_generation").load("../templates/customer_templates/cred_card.php").fadeIn('slow');
+      $("#find_cheapest_ticket").click(function() {
+        $("#form_generation").load("../templates/customer_templates/find_cheapest_ticket_form.php").fadeIn('slow');
       });
 
       $("#lugg_weight").click(function() {
