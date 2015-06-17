@@ -2,7 +2,7 @@
   <?php include 'head.php'; 
     $type = $_COOKIE['type'];
     if ($type != "customer") {
-      header("Location: not_authorized.php");
+      header("Location: not_authorized.html");
       die();
     }
   ?>
