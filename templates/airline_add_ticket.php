@@ -1,4 +1,4 @@
-<form action="./airline_templates/add_ticket.php" id="ticket_form">
+<form name = "form2" method = "post" action="../templates/airline_templates/add_ticket.php" id="ticket_form">
 	<label> Select Plane </label>
 	<select class="form-control">
 		<?php
