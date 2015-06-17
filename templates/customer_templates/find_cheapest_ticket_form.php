@@ -25,35 +25,35 @@
   	    return $statement;
  	   	}
 
- 	   	$query="SELECT city FROM Airport_Located_In";
-  		$result = executePlainSQL($query);
-  		while(($row = oci_fetch_row($result)) != false) {
-  			$input = '<input type="radio" name="city" value="'.$row[0].'">'.$row[0].'<br>';
-  			echo $input;
-  		}
+ 	  //  	$query="SELECT city FROM Airport_Located_In";
+  		// $result = executePlainSQL($query);
+  		// while(($row = oci_fetch_row($result)) != false) {
+  		// 	$input = '<input type="radio" name="city" value="'.$row[0].'">'.$row[0].'<br>';
+  		// 	echo $input;
+  		// }
 	?>
 	<input type="submit" name="submit" value="ok">
 </form>
 
 <div id="formresult"></div>
 
-// <script>
+<script>
 	
-// 	$("#cheapest_form").submit(function() {
+	$("#cheapest_form").submit(function() {
 
-//     var url = $(this).attr("action"); // the script where you handle the form input.
+    var url = $(this).attr("action"); // the script where you handle the form input.
 
-//     $.ajax({
-//            type: "POST",
-//            url: url,
-//            data: $("#cheapest_form").serialize(), // serializes the form's elements.
-//            success: function(data)
-//            {	
-//            		alert("SUCCESS");
-//               $("#formresult").html(data); // show response from the php script.
-//            }
-//          });
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: $("#cheapest_form").serialize(), // serializes the form's elements.
+           success: function(data)
+           {	
+           		alert("SUCCESS");
+              $("#formresult").html(data); // show response from the php script.
+           }
+         });
 
-//     return false; // avoid to execute the actual submit of the form.
-// });
-// </script>
+    return false; // avoid to execute the actual submit of the form.
+});
+</script>
