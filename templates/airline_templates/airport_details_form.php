@@ -3,7 +3,7 @@ $success = True; //keep track of errors so it redirects the page only if there a
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 ?>
 
-<form name="form2" method="post" action="../templates/airline_templates/phpscripts/getAirportDetails.php">
+<form name="form2" method="post" action="../templates/airline_templates/getAirportDetails.php">
   <label> Select Airport Code </label>
   <select class="form-control" name="apt" >
     <?php

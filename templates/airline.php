@@ -57,37 +57,37 @@
 
       $("#distribute_boarding_pass").click(function() {
         $("#form_generation").empty();
-        $("#form_generation").load("./airline_templates/forms/headquarter_in_form.php");
+        $("#form_generation").load("airline_templates/headquarter_in_form.php");
       });
 
       $("#check_details").click(function() {
         $("#form_generation").empty();
-        $("#form_generation").load("./airline_templates/forms/headquarter_in_form.php");
+        $("#form_generation").load("airline_templates/headquarter_in_form.php");
       });
 
       $("#assign_discounts").click(function() {
         $("#form_generation").empty();
-        $("#form_generation").load("./airline_templates/forms/headquarter_in_form.php");
+        $("#form_generation").load("airline_templates/headquarter_in_form.php");
       });
 
       $("#update_freq_flyer").click(function() {
         $("#form_generation").empty();
-        $("#form_generation").load("./airline_templates/forms/headquarter_in_form.php");
+        $("#form_generation").load("airline_templates/headquarter_in_form.php");
       });
 
       $("#join_alliance").click(function() {
         $("#form_generation").empty();
-        $("#form_generation").load("./airline_templates/forms/headquarter_in_form.php");
+        $("#form_generation").load("airline_templates/headquarter_in_form.php");
       });
 
       $("#headquarter_in").click(function() {
         $("#form_generation").empty();
-        $("#form_generation").load("./airline_templates/forms/headquarter_in_form.php");
+        $("#form_generation").load("airline_templates/headquarter_in_form.php");
       });
 
       $("#airport_details").click(function() {
         $("#form_generation").empty();
-        $("#form_generation").load("./airline_templates/forms/airport_details_form.php");
+        $("#form_generation").load("airline_templates/airport_details_form.php");
       });
 
  });
