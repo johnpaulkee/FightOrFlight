@@ -23,9 +23,9 @@
 		size="18">
 		<input type="submit" value="update" name="updatesubmit"></p>
 		<input type="submit" value="run hardcoded queries" name="dostuff"></p>
-</form> -->
+	</form> -->
 
-<?php
+	<?php
 $success = True; //keep track of errors so it redirects the page only if there are no errors
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 
@@ -115,15 +115,15 @@ function printResult($result) { //prints results from a select statement
 
 }
 
-function printTickets($result) { //prints results from a select statement
-	echo "<p> Your Purchased Tickets </p>";
-	echo "<p> TODO: Add plane details to the ticket </p>";
-	echo "<p> TODO: Add bag tag details for the ticket </p>";
+function printTicketAndPlaneDetails($result) { //prints results from a select statement
+	echo "<p> Your Tickets and it's Plane Details </p>";
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
 	echo "<tr>";
 	echo "<th>Seat</th>"; 
 	echo "<th>Class</th>"; 
+	echo "<th>capacity</th>"; 
+	echo "<th>company</th>";
 	echo "</tr>";
 	echo "</thead>";
 	echo "<tbody>";
@@ -131,13 +131,13 @@ function printTickets($result) { //prints results from a select statement
 		echo "<tr>";
 		echo "<td>" . $row[0] . "</td>";
 		echo "<td>" . $row[1] . "</td>";
+		echo "<td>" . $row[2] . "</td>";
+		echo "<td>" . $row[3] . "</td>";
 		echo "</tr>";
 	}
 	echo "</tbody>";
 	echo "</table>";
 }
-
-
 
 // Connect Oracle...
 if ($db_conn) {
@@ -206,21 +206,34 @@ OCICommit($db_conn);
 if ($_POST && $success) {
 	header("location: oracle-test.php");
 } else {
-	$query = "SELECT c.custName, cl.username, cl.password, c.blacklisted 
-			  FROM customer_login cl, customer c 
-			  WHERE c.cust_ID = cl.cust_ID and cl.username = '".$_COOKIE['username']."'";
-	$result = executePlainSQL($query);
-	printResult($result);
+	$query_user_details = "SELECT c.custName, cl.username, cl.password, c.blacklisted 
+	FROM customer_login cl, customer c 
+	WHERE c.cust_ID = cl.cust_ID and cl.username = '".$_COOKIE['username']."'";
+	$user_details = executePlainSQL($query_user_details);
+	printResult($user_details);
 
-	$query2 = "SELECT t.seat, t.class
-			   FROM customer_login cl, customer_purchase cp, ticket t 
-			   WHERE cl.username = '".$_COOKIE['username']."' and
-			   		 cp.cust_ID = cl.cust_ID and
-			   		 t.tID = cp.tID";
-	$result2 = executePlainSQL($query2);
-	printTickets($result2);
+	$query_tickets = "SELECT t.seat, t.class, p.capacity, p.company
+	FROM customer_login cl, customer_purchase cp, ticket t, plane_owned_by p, is_with i
+	WHERE cp.cust_ID = cl.cust_ID and 
+	t.tID = i.tID and
+	i.plane_ID = p.plane_ID and
+	t.tID = cp.tID and
+	cl.username = '".$_COOKIE['username']."'";
 
-	$query3 = "SELECT * FROM Customer";
+	$tickets_planes = executePlainSQL($query_tickets);
+	printTicketAndPlaneDetails($tickets_planes);
+
+
+	//BagTag_Luggage_StartD_FinalD
+	// bt_id INTEGER,
+	// weight INTEGER NOT NULL,
+	// source_airport_code CHAR(3) NOT NULL,
+	// destination_airport_code CHAR(3) NOT NULL,
+
+	echo "<p> TODO: Add bag tag details for the ticket </p>";
+	echo "<p> TODO: Add boarding pass  details for the ticket </p>";
+	echo "<p> TODO: Add check points if frequent flyer for the ticket </p>";
+	echo "<p> TODO: Add check luggage weight </p>";
 	
 }
 

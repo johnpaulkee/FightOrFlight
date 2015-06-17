@@ -82,6 +82,5 @@ if ($db_conn) {
 	printIntermediateResult($result2);
 
 	echo "<center> <button class='btn btn-default' type='submit' name='submit'> Purchase </button> </center>";
-
 }
 ?>
