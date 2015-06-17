@@ -139,6 +139,24 @@ function printTicketAndPlaneDetails($result) { //prints results from a select st
 	echo "</table>";
 }
 
+function printCredCardDetails($result) { //prints results from a select statement
+	echo "<p> Your Credit Card Info </p>";
+	echo "<table class = 'table table-striped'>";
+	echo "<thead>";
+	echo "<tr>";
+	echo "<th>Credit Card</th>"; 
+	echo "</tr>";
+	echo "</thead>";
+	echo "<tbody>";
+	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+		echo "<tr>";
+		echo "<td>" . $row[0] . "</td>";
+		echo "</tr>";
+	}
+	echo "</tbody>";
+	echo "</table>";
+}
+
 // Connect Oracle...
 if ($db_conn) {
 
@@ -212,6 +230,12 @@ if ($_POST && $success) {
 	$user_details = executePlainSQL($query_user_details);
 	printResult($user_details);
 
+	$query_cred_card = "SELECT c.credit_card_number 
+						FROM customer c, customer_login cl 
+						WHERE c.cust_ID = cl.cust_ID and cl.username = '".$_COOKIE['username']."'";
+    $cred_card = executePlainSQL($query_cred_card);
+    printCredCardDetails($cred_card);
+
 	$query_tickets = "SELECT t.seat, t.class, p.capacity, p.company
 	FROM customer_login cl, customer_purchase cp, ticket t, plane_owned_by p, is_with i
 	WHERE cp.cust_ID = cl.cust_ID and 
@@ -224,16 +248,18 @@ if ($_POST && $success) {
 	printTicketAndPlaneDetails($tickets_planes);
 
 
+	echo "<p> TODO: Update credit card info </p>";
+	echo "<p> TODO: Add bag tag details for the ticket </p>";
+
 	//BagTag_Luggage_StartD_FinalD
 	// bt_id INTEGER,
 	// weight INTEGER NOT NULL,
 	// source_airport_code CHAR(3) NOT NULL,
 	// destination_airport_code CHAR(3) NOT NULL,
-
-	echo "<p> TODO: Add bag tag details for the ticket </p>";
 	echo "<p> TODO: Add boarding pass  details for the ticket </p>";
 	echo "<p> TODO: Add check points if frequent flyer for the ticket </p>";
 	echo "<p> TODO: Add check luggage weight </p>";
+
 	
 }
 
