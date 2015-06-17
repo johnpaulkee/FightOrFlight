@@ -92,11 +92,10 @@ function printResult($result) { //prints results from a select statement
 
 // Connect Oracle...
 if ($db_conn) {
-	$query = "SELECT MIN(t.price) as minPrice, t.tID, c.to_airport_code, a.city 
+	$query = "SELECT t.price as minPrice, t.tID, c.to_airport_code, a.city 
 	FROM Ticket t, Comprised_Of c, Airport_LocatedIn a 
-	WHERE t.tID = c.tID AND a.airport_code = c.to_airport_code
-	GROUP BY t.price, t.tID, c.to_airport_code, a.city
-	HAVING c.from_airport_code = '".$airport."'" ;
+	WHERE t.tID = c.tID AND c.from_airport_code = '".$airport."' AND a.airport_code = c.to_airport_code AND t.price <= ALL (SELECT price FROM Ticket t, Comprised_Of c, Airport_LocatedIn a 
+	WHERE t.tID = c.tID AND c.from_airport_code = '".$airport."' AND a.airport_code = c.to_airport_code)";
 	$result = executePlainSQL($query);
 	echo $result;
 	// while(($row = oci_fetch_row($result)) != false){
@@ -104,5 +103,6 @@ if ($db_conn) {
 	// 	echo "<br>";
 	// }
 	}
+}
 
 ?>
