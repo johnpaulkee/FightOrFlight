@@ -1,8 +1,8 @@
 <html>
   <?php include 'head.php'; 
     $type = $_COOKIE['type'];
-    if ($type != "../templates/customer") {
-      header("Location: not_authorized.html");
+    if ($type != "customer") {
+      header("Location: ../templates/not_authorized.html");
       die();
     }
   ?>

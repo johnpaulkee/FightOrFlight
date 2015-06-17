@@ -31,8 +31,8 @@
 
 <?php
 $type = $_COOKIE['type'];
-    if ($type != "../templates/customer") {
-      header("Location: not_authorized.html");
+    if ($type != "customer") {
+      header("Location: ../templates/not_authorized.html");
       die();
     }
 $success = True; //keep track of errors so it redirects the page only if there are no errors
