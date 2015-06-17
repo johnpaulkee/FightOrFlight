@@ -1,27 +1,45 @@
 <?php
-$type = $_COOKIE['type'];
-      if ($type != "airline") {
-          header("Location: ../templates/not_authorized.html");
-          die();
-      }
 $success = True; //keep track of errors so it redirects the page only if there are no errors
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 
 
   // Define user and pass
-$acode = $_POST['aln'];
-$newHq = $_POST['hq'];
+echo $_POST['ahq'];
+list($tsold,$capacity) = explode(",",$_POST['ahq']);
+$percEmpty = 100 - (($tsold/$capacity) * 100);
+echo $tsold;
+echo $capacity;
+echo $percEmpty;
+echo "done";
 
+  // echo "<h3><center> Here are the stats for your selected flight's empty seats: </center></h3>";
+  // echo "<table class = 'table table-striped'>";
+  // echo "<thead>";
+  // echo "<tr>";
+  // echo "<th>Number of Empty Seats</th>";
+  // echo "<th>Tickets Sold</th>";
+  // echo "<th>Percentage of Seats Empty</th>";
+  // echo "</tr>";
+  // echo "</thead>";
+  // echo "<tbody>";
+  // // while (($row = oci_fetch_row($result)) != false) {
+  //   echo "<tr>";
+  //   echo "<td>" . $tsold . "</td>";
+  //   echo "<td>" . $capacity . "</td>";
+  //   echo "<td>" . $percEmpty . "</td>";
+  //   echo "</tr>";
+  // // }
+  // echo "</tbody>";
+  // echo "</table>";
 
 function printResult($result) { //prints results from a select statement
-  echo "<h3><center> Here are the details for your selected airport: </center></h3>";
+  echo "<h3><center> Here are the stats for your selected flight's empty seats: </center></h3>";
   echo "<table class = 'table table-striped'>";
   echo "<thead>";
   echo "<tr>";
-  echo "<th>Airport Code</th>";
-  echo "<th>Number of Domestic Gates</th>";
-  echo "<th>City</th>";
-  echo "<th>Country</th>";
+  echo "<th>Number of Empty Seats</th>";
+  echo "<th>Tickets Sold</th>";
+  echo "<th>Percentage of Seats Empty</th>";
   echo "</tr>";
   echo "</thead>";
   echo "<tbody>";
@@ -29,8 +47,7 @@ function printResult($result) { //prints results from a select statement
     echo "<tr>";
     echo "<td>" . $row[0] . "</td>";
     echo "<td>" . $row[1] . "</td>";
-    echo "<td>" . $row[2] . "</td>";
-    echo "<td>" . $row[3] . "</td>";
+    echo "<td>" . $percEmpty . "</td>";
     echo "</tr>";
   }
   echo "</tbody>";
@@ -63,13 +80,9 @@ function executePlainSQL($cmdstr) {
 
 // Connect Oracle...
 if ($db_conn) {
-  $query = "UPDATE Airline_Headquartered_In SET name='".$newHq."' WHERE airline_code=".$acode."";
-  $query2 = "SELECT airline_code, airline_name, name FROM Airline_Headquartered_In WHERE airline_code=".$acode."";
-  $resultalter = executePlainSQL($query);
-  $result = executePlainSQL($query2);
-  printResult($result);
-  oci_commit($db_conn);
-  oci_close($db_conn);
+  // $query = "UPDATE Airline_Headquartered_In SET name='".$newHq."' WHERE airline_code=".$acode."";
+  // $result = executePlainSQL($query2);
+  // printResult($result);
 }
 
 ?>

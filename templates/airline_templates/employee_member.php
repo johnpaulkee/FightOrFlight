@@ -1,27 +1,20 @@
 <?php
-$type = $_COOKIE['type'];
-      if ($type != "airline") {
-          header("Location: ../templates/not_authorized.html");
-          die();
-      }
 $success = True; //keep track of errors so it redirects the page only if there are no errors
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 
 
   // Define user and pass
-$acode = $_POST['aln'];
-$newHq = $_POST['hq'];
-
+$empid = $_POST['employeeid'];
 
 function printResult($result) { //prints results from a select statement
-  echo "<h3><center> Here are the details for your selected airport: </center></h3>";
+  echo "<h3><center> Here are the details for your selected employee user: </center></h3>";
+  echo "<h3><center> TODO: primary key for airline code isn't added to the query </center></h3>";
+  
   echo "<table class = 'table table-striped'>";
   echo "<thead>";
   echo "<tr>";
-  echo "<th>Airport Code</th>";
-  echo "<th>Number of Domestic Gates</th>";
-  echo "<th>City</th>";
-  echo "<th>Country</th>";
+  echo "<th>Employee Name</th>";
+  echo "<th>Discounts</th>";
   echo "</tr>";
   echo "</thead>";
   echo "<tbody>";
@@ -29,8 +22,6 @@ function printResult($result) { //prints results from a select statement
     echo "<tr>";
     echo "<td>" . $row[0] . "</td>";
     echo "<td>" . $row[1] . "</td>";
-    echo "<td>" . $row[2] . "</td>";
-    echo "<td>" . $row[3] . "</td>";
     echo "</tr>";
   }
   echo "</tbody>";
@@ -63,13 +54,12 @@ function executePlainSQL($cmdstr) {
 
 // Connect Oracle...
 if ($db_conn) {
-  $query = "UPDATE Airline_Headquartered_In SET name='".$newHq."' WHERE airline_code=".$acode."";
-  $query2 = "SELECT airline_code, airline_name, name FROM Airline_Headquartered_In WHERE airline_code=".$acode."";
-  $resultalter = executePlainSQL($query);
-  $result = executePlainSQL($query2);
+  echo $empid;
+  $query = "SELECT employee_name, discounts
+            FROM Airline_Employee_Employed_With 
+            WHERE employeeid='$empid'";
+  $result = executePlainSQL($query); 
   printResult($result);
-  oci_commit($db_conn);
-  oci_close($db_conn);
 }
 
 ?>

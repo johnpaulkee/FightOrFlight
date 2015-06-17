@@ -67,7 +67,8 @@ if ($db_conn) {
 		$input = '<input type="radio" name="airport" value="'.$row[0].'">'.$row[0];
 		echo $input;
 	}
-	echo '<input type="submit" name="submit" value="ok">';
+	echo '<br>';
+	echo '<button class = "btn btn-default" type="submit" name="submit"> select </button>';
 
 	echo '<div id="formresult"></div>';
 	echo '<script>
