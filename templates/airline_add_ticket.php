@@ -1,4 +1,5 @@
 <form>
+
 	<label> Select Plane </label>
 	<select class="form-control">
 		<?php
@@ -9,7 +10,7 @@
 
 			if (!$statement) {
 				echo "<br>Cannot parse the following command: " . $cmdstr . "<br>";
-				$e = OCI_Error($db_con); // For OCIParse errors pass the       
+				$e = OCI_Error($db_conn); // For OCIParse errors pass the       
 				// connection handle
 				echo htmlentities($e['message']);
 				$success = False;
@@ -25,11 +26,17 @@
 			return $statement;
 		}
 
-		$query = "SELECT plane_ID, capacity, company, p.airline_code FROM Airline_Headquartered_In a, Plane_Owned_By p WHERE a.airline_code = p.airline_code";
-		$result = executePlainSQL($query);
+		$query = "SELECT plane_ID, capacity, company, p.airline_code 
+				  FROM Airline_Headquartered_In a, Plane_Owned_By p
+				  WHERE a.airline_code = p.airline_code";
+		$result = executePlainSQL($query, $result);
+		echo $result;
 		while(($row = oci_fetch_row($result)) != false) {
-			$option = '<option value="'.$row[1]'">'.$row[0].", ".$row[1].", ".$row[2].'</option>';
+			$option = '<option value="'.$row[3].$row[0].'">'.$row[0].", ".$row[1].", ".$row[2].'</option>';
+			echo $option;
 		}
+		oci_free_statement($statement);
+		oci_close($con);
 		?>
 	</select>
 </form>
