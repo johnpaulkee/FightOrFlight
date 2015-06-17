@@ -99,21 +99,25 @@ function executePlainSQL($cmdstr) {
       if($s3 == 0){
         $s2 = nextLetter($s2);
       }
+      echo "s2 is :".$s2;
       if ($s2 == "J") {
         $s1 = (($s1 + 1)%10);
       }
-      $seat = $s1.$s2.$s3;
-      return $seat;
+      $return = $s1.$s2.$s3;
+      return $return;
     }
 
 // Connect Oracle...
     if ($db_conn) {
       $query = "SELECT MAX(tID) FROM TICKET";
       $result = executePlainSQL($query);
+      echo ($result);
       $row = oci_fetch_row($result);
+      echo ($row[0]);
       $primarykey=$row[0] + 1;
       for($i=0; $i<$economy; $i++){
-        $seat = generateTicket();
+        $seat = generateSeat();
+        echo $seat;
         $primarykey = $primarykey + 1;
         $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
         $result = executePlainSQL($query);
@@ -130,11 +134,11 @@ function executePlainSQL($cmdstr) {
   //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
   //   $result = executePlainSQL($query);
   // }
-      $query1 = "SELECT * FROM Ticket";
-      $result1 = executePlainSQL($query1);
-      echo $result1;
-      echo $result;
-      //printResult($result1);
+      // $query1 = "SELECT * FROM Ticket";
+      // $result1 = executePlainSQL($query1);
+      // echo $result1;
+      // echo $result;
+      // //printResult($result1);
     }
 
     ?>

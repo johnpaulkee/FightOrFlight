@@ -56,8 +56,8 @@ function executePlainSQL($cmdstr) {
 
 // Connect Oracle...
 if ($db_conn) {
-  $query = "UPDATE Airline_Employee_Employed_With SET discount='".$discval."' WHERE employeeID=".$empid."";
-  $query2 = "SELECT employeeID, employee_name, discount FROM irline_Employee_Employed_With WHERE emplyeeID=".$empid."";
+  $query = "UPDATE Airline_Employee_Employed_With SET discounts='".$discval."' WHERE employeeID=".$empid."";
+  $query2 = "SELECT employeeID, employee_name, discounts FROM irline_Employee_Employed_With WHERE employeeID=".$empid."";
   $resultalter = executePlainSQL($query);
   $result = executePlainSQL($query2);
   printResult($result);
