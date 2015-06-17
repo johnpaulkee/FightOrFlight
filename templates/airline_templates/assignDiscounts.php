@@ -17,7 +17,7 @@ echo $empid;
 echo $discval;
 
 function printResult($result) { //prints results from a select statement
-  echo "<h3><center> Here are the details for your selected airport: </center></h3>";
+  echo "<h3><center> Here are the details for the updated employee discount: </center></h3>";
   echo "<table class = 'table table-striped'>";
   echo "<thead>";
   echo "<tr>";

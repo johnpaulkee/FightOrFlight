@@ -29,19 +29,21 @@
 ?>
 
 <form name = "discount_form" method = "post" action="airline_templates/assignDiscounts.php" id="disc_form">
-  <label> Select Airline </label>
+  <label> Select Employee </label>
   <br>
+  <select class="form-control" name="employeeid">
   <?php 
   $query = "SELECT employeeID, employee_name FROM Airline_Employee_Employed_With";
     $result = executePlainSQL($query);
     // echo $result;
     while(($row = oci_fetch_row($result)) != false) {
-      $option = '<input type="radio" name="employeeid" value="'.$row[0].'">'.$row[1].'</option> <br>';
+      $option = '<option value="'.$row[0].'">'.$row[1].'</option> <br>';
       echo $option;
     }
     oci_free_statement($statement);
     oci_close($con);
     ?>
+    </select>
     <br>
   <label>Set Discount </label>
   <p>%<input type="text" name="discountvalue"></p>
