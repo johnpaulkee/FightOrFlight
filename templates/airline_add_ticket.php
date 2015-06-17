@@ -1,5 +1,4 @@
-<form>
-
+<form action="./airline_templates/add_ticket.php">
 	<label> Select Plane </label>
 	<select class="form-control">
 		<?php
@@ -39,8 +38,18 @@
 		oci_close($con);
 		?>
 	</select>
-	<label>Input ticket price</label>
+	<label>Economy Ticket Price</label>
 	<div>
 	<p>$<input type="number" name="price"></p>
-    </div>
+	<label>Number of First Class tickets</label>
+	<input type="number" name="first_class">
+	<label>First Class Ticket Price</label>
+	<div><p>$</p>
+	<input type="number" name="first_class_price">
+	</div>
+	<label>Number of Business tickets</label>
+	<input type="number" name="business">
+	<label>Business Ticket Price
+    </div><p>$</p>
+    <input type="number" name="business_price">
 </form>
