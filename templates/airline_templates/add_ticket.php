@@ -129,10 +129,10 @@ function executePlainSQL($cmdstr) {
   //   $primarykey = $primarykey + 1;
   //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
   //   $result = executePlainSQL($query);
-  // // }
-  //     $query = "SELECT * FROM Ticket";
-  //     $result = executePlainSQL($query);
-  //     printResult($result);
+  // }
+      $query1 = "SELECT * FROM Ticket";
+      $result1 = executePlainSQL($query1);
+      printResult($result1);
     }
 
     ?>
