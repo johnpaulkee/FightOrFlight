@@ -179,8 +179,8 @@ OCICommit($db_conn);
 
 if ($_POST && $success) {
 	header("location: oracle-test.php");
-} else {
-	$result = executePlainSQL("SELECT * FROM customer_login WHERE Cust_ID = 1");
+} else {$query = "SELECT * FROM customer_login WHERE username = '".$_COOKIE['username']."'";
+	$result = executePlainSQL($query);
 	printResult($result);
 }
 

@@ -1,4 +1,4 @@
-ai<html>
+<html>
 <?php include 'head.php'; ?>
 <body>
 
@@ -36,26 +36,8 @@ ai<html>
       echo $_COOKIE['username'];
       ?>
       </div>
-      <div class="panel-body" id="form_generation">
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
-          Panel content
+      <div class="panel-body scroller" id="form_generation">
+   
         </div>
       </div>
     </div>
