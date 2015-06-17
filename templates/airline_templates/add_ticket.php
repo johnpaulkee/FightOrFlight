@@ -91,6 +91,7 @@ if ($db_conn) {
   }
   $query = "SELECT * FROM Tickets";
   $result = executePlainSQL($query);
+  echo $result;
   printResult($result);
 }
 
