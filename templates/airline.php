@@ -66,7 +66,7 @@
 
       $("#add_ticket").click(function() {
         $("#form_generation").empty();
-        $("#form_generation").load("airline_add_ticket.php");
+        $("#form_generation").load("/templates/airline_add_ticket.php");
       });
 
       $("#distribute_boarding_pass").click(function() {
