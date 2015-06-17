@@ -112,12 +112,12 @@ function executePlainSQL($cmdstr) {
       $result = executePlainSQL($query);
       $row = oci_fetch_row($result);
       $primarykey=$row[0] + 1;
-      for($i=0; $i<$economy; $i++){
-        $seat = generateSeat();
-        $primarykey = $primarykey + 1;
-        $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
-        $result = executePlainSQL($query);
-      }
+      // for($i=0; $i<$economy; $i++){
+      //   $seat = generateSeat();
+      //   $primarykey = $primarykey + 1;
+      //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
+      //   $result = executePlainSQL($query);
+      // }
   //  for($i=0; $i<$first_num; $i++){
   //   $seat = generateSeat();
   //   $primarykey = $primarykey + 1;
