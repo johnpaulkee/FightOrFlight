@@ -1,7 +1,4 @@
-<form name = "form2" method = "post" action="../templates/airline_templates/assignDiscounts.php" id="disc_form">
-  <label> Select Airline </label>
-  <select class="form-control" name="employeeid">
-    <?php
+<?php
     
     function executePlainSQL($cmdstr) { 
       //echo "<br>running ".$cmdstr."<br>";
@@ -25,25 +22,28 @@
       } else {}
       return $statement;
     }
+?>
 
-    $query = "SELECT employeeID, employee_name FROM Airline_Employee_Employed_With";
+<form name = "discount_form" method = "post" action="airline_templates/assignDiscounts.php" id="disc_form">
+  <label> Select Airline </label>
+  <br>
+  <?php 
+  $query = "SELECT employeeID, employee_name FROM Airline_Employee_Employed_With";
     $result = executePlainSQL($query);
-    echo $result;
+    // echo $result;
     while(($row = oci_fetch_row($result)) != false) {
-      $option = '<option name="ahq" value="'.$row[0].'">'.$row[1].'</option>';
+      $option = '<input type="radio" name="employeeid" value="'.$row[0].'">'.$row[1].'</option> <br>';
       echo $option;
     }
     oci_free_statement($statement);
     oci_close($con);
     ?>
-  </select>
+    <br>
   <label>Set Discount </label>
-  <p>%<input type="text" name="discountvalue"></p>
+  <p>%<input type="number" name="discountvalue"></p>
   <input type="submit" value="Submit">
 </form>
-<div id="formresult">
-  
-</div>
+
 
 <script>
   $("#disc_form").submit(function() {

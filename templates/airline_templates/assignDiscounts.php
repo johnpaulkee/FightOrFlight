@@ -6,7 +6,10 @@ $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
   // Define user and pass
 $empid = $_POST['employeeid'];
 $discval = $_POST['discountvalue'];
+echo "Vals should be here";
 
+echo $empid;
+echo $discval;
 
 function printResult($result) { //prints results from a select statement
   echo "<h3><center> Here are the details for your selected airport: </center></h3>";
@@ -57,7 +60,7 @@ function executePlainSQL($cmdstr) {
 // Connect Oracle...
 if ($db_conn) {
   $query = "UPDATE Airline_Employee_Employed_With SET discounts='".$discval."' WHERE employeeID=".$empid."";
-  $query2 = "SELECT employeeID, employee_name, discounts FROM irline_Employee_Employed_With WHERE employeeID=".$empid."";
+  $query2 = "SELECT employeeID, employee_name, discounts FROM Airline_Employee_Employed_With WHERE employeeID=".$GLOBALS['empid']."";
   $resultalter = executePlainSQL($query);
   $result = executePlainSQL($query2);
   printResult($result);
