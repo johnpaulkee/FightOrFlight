@@ -100,26 +100,29 @@ if ($db_conn) {
 		echo $input;
 	}
 	echo '<input type="submit" name="submit" value="ok">';
-// 	echo '<script>
+
+	echo '<div id="formresult"></div>';
+	echo '<script>
+
 	
-// 	$("#cheapest_form").submit(function() {
+	$("#find_cheap_flights").submit(function() {
 
-//     var url = $(this).attr("action"); // the script where you handle the form input.
+    var url = $(this).attr("action");
 
-//     $.ajax({
-//            type: "POST",
-//            url: url,
-//            data: $("#cheapest_form").serialize(),
-//            success: function(data)
-//            {	
-//            		alert("SUCCESS");
-//               $("#formresult").html(data); // show response from the php script.
-//            }
-//          });
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: $("#find_cheap_flights").serialize(),
+           success: function(data)
+           {	
+           		alert("SUCCESS");
+              $("#formresult").html(data);
+           }
+         });
 
-//     return false; // avoid to execute the actual submit of the form.
-// });
-// </script>';
+    return false;
+});
+</script>';
 }
 
 ?>

@@ -50,19 +50,43 @@ function printResult($result) { //prints results from a select statement
 
 }
 
+function createTable($entry){
+	echo "<h3><center> Hello Customer, here are your details: </center></h3>";
+	echo "<h3><center> These are the cheapest outbound flights! </center> </h3>";
+	echo "<table class = 'table table-striped'>";
+	echo "<thead>";
+	echo "<tr>";
+	echo "<th>tID</th>";
+	echo "<th>price</th>";
+	echo "<th>destination</th>";
+	echo "</tr>";
+	echo "</thead>";
+	echo "<tbody>";
+	while(($row = oci_fetch_row($entry)) != false){
+		$query = "SELECT t.tID, t.price, a.city FROM Ticket t, Comprised_Of c, Airport_LocatedIn a WHERE t.tID = '".$row[0]."' AND t.tID = c.tID AND a.airport_code = c.to_airport_code";
+		$result = executePlainSQL($query);
+		while(($row = oci_fetch_row($result)) != false) {
+			echo "<tr>";
+			echo "<td>" . $row[0] . "</td>";
+			echo "<td>" . $row[1] . "</td>";
+			echo "<td>" . $row[2] . "</td>";
+			echo "</tr>";
+		}
+	}
+}
 // Connect Oracle...
 if ($db_conn) {
 	$drop_view = "DROP VIEW outbound_tickets";
 	$result0 = executePlainSQL($drop_view);
 	$view_query = "CREATE VIEW outbound_tickets as SELECT t1.tID FROM Ticket t1, Comprised_Of c1 WHERE t1.tID = c1.tID AND c1.from_airport_code = '".$airport."'";
 	$result1 = executePlainSQL($view_query);
-	$query = "SELECT MIN(t.price) as minPrice, t.tID FROM Ticket t, outbound_tickets o WHERE t.tID = o.tID GROUP BY t.tID";
-	$result2 = executePlainSQL($query);
-	printResult($result2);
-	// while(($row = oci_fetch_row($result)) != false){
-	// 	echo "<p>".$row[0].", ".$row[1].", ".$row[2].", ".$row[4]."</p>";
-	// 	echo "<br>";
-	// }
+	$drop_narrowed_view = "DROP VIEW cheap_tickets";
+	$result2 = executePlainSQL($drop_narrowed_view);
+	$create_view = "CREATE VIEW cheap_tickets AS SELECT MIN(t.price) as minPrice, t.tID FROM Ticket t, outbound_tickets o WHERE t.tID = o.tID GROUP BY t.tID";
+	$result3 = executePlainSQL($create_view);
+	$query = "SELECT t.tID FROM Ticket t, Comprised_Of c WHERE t.tID = c.tID AND c.from_airport_code = '".$airport."' AND t.price = (SELECT MIN(minPrice) FROM cheap_tickets c)";
+	$result4 = executePlainSQL($query);
+	createTable($result4);
 }
 
 ?>

@@ -63,18 +63,29 @@
 			if($redirect == 0){
 				$_POST["type"]="customer";
 				$_POST["id"]=$row[0];
+				$cust_cookie_n = "id";
+				$cust_cookie_v = $row[0];
+				setcookie($cust_cookie_n, $cust_cookie_v, time() + (86400 * 30), '/');
 				header('Location: ../templates/customer.php');
 				die();
 			} else if ($redirect == 1){
 				$_POST["type"]="airline_employee";
 				$_POST["id"]=$row[0];
-				$_POST["emp_airliline"]=$row[1];
+				$_POST["emp_airline"]=$row[1];
+				$ae_cookie_an = "aid";
+				$ae_cookie_av = $row[1];
+				setcookie($ae_cookie_n, $ae_cookie_v, time() + (86400 * 30), '/');
+				$ae_cookie_en = "eid";
+				$ae_cookie_ev = $row[0];
+				setcookie($ae_cookie_en, $ae_cookie_ev, time() + (86400 * 30), '/');
 				header('Location: ../templates/airlineemployee.php');
-
 				die();
 			} else if ($redirect == 2){
 				$_POST["type"]="airline";
 				$_POST["id"]=$row[0];
+				$a_cookie_n = "id";
+				$a_cookie_v = $row[0];
+				setcookie($a_cookie_n, $a_cookie_v, time() + (86400 * 30), '/');
 				header('Location: ../templates/airline.php');
 				die();
 			}

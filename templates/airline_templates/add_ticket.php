@@ -4,13 +4,15 @@ $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 
 
   // Define user and pass
-$capacity = ucfirst($_POST['plane']);
-$price = ucfirst($_POST['price']);
-$first_num = ucfirst($_POST['first_class']);
-$first_price = ucfirst($_POST['first_class_price']);
-$business_num = ucfirst($_POST['business']);
-$business_price = ucfirst($_POST['business_price']);
+list($capacity, $planeID) = explode(",", $_POST['plane']);
+$price = $_POST['price'];
+$first_num = $_POST['first_class'];
+$first_price = $_POST['first_class_price'];
+$business_num = $_POST['business'];
+$business_price = $_POST['business_price'];
 $economy = $capacity - $first_num - $business_num;
+$to = $_POST['to'];
+$from = $_POST['from'];
 
 $k = 0;
 $s1 = 0;
@@ -110,29 +112,52 @@ function executePlainSQL($cmdstr) {
     if ($db_conn) {
       $query = "SELECT MAX(tID) FROM TICKET";
       $result = executePlainSQL($query);
-      echo ($result);
       $row = oci_fetch_row($result);
       echo ($row[0]);
       $primarykey=$row[0] + 1;
+      $boardingpk = "SELECT MAX(boarding_ID) FROM Boarding_Pass_For_Flight";
+      $bpkresult = executePlainSQL($boardingpk);
+      $bpkrow = oci_fetch_row($bpkresult);
+      $boardingprimary = $row[0];
+      $flightpk = "SELECT MAX(flight_num) FROM Boarding_Pass_For_Flight";
+      $fpkresult = executePlainSQL($flightpk);
+      $fpkrow = oci_fetch_row($fpkresult);
+      $flightprimary = $fpkrow[0];
+      if ($capacity <= 40){
+        $weight = 16;
+      } else if ($capacity <= 80) {
+        $weight = 19;
+      } else {
+        $weight = 23;
+      }
       for($i=0; $i<$economy; $i++){
         $seat = generateSeat();
-        echo $seat;
         $primarykey = $primarykey + 1;
-        $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
+        $boardingprimary = $boardingprimary + 1;
+        $flightprimary = $flightprimary + 1;
+        $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES (".$primarykey.", '".$seat."', 'Economy', ".$price.")";
         $result = executePlainSQL($query);
+        $query2 = "INSERT INTO Boarding_Pass_For_Flight VALUES (".$boardingprimary.", ".$flightprimary.", ".$weight.", '".$seat."', '".$from."', '".$to."', '".$_COOKIE['id']."')";
+        $result2 = executePlainSQL($query2);
+        $query3 = "INSERT INTO Add_Ticket VALUES ('".$primarykey."', '".$_COOKIE['id']."')";
+        $result3 = executePlainSQL($query3);
+        $query4 = "INSERT INTO Is_With VALUES ('".$boardingprimary."', '".$flightprimary."', '".$from."', '".$to."', '".$primarykey."', '".$planeID."', '".$_COOKIE['id']."', '".$_COOKIE['id']."')";
+        $result4 = executePlainSQL($result4);
       }
-   for($i=0; $i<$first_num; $i++){
-    $seat = generateSeat();
-    $primarykey = $primarykey + 1;
-    $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'First', '".$first_price."')";
-    $result = executePlainSQL($query);
-  }
-  for($i=0; $i<$business_num; $i++){
-    $seat = generateSeat();
-    $primarykey = $primarykey + 1;
-    $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
-    $result = executePlainSQL($query);
-  }
+      // $weight = $weight + 2;
+  //  for($i=0; $i<$first_num; $i++){
+  //   $seat = generateSeat();
+  //   $primarykey = $primarykey + 1;
+  //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'First', '".$first_price."')";
+  //   $result = executePlainSQL($query);
+  // }
+  // $weight = $weight + 3;
+  // for($i=0; $i<$business_num; $i++){
+  //   $seat = generateSeat();
+  //   $primarykey = $primarykey + 1;
+  //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
+  //   $result = executePlainSQL($query);
+  // }
       $query1 = "SELECT * FROM Ticket";
       $result1 = executePlainSQL($query1);
       printResult($result1);
