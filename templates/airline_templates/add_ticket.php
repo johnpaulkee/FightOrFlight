@@ -138,7 +138,7 @@ function executePlainSQL($cmdstr) {
         $flightprimary = $flightprimary + 1;
         $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
         $result = executePlainSQL($query);
-        $query2 = "INSERT INTO Boarding_Pass_For_Flight VALUES ('".$boardingprimary."', '".$flightprimary."', '".$weight."', '".$seat."', '".$from."', '".$to."', "$_COOKIE['id']."')";
+        $query2 = "INSERT INTO Boarding_Pass_For_Flight VALUES ('".$boardingprimary."', '".$flightprimary."', '".$weight."', '".$seat."', '".$from."', '".$to."', ".$_COOKIE['id']."')";
         $result2 = executePlainSQL($query2);
         $query3 = "INSERT INTO Add_Ticket VALUES ('".$primarykey."', '".$_COOKIE['id']."')";
         $result3 = executePlainSQL($query3);
