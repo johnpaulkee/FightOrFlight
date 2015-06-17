@@ -5,7 +5,7 @@
 
 		$query = "SELECT plane_ID, capacity, company, p.airline_code 
 				  FROM Airline_Headquartered_In a, Plane_Owned_By p
-				  WHERE a.airline_code = p.airline_code";
+				  WHERE ".$_COOKIE['id']." = p.airline_code";
 		$result = executePlainSQL($query);
 		while(($row = oci_fetch_row($result)) != false) {
 			$option = '<input type="radio" name="plane" value="'.$row[1].",".$row[0].'">'.$row[0].", ".$row[1].", ".$row[2].'<br>';
