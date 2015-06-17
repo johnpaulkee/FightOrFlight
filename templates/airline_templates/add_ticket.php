@@ -119,8 +119,15 @@ if ($db_conn) {
   }
   for($i=0; $i<$first_num; $i++){
     $seat = generateSeat();
-    
-    $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES "
+    $primarykey = $primarykey + 1;
+    $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'First', '".$first_price."')";
+    $result = executePlainSQL($query);
+  }
+  for($o=0; $i<$business_num; $i++){
+    $seat = generateSeat();
+    $primarykey = $primarykey + 1;
+    $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
+    $result = executePlainSQL($query);
   }
   $query = "SELECT * FROM Ticket";
   $result = executePlainSQL($query);
