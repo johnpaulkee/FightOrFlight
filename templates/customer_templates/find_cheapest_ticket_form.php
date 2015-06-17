@@ -25,12 +25,12 @@
   	    return $statement;
  	   	}
 
- 	   	$query="SELECT DISTINCT city FROM Airport_LocatedIn";
-  		$result = executePlainSQL($query);
-  		while(($row = oci_fetch_row($result)) != false) {
-  			$input = '<input type="radio" name="city" value="'.$row[0].'">'.$row[0].'<br>';
-  			echo $input;
-  		}
+ 	  //  	$query="SELECT DISTINCT city FROM Airport_LocatedIn";
+  		// $result = executePlainSQL($query);
+  		// while(($row = oci_fetch_row($result)) != false) {
+  		// 	$input = '<input type="radio" name="city" value="'.$row[0].'">'.$row[0].'<br>';
+  		// 	echo $input;
+  		// }
 	?>
 	<input type="submit" name="submit" value="ok">
 </form>
