@@ -144,6 +144,7 @@ function executePlainSQL($cmdstr) {
       //   $result3 = executePlainSQL($query3);
       //   $query4 = "INSERT INTO Is_With VALUES ('".$boardingprimary."', '".$flightprimary."', '".$from."', '".$to."', '".$primarykey."', '".$planeID."', '".$_COOKIE['id']."', '".$_COOKIE['id']."')";
       //   $result4 = executePlainSQL($result4);
+      }
       // $weight = $weight + 2;
   //  for($i=0; $i<$first_num; $i++){
   //   $seat = generateSeat();
