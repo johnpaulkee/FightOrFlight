@@ -95,8 +95,7 @@ function printResult($result) { //prints results from a select statement
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
 	echo "<tr>";
-	echo "<th>Username</th>";
-	echo "<th>Cust_ID</th>";
+	echo "<th>Username</th>"; 
 	echo "<th>Password</th>";
 	echo "</tr>";
 	echo "</thead>";
@@ -104,7 +103,6 @@ function printResult($result) { //prints results from a select statement
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
 		echo "<tr>";
 		echo "<td>" . $row[0] . "</td>";
-		echo "<td>" . $row[1] . "</td>";
 		echo "<td>" . $row[2] . "</td>";
 		echo "<td>" . $row[3] . "</td>";
 		echo "<td>" . $row[4] . "</td>";
@@ -182,7 +180,7 @@ OCICommit($db_conn);
 if ($_POST && $success) {
 	header("location: oracle-test.php");
 } else {
-	$result = executePlainSQL("SELECT * from customer_login");
+	$result = executePlainSQL("SELECT * FROM customer_login WHERE Cust_ID = 1");
 	printResult($result);
 }
 

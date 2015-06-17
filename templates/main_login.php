@@ -1,15 +1,8 @@
-<hr> 
-<a href=tmp.php?p=1>test 1 (printing session value)</a> 
-<br> 
-<a href=tmp.php?p=2>test 2 (kill session)</a>
-
 <html>
 
-<?php
-session_start();
-include "head.php";
-?>
+<?php include "head.php"; ?>
 
+<div class = "container">
 <table class="table table-striped"> 
   <tablewidth="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
   <tr>
@@ -45,7 +38,6 @@ include "head.php";
     </form>
   </tr>
 </table>
-<?php
-phpinfo();
-?>
+</div>
+
 </html>
