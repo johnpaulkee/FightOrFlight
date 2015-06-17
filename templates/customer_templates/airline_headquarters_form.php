@@ -10,7 +10,7 @@ include "head.php";
   <tablewidth="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
   <tr>
 
-    <form name="form1" method="post" action="customer_templates/check_headquarters.php" id="airline_head_form">
+    <form name="form1" method="post" action="customer_templates/phpscripts/check_headquarters.php" id="airline_head_form">
       <td>
         <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
           <tr>
