@@ -2,42 +2,38 @@
 
 <?php include "head.php"; ?>
 
-<div class = "container">
-<table class="table table-striped"> 
-  <tablewidth="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
-  <tr>
-    <form name="form1" method="post" action="check_login.php">
-      <td>
-        <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
-          <tr>
-            <td colspan="3"><strong>Member Login </strong></td>
-          </tr>
-          <tr>
-            <td width="78">Username</td>
-            <td width="6">:</td>
-            <td width="294"><input name="myusername" type="text" id="myusername"></td>
-          </tr>
-          <tr>
-            <td>Password</td>
-            <td>:</td>
-            <td><input name="mypassword" type="password" id="mypassword"></td>
-          </tr>
-          <tr>
-            <input type="radio" name="userType" value="customer">Customer
-            <br>
-            <input type="radio" name="userType" value="airlineemployee">Airline Employee
-            <br>
-            <input type="radio" name="userType" value="airline">Airline
-            <br>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td><input type="submit" name="Submit" value="Login"></td>
-          </tr>
-        </table>
-      </td>
-    </form>
-  </tr>
-</table>
+<div class = "jumbotron">
+  <div class = "container">
+    <table class="table table-striped"> 
+      <tablewidth="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+
+      <center>
+      <form name="form1" method="post" action="check_login.php">
+        <div class = "panel panel-default" style="width: 350px">
+         <div class="panel-heading">Member Login</div>
+         <div class="panel-body">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">username</span>
+          <input type="text" class="form-control" name="myusername" id="myusername" placeholder="demo" aria-describedby="basic-addon1">
+        </div>
+
+         <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">password </span>
+          <input type="text" class="form-control" name="mypassword" id="mypassword" placeholder="123" aria-describedby="basic-addon1">
+        </div>
+        <br>
+        <input type="submit" name="Submit" value="Login">
+        </div>
+        <div class="panel-footer">
+         <input type="radio" name="userType" value="customer">Customer
+        <input type="radio" name="userType" value="airlineemployee">Airline Employee
+        <input type="radio" name="userType" value="airline">Airline
+        </div>
+      </form>
+      </div>
+    </tr>
+  </table>
+</div>
 </div>
 
 </html>
