@@ -12,6 +12,12 @@ $business_num = ucfirst($_POST['business']);
 $business_price = ucfirst($_POST['business_price']);
 $economy = $capacity - $first_num - $business_num;
 
+$k = 0;
+$s1 = 0;
+$s2 = "A";
+$s3 = 0;
+
+
 function printResult($result) { //prints results from a select statement
   echo "<h3><center> Here are the available tickets that you can purchase: </center></h3>";
 
@@ -62,40 +68,59 @@ function executePlainSQL($cmdstr) {
       return $statement;
     }
 
+    function nextLetter($letter) {
+      if($letter == "A") {
+        $result = "B";
+      } else if ($letter == "B") {
+        $result = "C";
+      } else if ($letter == "C"){
+        $result = "D";
+      } else if ($letter == "D") {
+        $result = "E";
+      } else if ($letter == "E") {
+        $result = "F";
+      } else if ($letter == "F") {
+        $result = "G";
+      } else if ($letter == "G") {
+        $result = "H";
+      } else if ($letter == "H") {
+        $result = "I";
+      } else if ($letter == "I") {
+        $result = "J";
+      } else {
+        $result = "A";
+      }
+      return $result;
+    }
+
+    function generateSeat() {
+      $s3 = ($s3+1)%10;
+      if($s3 == 0){
+        $s2 = nextLetter($s2);
+       }
+       if ($s2 == "J") {
+        $s1 = ($s1 + 1)%10;
+      }
+       $seat = $s1.$s2.$s3;
+       return $seat;
+    }
+
 // Connect Oracle...
 if ($db_conn) {
-  $k = 0;
-  $s1 = 0;
-  $s2 = "A";
-  $s3 = 0;
-  $primarykey=6;
-  echo $economy;
-  echo $price;
-  echo $capacity;
+  $query = "SELECT MAX(tID) FROM TICKET";
+  $result = executePlainSQL($query);
+  $row = oci_fetch_row($result);
+  $primarykey=$row[0] + 1;
   for($i=0; $i<$economy; $i++){
-    if($s2 == "A"){
-      $s2="B";
-    } else if ($s2 == "B"){
-      $s2 = "C";
-    } else if ($s2 == "C") {
-      $s2 = "D";
-    } else if ($s2 == "D"){
-      $s2 = "E";
-    } else if ($s2 == "E"){
-      $s2 = "F";
-    }
-    if($k%6 == 0){
-      $s2 = "A";
-    }
-    if($k%10 == 0){
-      $s1 = $s1+1;
-    }
-    $s3 = ($s3 + 1) % 10;
-    $s1 = $s1 % 10;
-    $seat = $s1.$s2.$s3;
+    $seat = generateTicket();
     $primarykey = $primarykey + 1;
     $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
     $result = executePlainSQL($query);
+  }
+  for($i=0; $i<$first_num; $i++){
+    $seat = generateSeat();
+    
+    $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES "
   }
   $query = "SELECT * FROM Ticket";
   $result = executePlainSQL($query);
