@@ -85,7 +85,7 @@ if ($db_conn) {
     } else if ($s2 == "E"){
       $s2 = "F";
     }
-    if($k%6 == 0){
+    if($k%10 == 0){
       $s1 = $s1 + 1;
       $s2 = "A";
     }
@@ -95,11 +95,9 @@ if ($db_conn) {
     $primarykey = $primarykey + 1;
     $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
     $result = executePlainSQL($query);
-    echo $result;
   }
   $query = "SELECT * FROM Ticket";
   $result = executePlainSQL($query);
-  echo $result;
   printResult($result);
 }
 
