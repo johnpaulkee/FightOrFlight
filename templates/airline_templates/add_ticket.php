@@ -119,7 +119,6 @@ function executePlainSQL($cmdstr) {
         echo $seat;
         $primarykey = $primarykey + 1;
         $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
-        $query2 = "INSERT INTO "
         $result = executePlainSQL($query);
       }
    for($i=0; $i<$first_num; $i++){
