@@ -71,25 +71,25 @@ function executePlainSQL($cmdstr) {
 
     function nextLetter($letter) {
       if($letter == "A") {
-        $result = "B";
+        $letter = "B";
       } else if ($letter == "B") {
-        $result = "C";
+        $letter = "C";
       } else if ($letter == "C"){
-        $result = "D";
+        $letter = "D";
       } else if ($letter == "D") {
-        $result = "E";
+        $letter = "E";
       } else if ($letter == "E") {
-        $result = "F";
+        $letter = "F";
       } else if ($letter == "F") {
-        $result = "G";
+        $letter = "G";
       } else if ($letter == "G") {
-        $result = "H";
+        $letter = "H";
       } else if ($letter == "H") {
-        $result = "I";
+        $letter = "I";
       } else if ($letter == "I") {
-        $result = "J";
+        $letter = "J";
       } else {
-        $result = "A";
+        $letter = "A";
       }
       return $result;
     }
@@ -129,10 +129,12 @@ function executePlainSQL($cmdstr) {
   //   $primarykey = $primarykey + 1;
   //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
   //   $result = executePlainSQL($query);
-  // // }
-  //     $query = "SELECT * FROM Ticket";
-  //     $result = executePlainSQL($query);
-  //     printResult($result);
+  // }
+      $query1 = "SELECT * FROM Ticket";
+      $result1 = executePlainSQL($query1);
+      echo $result1;
+      echo $result;
+      //printResult($result1);
     }
 
     ?>
