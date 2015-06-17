@@ -27,8 +27,8 @@
     <input type="number" name="business_price"></p>
     <input type="submit" name="Submit" value="create">
 </form>
+<div id="formresult"></div>
 
-<!--
 <script>
 	
 	$("#ticket_form").submit(function() {
@@ -49,5 +49,3 @@
     return false; // avoid to execute the actual submit of the form.
 });
 </script>
-
--->
