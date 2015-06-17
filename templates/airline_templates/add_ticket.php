@@ -113,7 +113,7 @@ function executePlainSQL($cmdstr) {
       $row = oci_fetch_row($result);
       $primarykey=$row[0] + 1;
       for($i=0; $i<$economy; $i++){
-        $seat = generateTicket();
+        $seat = generateSeat();
         $primarykey = $primarykey + 1;
         $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
         $result = executePlainSQL($query);
