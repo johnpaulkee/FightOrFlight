@@ -127,23 +127,23 @@ function executePlainSQL($cmdstr) {
         $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
         $result = executePlainSQL($query);
       }
-  //  for($i=0; $i<$first_num; $i++){
-  //   $seat = generateSeat();
-  //   $primarykey = $primarykey + 1;
-  //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'First', '".$first_price."')";
-  //   $result = executePlainSQL($query);
-  // }
-  // for($o=0; $i<$business_num; $i++){
-  //   $seat = generateSeat();
-  //   $primarykey = $primarykey + 1;
-  //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
-  //   $result = executePlainSQL($query);
-  // }
-      // $query1 = "SELECT * FROM Ticket";
-      // $result1 = executePlainSQL($query1);
-      // echo $result1;
-      // echo $result;
-      // //printResult($result1);
+   for($i=0; $i<$first_num; $i++){
+    $seat = generateSeat();
+    $primarykey = $primarykey + 1;
+    $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'First', '".$first_price."')";
+    $result = executePlainSQL($query);
+  }
+  for($o=0; $i<$business_num; $i++){
+    $seat = generateSeat();
+    $primarykey = $primarykey + 1;
+    $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
+    $result = executePlainSQL($query);
+  }
+      $query1 = "SELECT * FROM Ticket";
+      $result1 = executePlainSQL($query1);
+      echo $result1;
+      echo $result;
+      printResult($result1);
     }
 
     ?>
