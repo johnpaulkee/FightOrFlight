@@ -88,7 +88,7 @@ if ($db_conn) {
     $seat = $s1.$s2.$s3;
     $query = "INSERT INTO Ticket(seat, class, price) VALUES ('".$seat."', 'Economy', '".$price."')";
     $result = executePlainSQL($query);
-    echo $result;
+    echo "<h1>".$result."</h1>";
   }
   $query = "SELECT * FROM Ticket";
   $result = executePlainSQL($query);
