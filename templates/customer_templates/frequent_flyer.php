@@ -1,30 +1,3 @@
-<!-- 
-<p>If you wish to reset the table press on the reset button. If this is the first time you're running this page, you MUST use reset</p>
-<form method="POST" action="oracle-test.php">
-
-	<p><input type="submit" value="Reset" name="reset"></p>
-</form>
-
-<p>Insert values into tab1 below:</p>
-<p><font size="2"> Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-	Name</font></p>
-<form method="POST" action="oracle-test.php">
-		<p><input type="text" name="insNo" size="6"><input type="text" name="insName" 
-			size="18">
-			<input type="submit" value="insert" name="insertsubmit"></p>
-</form>
-
-<p> Update the name by inserting the old and new values below: </p>
-<p><font size="2"> Old Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-	New Name</font></p>
-
-<form method="POST" action="oracle-test.php">
-	<p><input type="text" name="oldName" size="6"><input type="text" name="newName" 
-		size="18">
-		<input type="submit" value="update" name="updatesubmit"></p>
-		<input type="submit" value="run hardcoded queries" name="dostuff"></p>
-</form> -->
-
 <?php
 $type = $_COOKIE['type'];
     if ($type != "../templates/customer") {
@@ -58,33 +31,25 @@ function executePlainSQL($cmdstr) {
 }
 
 function executeBoundSQL($cmdstr, $list) {
-/* Sometimes a same statement will be excuted for severl times, only
-the value of variables need to be changed.
-In this case you don't need to create the statement several times; 
-using bind variables can make the statement be shared and just 
-parsed once. This is also very useful in protecting against SQL injection. See example code below for       how this functions is used */
+	global $db_conn, $success;
+	$statement = OCIParse($db_conn, $cmdstr);
 
-global $db_conn, $success;
-$statement = OCIParse($db_conn, $cmdstr);
+	if (!$statement) {
+		echo "<br>Cannot parse the following command: " . $cmdstr . "<br>";
+		$e = OCI_Error($db_conn);
+		echo htmlentities($e['message']);
+		$success = False;
+	}
 
-if (!$statement) {
-	echo "<br>Cannot parse the following command: " . $cmdstr . "<br>";
-	$e = OCI_Error($db_conn);
-	echo htmlentities($e['message']);
-	$success = False;
-}
+	foreach ($list as $tuple) {
+		foreach ($tuple as $bind => $val) {
+			OCIBindByName($statement, $bind, $val);
+			unset ($val); 
+		}
 
-foreach ($list as $tuple) {
-	foreach ($tuple as $bind => $val) {
-//echo $val;
-//echo "<br>".$bind."<br>";
-		OCIBindByName($statement, $bind, $val);
-unset ($val); //make sure you do not remove this. Otherwise $val will remain in an array object wrapper which will not be recognized by Oracle as a proper datatype
-
-}
-$r = OCIExecute($statement, OCI_DEFAULT);
-if (!$r) {
-	echo "<br>Cannot execute the following command: " . $cmdstr . "<br>";
+		$r = OCIExecute($statement, OCI_DEFAULT);
+		if (!$r) {
+			echo "<br>Cannot execute the following command: " . $cmdstr . "<br>";
 $e = OCI_Error($statement); // For OCIExecute errors pass the statementhandle
 echo htmlentities($e['message']);
 echo "<br>";
@@ -118,18 +83,13 @@ function printResult($result) { //prints results from a select statement
 	}
 	echo "</tbody>";
 	echo "</table>";
-
 }
 
-// Connect Oracle...
 if ($db_conn) {
-
 	if (array_key_exists('reset', $_POST)) {
-// Drop old table...
 		echo "<br> dropping table <br>";
 		executePlainSQL("Drop table tab1");
 
-// Create new table...
 		echo "<br> creating new table <br>";
 		executePlainSQL("create table tab1 (nid number, name varchar2(30), primary key (nid))");
 		OCICommit($db_conn);

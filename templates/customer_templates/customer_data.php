@@ -275,8 +275,6 @@ if ($_POST && $success) {
 	echo "<p> TODO: Add boarding pass  details for the ticket </p>";
 	echo "<p> TODO: Add check points if frequent flyer for the ticket </p>";
 	echo "<p> TODO: Add check luggage weight </p>";
-
-	
 }
 
 //Commit to save changes...
