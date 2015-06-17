@@ -27,43 +27,6 @@ function executePlainSQL($cmdstr) {
 	return $statement;
 }
 
-function executeBoundSQL($cmdstr, $list) {
-/* Sometimes a same statement will be excuted for severl times, only
-the value of variables need to be changed.
-In this case you don't need to create the statement several times; 
-using bind variables can make the statement be shared and just 
-parsed once. This is also very useful in protecting against SQL injection. See example code below for       how this functions is used */
-
-global $db_conn, $success;
-$statement = OCIParse($db_conn, $cmdstr);
-
-if (!$statement) {
-	echo "<br>Cannot parse the following command: " . $cmdstr . "<br>";
-	$e = OCI_Error($db_conn);
-	echo htmlentities($e['message']);
-	$success = False;
-}
-
-foreach ($list as $tuple) {
-	foreach ($tuple as $bind => $val) {
-//echo $val;
-//echo "<br>".$bind."<br>";
-		OCIBindByName($statement, $bind, $val);
-unset ($val); //make sure you do not remove this. Otherwise $val will remain in an array object wrapper which will not be recognized by Oracle as a proper datatype
-
-}
-$r = OCIExecute($statement, OCI_DEFAULT);
-if (!$r) {
-	echo "<br>Cannot execute the following command: " . $cmdstr . "<br>";
-$e = OCI_Error($statement); // For OCIExecute errors pass the statementhandle
-echo htmlentities($e['message']);
-echo "<br>";
-$success = False;
-}
-}
-
-}
-
 function printResult($result) { //prints results from a select statement
 	echo "<h3><center> Hello Customer, here are your details: </center></h3>";
 	echo "<h3><center> This should be an update or something with Customer to the Credit Card </center> </h3>";
@@ -80,9 +43,6 @@ function printResult($result) { //prints results from a select statement
 		echo "<tr>";
 		echo "<td>" . $row[0] . "</td>";
 		echo "<td>" . $row[1] . "</td>";
-		echo "<td>" . $row[2] . "</td>";
-		echo "<td>" . $row[3] . "</td>";
-		echo "<td>" . $row[4] . "</td>";
 		echo "</tr>";
 	}
 	echo "</tbody>";
@@ -92,17 +52,17 @@ function printResult($result) { //prints results from a select statement
 
 // Connect Oracle...
 if ($db_conn) {
-	$query = "SELECT MIN(t.price) as minPrice, t.tID, c.to_airport_code, a.city 
-	FROM Ticket t, Comprised_Of c, Airport_LocatedIn a 
-	WHERE t.tID = c.tID AND a.airport_code = c.to_airport_code
-	GROUP BY t.price, t.tID, c.to_airport_code, a.city
-	HAVING c.from_airport_code = '".$airport."'" ;
-	$result = executePlainSQL($query);
-	echo $result;
+	$drop_view = "DROP VIEW outbound_tickets";
+	$result0 = executePlainSQL($drop_view);
+	$view_query = "CREATE VIEW outbound_tickets as SELECT t1.tID FROM Ticket t1, Comprised_Of c1 WHERE t1.tID = c1.tID AND c1.from_airport_code = '".$airport."'";
+	$result1 = executePlainSQL($view_query);
+	$query = "SELECT MIN(t.price) as minPrice, t.tID FROM Ticket t, outbound_tickets o WHERE t.tID = o.tID GROUP BY t.tID";
+	$result2 = executePlainSQL($query);
+	printResult($result2);
 	// while(($row = oci_fetch_row($result)) != false){
 	// 	echo "<p>".$row[0].", ".$row[1].", ".$row[2].", ".$row[4]."</p>";
 	// 	echo "<br>";
 	// }
-	}
+}
 
 ?>
