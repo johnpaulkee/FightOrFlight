@@ -17,7 +17,7 @@
     ?>
   </select>
   <label>Set HeadQuarters to: </label>
-  <p>$<input type="text" name="hq"></p>
+  <p><input type="text" name=""></p>
   <input type="submit" value="Submit">
 </form>
 <div id="formresult">

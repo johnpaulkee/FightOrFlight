@@ -1,4 +1,4 @@
-<form name = "form2" method = "post" action="../templates/airline_templates/phpscripts/addHq.php" id="hq_form">
+<form name = "form2" method = "post" action="../templates/airline_templates/addHq.php" id="hq_form">
   <label> Select Airline </label>
   <select class="form-control" name="aln">
     <?php
@@ -17,7 +17,7 @@
     ?>
   </select>
   <label>Set HeadQuarters to: </label>
-  <p><input type="text" name=""></p>
+  <p>$<input type="text" name="hq"></p>
   <input type="submit" value="Submit">
 </form>
 <div id="formresult">
