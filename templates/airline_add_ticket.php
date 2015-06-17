@@ -4,7 +4,7 @@
 		require('oci_query_header.php');
 
 		$query = "SELECT p.plane_ID, p.capacity, p.company, p.airline_code 
-				  FROM Airline_Headquartered_In a, Plane_Owned_By p
+				  FROM Plane_Owned_By p
 				  WHERE ".$_COOKIE['id']." = p.airline_code";
 		$result = executePlainSQL($query);
 		while(($row = oci_fetch_row($result)) != false) {
