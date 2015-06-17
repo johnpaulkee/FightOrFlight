@@ -40,5 +40,7 @@
 		?>
 	</select>
 	<label>Input ticket price</label>
-	<p>$</p><input type="number" name="price">
+	<div>
+	<p>$<input type="number" name="price"></p>
+    </div>
 </form>
