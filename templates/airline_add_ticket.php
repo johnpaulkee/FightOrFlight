@@ -1,6 +1,5 @@
 <form name = "form2" method = "post" action="airline_templates/add_ticket.php" id="ticket_form">
 	<label> Select Plane </label>
-	<select class="form-control">
 		<?php
 		require('oci_query_header.php');
 
@@ -9,7 +8,7 @@
 				  WHERE a.airline_code = p.airline_code";
 		$result = executePlainSQL($query);
 		while(($row = oci_fetch_row($result)) != false) {
-			$option = '<input type="radio" name="plane" value="'.$row[1].'"><br>';
+			$option = '<input type="radio" name="plane" value="'.$row[1].'">'.$row[0]", ".$row[1].", ".$row[2]'<br>';
 			//$option = '<option name="plane" value="'.$row[1].'">'.$row[0].", ".$row[1].", ".$row[2].'</option>';
 			echo $option;
 		}
