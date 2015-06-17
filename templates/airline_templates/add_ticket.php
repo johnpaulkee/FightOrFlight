@@ -107,32 +107,32 @@ function executePlainSQL($cmdstr) {
     }
 
 // Connect Oracle...
-  //   if ($db_conn) {
-  //     $query = "SELECT MAX(tID) FROM TICKET";
-  //     $result = executePlainSQL($query);
-  //     $row = oci_fetch_row($result);
-  //     $primarykey=$row[0] + 1;
-  //     for($i=0; $i<$economy; $i++){
-  //       $seat = generateTicket();
-  //       $primarykey = $primarykey + 1;
-  //       $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
-  //       $result = executePlainSQL($query);
-  //     }
-  // //  for($i=0; $i<$first_num; $i++){
-  // //   $seat = generateSeat();
-  // //   $primarykey = $primarykey + 1;
-  // //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'First', '".$first_price."')";
-  // //   $result = executePlainSQL($query);
-  // // }
-  // // for($o=0; $i<$business_num; $i++){
-  // //   $seat = generateSeat();
-  // //   $primarykey = $primarykey + 1;
-  // //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
-  // //   $result = executePlainSQL($query);
+    if ($db_conn) {
+      $query = "SELECT MAX(tID) FROM TICKET";
+      $result = executePlainSQL($query);
+      $row = oci_fetch_row($result);
+      $primarykey=$row[0] + 1;
+      for($i=0; $i<$economy; $i++){
+        $seat = generateTicket();
+        $primarykey = $primarykey + 1;
+        $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
+        $result = executePlainSQL($query);
+      }
+  //  for($i=0; $i<$first_num; $i++){
+  //   $seat = generateSeat();
+  //   $primarykey = $primarykey + 1;
+  //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'First', '".$first_price."')";
+  //   $result = executePlainSQL($query);
+  // }
+  // for($o=0; $i<$business_num; $i++){
+  //   $seat = generateSeat();
+  //   $primarykey = $primarykey + 1;
+  //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
+  //   $result = executePlainSQL($query);
   // // }
   //     $query = "SELECT * FROM Ticket";
   //     $result = executePlainSQL($query);
   //     printResult($result);
-  //   }
+    }
 
     ?>
