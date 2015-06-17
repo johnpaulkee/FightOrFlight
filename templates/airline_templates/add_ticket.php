@@ -70,6 +70,7 @@ if ($db_conn) {
   $s3 = 0;
   echo $economy;
   echo $price;
+  echo $capacity;
   for($i=0; $i<$economy; $i++){
     echo "testing";
     if($s2 == "A"){
