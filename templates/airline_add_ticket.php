@@ -18,17 +18,15 @@
 		?>
 	</select>
 	<label>Economy Ticket Price</label>
-	<div>
 	<p>$<input type="number" name="price"></p>
 	<label>Number of First Class tickets</label><br>
 	<input type="number" name="first_class"><br>
 	<label>First Class Ticket Price</label><br>
-	<div><p>$</p>
-	<input type="number" name="first_class_price">
-	</div>
+	<p>$
+	<input type="number" name="first_class_price"></p>
 	<label>Number of Business tickets</label><br>
 	<input type="number" name="business"><br>
 	<label>Business Ticket Price</label><br>
-    </div><p>$</p>
-    <input type="number" name="business_price">
+    <p>$
+    <input type="number" name="business_price"></p>
 </form>
