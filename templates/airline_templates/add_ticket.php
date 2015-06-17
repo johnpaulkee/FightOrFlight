@@ -132,7 +132,6 @@ function executePlainSQL($cmdstr) {
       }
       for($i=0; $i<$economy; $i++){
         $seat = generateSeat();
-        echo $seat;
         $primarykey = $primarykey + 1;
         $boardingprimary = $boardingprimary + 1;
         $flightprimary = $flightprimary + 1;
@@ -140,8 +139,8 @@ function executePlainSQL($cmdstr) {
         $result = executePlainSQL($query);
         $query2 = "INSERT INTO Boarding_Pass_For_Flight VALUES (".$boardingprimary.", ".$flightprimary.", ".$weight.", '".$seat."', '".$from."', '".$to."', '".$_COOKIE['id']."')";
         $result2 = executePlainSQL($query2);
-      //   $query3 = "INSERT INTO Add_Ticket VALUES ('".$primarykey."', '".$_COOKIE['id']."')";
-      //   $result3 = executePlainSQL($query3);
+        $query3 = "INSERT INTO Add_Ticket VALUES ('".$primarykey."', '".$_COOKIE['id']."')";
+        $result3 = executePlainSQL($query3);
       //   $query4 = "INSERT INTO Is_With VALUES ('".$boardingprimary."', '".$flightprimary."', '".$from."', '".$to."', '".$primarykey."', '".$planeID."', '".$_COOKIE['id']."', '".$_COOKIE['id']."')";
       //   $result4 = executePlainSQL($result4);
       }
