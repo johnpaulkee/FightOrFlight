@@ -28,4 +28,26 @@
     <input type="submit" name="Submit" value="create">
 </form>
 <div id="formresult"></div>
+<!--
+<script>
+	
+	$("#ticket_form").submit(function() {
 
+    var url = $(this).attr("action"); // the script where you handle the form input.
+
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: $("#ticket_form").serialize(), // serializes the form's elements.
+           success: function(data)
+           {	
+           		alert("SUCCESS");
+              $("#formresult").html(data); // show response from the php script.
+           }
+         });
+
+    return false; // avoid to execute the actual submit of the form.
+});
+</script>
+
+-->
