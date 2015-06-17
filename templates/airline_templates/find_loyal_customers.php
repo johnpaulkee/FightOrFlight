@@ -1,13 +1,14 @@
-<p> Find Cheapest Flight from Your Location </p>
+<p> Your Most Loyal Customers Are </p>
+
 <?php
 $type = $_COOKIE['type'];
-    if ($type != "customer") {
+    if ($type != "airline") {
       header("Location: ../templates/not_authorized.html");
       die();
     }
 $success = True; //keep track of errors so it redirects the page only if there are no errors
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
-$city = $_POST['city'];
+$method = $_POST['method'];
 
 function executePlainSQL($cmdstr) { 
 	//echo "<br>running ".$cmdstr."<br>";
@@ -60,37 +61,19 @@ function printResult($result) { //prints results from a select statement
 
 // Connect Oracle...
 if ($db_conn) {
-	echo '<form name="select_airport" method="post" action="../templates/customer_templates/find_cheapest_flights.php" id="find_cheap_flights">';
-	$query = "SELECT DISTINCT airport_code FROM Airport_LocatedIn WHERE city='".$city."'";
-	$result = executePlainSQL($query);
-	while(($row = oci_fetch_row($result)) != false) {
-		$input = '<input type="radio" name="airport" value="'.$row[0].'">'.$row[0];
-		echo $input;
-	}
-	echo '<input type="submit" name="submit" value="ok">';
-
-	echo '<div id="formresult"></div>';
-	echo '<script>
-
-	
-	$("#find_cheap_flights").submit(function() {
-
-    var url = $(this).attr("action");
-
-    $.ajax({
-           type: "POST",
-           url: url,
-           data: $("#find_cheap_flights").serialize(),
-           success: function(data)
-           {	
-           		alert("SUCCESS");
-              $("#formresult").html(data);
-           }
-         });
-
-    return false;
-});
-</script>';
+	$dropview = "DROP VIEW valuableCustomers";
+	$dropresult = executePlainSQL($dropview);
+	$createview = "CREATE VIEW valuableCustomers AS 
+				   SELECT COUNT(tID) as num_tickets, SUM(price) as revenue
+				   FROM Customer c, Customer_Purchase cp, Ticket t, Add_Ticket at 
+				   WHERE c.cust_ID = cp.cust_ID AND 
+				   		 cp.tID = t.tID AND
+				   		 t.tID = at.tID AND
+				   		 at.airline_code = '".$_COOKIE['id']."'
+				   GROUP BY c.cust_ID";
+	$viewresult = executePlainSQL($createview);
+	echo ($viewresult);
+	//$query = "SELECT cust_ID, custName FROM Customer c WHERE c.cust_ID IN"
 }
 
 ?>
