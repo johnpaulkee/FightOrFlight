@@ -99,7 +99,12 @@ function executePlainSQL($cmdstr) {
       if($GLOBALS['s3'] == 0){
         $GLOBALS['s2'] = nextLetter($GLOBALS['s2']);
       }
+      echo "s1 is :".$GLOBALS['s1'];
+      echo "<br>";
       echo "s2 is :".$GLOBALS['s2'];
+      echo "<br>";
+      echo "s3 is :".$GLOBALS['s3'];
+      echo "<br>";
       if ($GLOBALS['s2'] == "J") {
         $GLOBALS['s1'] = (($GLOBALS['s1'] + 1)%10);
       }
