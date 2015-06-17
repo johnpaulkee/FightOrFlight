@@ -112,7 +112,7 @@ function executePlainSQL($cmdstr) {
       $result = executePlainSQL($query);
       echo ($result);
       $row = oci_fetch_row($result);
-      echo ($row);
+      echo ($row[0]);
       $primarykey=$row[0] + 1;
       // for($i=0; $i<$economy; $i++){
       //   $seat = generateSeat();
