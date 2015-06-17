@@ -33,8 +33,12 @@
 			$from = '<input type="radio" name="from" value="'.$row[0].'">'.$row[0].'<br>';
 			$to = '<input type="radio" name="to" value="'.$row[0].'">'.$row[0].'<br>';
 			echo "<p>";
+			echo "<div class = 'col-md-6'>";
 			echo $from;
+			echo "</div>";
+			echo "<div class = 'col-md-6'>";
 			echo $to;
+			echo "</div>";
 			echo "</p>";
 		}
     ?> 
