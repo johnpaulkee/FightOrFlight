@@ -32,13 +32,15 @@
 
  	   	$query="SELECT DISTINCT city FROM Airport_LocatedIn";
   		$result = executePlainSQL($query);
-  		echo($result);
+  		// echo($result);
   		while(($row = oci_fetch_row($result)) != false) {
-  			$input = '<input type="radio" name="city" value="'.$row[0].'">'.$row[0].'<br>';
+        echo '<br>';
+  			$input = '<input type="radio" name="city" value="'.$row[0].'">'.$row[0];
   			echo $input;
   		}
 	?>
-	<input type="submit" name="submit" value="ok">
+  <br>
+	<button type="submit" name="submit"  class="btn btn-default"> Select </button>
 </form>
 
 <div id="formresult"></div>

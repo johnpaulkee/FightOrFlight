@@ -56,8 +56,7 @@ function printResult($result) { //prints results from a select statement
 }
 
 function createTable($entry){
-	echo "<h3><center> Hello Customer, here are your details: </center></h3>";
-	echo "<h3><center> These are the cheapest outbound flights! </center> </h3>";
+	echo "<p>These are the cheapest outbound flights </p>";
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
 	echo "<tr>";
