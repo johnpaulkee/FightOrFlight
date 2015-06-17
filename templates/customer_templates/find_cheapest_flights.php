@@ -94,8 +94,8 @@ function printResult($result) { //prints results from a select statement
 if ($db_conn) {
 	$query = "SELECT t.price as minPrice, t.tID, c.to_airport_code, a.city 
 	FROM Ticket t, Comprised_Of c, Airport_LocatedIn a 
-	WHERE t.tID = c.tID AND c.from_airport_code = '".$airport."' AND a.airport_code = c.to_airport_code AND t.price <= ALL (SELECT price FROM Ticket t, Comprised_Of c, Airport_LocatedIn a 
-	WHERE t.tID = c.tID AND c.from_airport_code = '".$airport."' AND a.airport_code = c.to_airport_code)";
+	WHERE t.tID = c.tID AND c.from_airport_code = '".$airport."' AND a.airport_code = c.to_airport_code AND t.price <= ALL (SELECT t1.price FROM Ticket t1, Comprised_Of c1, Airport_LocatedIn a1 
+	WHERE t1.tID = c1.tID AND c1.from_airport_code = '".$airport."' AND a1.airport_code = c1.to_airport_code)";
 	$result = executePlainSQL($query);
 	echo $result;
 	// while(($row = oci_fetch_row($result)) != false){
