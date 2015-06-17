@@ -98,6 +98,7 @@ function executePlainSQL($cmdstr) {
       $s3 = (($s3+1)%10);
       if($s3 == 0){
         $s2 = nextLetter($s2);
+        echo "s2 is :".$s2;
       }
       if ($s2 == "J") {
         $s1 = (($s1 + 1)%10);
