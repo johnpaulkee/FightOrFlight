@@ -64,7 +64,7 @@ if ($db_conn) {
 	$dropview = "DROP VIEW valuableCustomers";
 	$dropresult = executePlainSQL($dropview);
 	$createview = "CREATE VIEW valuableCustomers AS 
-				   SELECT COUNT(tID) as num_tickets, SUM(price) as revenue
+				   SELECT COUNT(t.tID) as num_tickets, SUM(t.price) as revenue
 				   FROM Customer c, Customer_Purchase cp, Ticket t, Add_Ticket at 
 				   WHERE c.cust_ID = cp.cust_ID AND 
 				   		 cp.tID = t.tID AND
