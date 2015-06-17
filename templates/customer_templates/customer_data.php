@@ -95,17 +95,19 @@ function printResult($result) { //prints results from a select statement
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
 	echo "<tr>";
-	echo "<th>Username</th>"; 
+	echo "<th>Name</th>"; 
+	echo "<th>Username</th>";
 	echo "<th>Password</th>";
+	echo "<th>Blacklisted</th>";
 	echo "</tr>";
 	echo "</thead>";
 	echo "<tbody>";
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
 		echo "<tr>";
 		echo "<td>" . $row[0] . "</td>";
+		echo "<td>" . $row[1] . "</td>";
 		echo "<td>" . $row[2] . "</td>";
 		echo "<td>" . $row[3] . "</td>";
-		echo "<td>" . $row[4] . "</td>";
 		echo "</tr>";
 	}
 	echo "</tbody>";
@@ -115,6 +117,8 @@ function printResult($result) { //prints results from a select statement
 
 function printTickets($result) { //prints results from a select statement
 	echo "<p> Your Purchased Tickets </p>";
+	echo "<p> TODO: Add plane details to the ticket </p>";
+	echo "<p> TODO: Add bag tag details for the ticket </p>";
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
 	echo "<tr>";
@@ -202,7 +206,9 @@ OCICommit($db_conn);
 if ($_POST && $success) {
 	header("location: oracle-test.php");
 } else {
-	$query = "SELECT * FROM customer_login WHERE username = '".$_COOKIE['username']."'";
+	$query = "SELECT c.custName, cl.username, cl.password, c.blacklisted 
+			  FROM customer_login cl, customer c 
+			  WHERE c.cust_ID = cl.cust_ID and cl.username = '".$_COOKIE['username']."'";
 	$result = executePlainSQL($query);
 	printResult($result);
 
