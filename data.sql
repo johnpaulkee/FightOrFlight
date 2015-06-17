@@ -1,32 +1,3 @@
-DROP TABLE Customer;
-DROP TABLE Country;
-DROP TABLE Airline_Employee_Employed_With;
-DROP TABLE BagTag_Luggage_StartingDestination_FinalDestination;
-DROP TABLE Airport_LocatedIn;
-DROP TABLE Domestic;
-DROP TABLE International;
-DROP TABLE Airline_Headquartered_In;
-DROP TABLE Plane_Owned_By;
-DROP TABLE Low_Capacity;
-DROP TABLE High_Capacity;
-DROP TABLE Regional_Flights;
-DROP TABLE Long_Distance_Flights;
-DROP TABLE Frequent_Flyer;
-DROP TABLE Luggage_Represents;
-DROP TABLE Belongs_To;
-DROP TABLE Is_Issued;
-DROP TABLE Ticket;
-DROP TABLE Customer_Purchase;
-DROP TABLE Discounted_Purchase;
-DROP TABLE Add;
-DROP TABLE Posts;
-DROP TABLE Alliance;
-DROP TABLE Is_In;
-DROP TABLE Going;
-DROP TABLE With;
-DROP TABLE Boarding_Pass_For_Flight;
-DROP TABLE Comprised_Of;
-
 CREATE TABLE Customer(
 cust_ID INTEGER,
 blacklisted CHAR(1),
@@ -38,11 +9,11 @@ CHECK (blacklisted = 'Y' OR blacklisted = 'N')
 );
 
 CREATE TABLE Customer_Login(
-username VARCHAR2(20),
+username VARCHAR2(30),
 cust_ID INTEGER,
-password VARCHAR2(20)
+password VARCHAR2(30),
 PRIMARY KEY (username),
-FOREIGN KEY cust_ID REFERENCES Customer,
+FOREIGN KEY (cust_ID) REFERENCES Customer,
 UNIQUE (cust_ID)
 );
 
@@ -52,6 +23,14 @@ language VARCHAR2(255),
 PRIMARY KEY (name)
 );
 
+CREATE TABLE Airline_Headquartered_In(
+airline_code INTEGER,
+airline_name VARCHAR2(255) NOT NULL,
+name VARCHAR2(255) NOT NULL,
+PRIMARY KEY (airline_code),
+FOREIGN KEY (name) REFERENCES Country(name)
+);
+
 CREATE TABLE Airline_Employee_Employed_With(
 employeeID INTEGER,
 airline_code INTEGER NOT NULL,
@@ -59,21 +38,30 @@ discounts NUMBER,
 employee_name VARCHAR2(255) NOT NULL,
 PRIMARY KEY (employeeID, airline_code),
 FOREIGN KEY (airline_code) REFERENCES Airline_Headquartered_In,
-CHECK (100 >= discounts >= 0)
+CHECK (100 >= discounts AND discounts >= 0)
 );
 
 CREATE TABLE Airline_Employee_Login(
-username VARCHAR2(20),
+username VARCHAR2(30),
 employeeID INTEGER,
+password VARCHAR2(30),
 airline_code INTEGER,
-password VARCHAR2(20),
 PRIMARY KEY (username),
-FOREIGN KEY (employeeID) REFERENCES Airline_Employee_Employed_With,
-FOREIGN KEY (airline_code) REFERENCES Airline_Employee_Employed_With,
+FOREIGN KEY (employeeID, airline_code) REFERENCES Airline_Employee_Employed_With,
 UNIQUE (employeeID, airline_code)
 );
 
-CREATE TABLE BagTag_Luggage_StartingDestination_FinalDestination(
+CREATE TABLE Airport_LocatedIn(
+	airport_code CHAR(3),
+	num_of_domestic_gates INTEGER,
+	city VARCHAR2(255),
+	country_name VARCHAR2(255) NOT NULL,
+	airport_name VARCHAR2(255),
+	PRIMARY KEY (airport_code),
+	FOREIGN KEY (country_name) REFERENCES Country(name)
+);
+
+CREATE TABLE BagTag_Luggage_StartD_FinalD(
 bt_id INTEGER,
 weight INTEGER NOT NULL,
 source_airport_code CHAR(3) NOT NULL,
@@ -82,15 +70,6 @@ PRIMARY KEY (bt_id),
 FOREIGN KEY (source_airport_code) REFERENCES Airport_LocatedIn(airport_code),
 FOREIGN KEY (destination_airport_code) REFERENCES Airport_LocatedIn(airport_code),
 CHECK (weight > 0)
-);
-
-CREATE TABLE Airport_LocatedIn(
-	airport_code CHAR(3),
-	num_of_domestic_gates INTEGER,
-	city VARCHAR2(255),
-	country_name VARCHAR2(255) NOT NULL,
-	PRIMARY KEY (airport_code),
-	FOREIGN KEY (country_name) REFERENCES Country(name)
 );
 
 CREATE TABLE Domestic(
@@ -106,18 +85,10 @@ PRIMARY KEY (airport_code),
 FOREIGN KEY (airport_code) REFERENCES Airport_LocatedIn
 );
 
-CREATE TABLE Airline_Headquartered_In(
-airline_code INTEGER,
-airline_name VARCHAR2(255) NOT NULL,
-name VARCHAR2(255) NOT NULL,
-PRIMARY KEY (airline_code),
-FOREIGN KEY (name) REFERENCES Country(name)
-);
-
 CREATE TABLE Airline_Login(
-username VARCHAR2(20),
+username VARCHAR2(30),
 airline_code INTEGER,
-password VARCHAR2(20),
+password VARCHAR2(30),
 PRIMARY KEY (username),
 FOREIGN KEY (airline_code) REFERENCES Airline_Headquartered_In,
 UNIQUE (airline_code)
@@ -137,8 +108,14 @@ CREATE TABLE Low_Capacity(
 plane_ID INTEGER,
 airline_code INTEGER,
 PRIMARY KEY (plane_ID, airline_code),
-FOREIGN KEY (plane_ID) REFERENCES Plane_Owned_By,
-FOREIGN KEY (airline_code) REFERENCES Airline_Headquartered_In
+FOREIGN KEY (plane_ID, airline_code) REFERENCES Plane_Owned_By(plane_ID, airline_code)
+);
+
+CREATE TABLE High_Capacity(
+plane_ID INTEGER,
+airline_code INTEGER,
+PRIMARY KEY (plane_ID, airline_code),
+FOREIGN KEY (plane_ID, airline_code) REFERENCES Plane_Owned_By(plane_ID, airline_code)
 );
 
 CREATE TABLE Regional_Flights(
@@ -146,18 +123,16 @@ plane_ID INTEGER,
 airline_code INTEGER,
 airport_code CHAR(3),
 PRIMARY KEY (plane_ID, airline_code, airport_code),
-FOREIGN KEY (plane_ID) REFERENCES Low_Capacity,
-FOREIGN KEY (airline_code) REFERENCES Airline_Headquartered_In,
+FOREIGN KEY (plane_ID, airline_code) REFERENCES Low_Capacity,
 FOREIGN KEY (airport_code) REFERENCES Domestic
 );
 
 CREATE TABLE Long_Distance_Flights(
 plane_ID INTEGER,
-airport_code INTEGER,
+airline_code INTEGER,
 airport_code CHAR(3),
 PRIMARY KEY (plane_ID, airline_code, airport_code),
-FOREIGN KEY (plane_ID) REFERENCES High_Capacity,
-FOREIGN KEY (airline_code) REFERENCES Airline_Headquartered_In,
+FOREIGN KEY (plane_ID, airline_code) REFERENCES High_Capacity(plane_ID, airline_code),
 FOREIGN KEY (airport_code) REFERENCES International
 );
 
@@ -174,7 +149,7 @@ CREATE TABLE Luggage_Represents(
 bID INTEGER,
 weight INTEGER NOT NULL,
 PRIMARY KEY (bID),
-FOREIGN KEY (bID) REFERENCES BagTag_Luggage_StartingDestination_FinalDestination,
+FOREIGN KEY (bID) REFERENCES BagTag_Luggage_StartD_FinalD,
 CHECK (weight >= 0)
 );
 
@@ -182,16 +157,8 @@ CREATE TABLE Belongs_To(
 bID INTEGER,
 cust_ID INTEGER,
 PRIMARY KEY (bID, cust_ID),
-FOREIGN KEY (bID) REFERENCES BagTag_Luggage_StartingDestination_FinalDestination,
+FOREIGN KEY (bID) REFERENCES BagTag_Luggage_StartD_FinalD,
 FOREIGN KEY (cust_ID) REFERENCES Customer
-);
-
-CREATE TABLE Is_Issued(
-bID INTEGER,
-tID INTEGER,
-PRIMARY KEY (bID,tID),
-FOREIGN KEY (bID) REFERENCES BagTag_Luggage_StartingDestination_FinalDestination,
-FOREIGN KEY (tID) REFERENCES Ticket
 );
 
 CREATE TABLE Ticket(
@@ -202,6 +169,14 @@ price NUMBER NOT NULL,
 PRIMARY KEY(tID),
 CONSTRAINT class
 CHECK (class = 'Economy' OR class='Business' OR class='First')
+);
+
+CREATE TABLE Is_Issued(
+bID INTEGER,
+tID INTEGER,
+PRIMARY KEY (bID,tID),
+FOREIGN KEY (bID) REFERENCES BagTag_Luggage_StartD_FinalD,
+FOREIGN KEY (tID) REFERENCES Ticket
 );
 
 CREATE TABLE Customer_Purchase(
@@ -221,30 +196,29 @@ airline_code INTEGER,
 payment_total NUMBER,
 payment_type VARCHAR2(255),
 PRIMARY KEY (tID),
-FOREIGN KEY (employeeID) REFERENCES Airline_Employee_Employed_With,
-FOREIGN KEY (airline_code) REFERENCES Airline_Headquartered_In
+FOREIGN KEY (employeeID, airline_code) REFERENCES Airline_Employee_Employed_With
 -- TODO: Correct discount constraint
 );
 
-CREATE TABLE Add(
+CREATE TABLE Add_Ticket(
 tID INTEGER,
-airline_code INTEGER.
+airline_code INTEGER,
 PRIMARY KEY (tID),
 FOREIGN KEY (tID) REFERENCES Ticket,
 FOREIGN KEY (airline_code) REFERENCES Airline_Headquartered_In
-);
-
-CREATE TABLE Posts(
-tID INTEGER,
-alliance VARCHAR2(255)
-PRIMARY KEY (tID),
-FOREIGN KEY (tID) REFERENCES Ticket,
-FOREIGN KEY (alliance) REFERENCES Alliance(name)
 );
 
 CREATE TABLE Alliance(
 name VARCHAR2(255),
 PRIMARY KEY (name)
+);
+
+CREATE TABLE Posts(
+tID INTEGER,
+alliance VARCHAR2(255),
+PRIMARY KEY (tID),
+FOREIGN KEY (tID) REFERENCES Ticket,
+FOREIGN KEY (alliance) REFERENCES Alliance(name)
 );
 
 CREATE TABLE Is_In(
@@ -263,24 +237,6 @@ FOREIGN KEY (from_airport_code) REFERENCES Airport_LocatedIn(airport_code),
 FOREIGN KEY (to_airport_code) REFERENCES Airport_LocatedIn(airport_code)
 );
 
-CREATE TABLE With(
-boarding_ID INTEGER,
-flight_num INTEGER,
-from_airport_code CHAR(3),
-to_airport_code CHAR(3),
-tID INTEGER,
-plane_ID INTEGER NOT NULL,
-airline_code INTEGER,
-PRIMARY KEY (boarding_ID, flight_num, from_airport_code, to_airport_code, tID, airline_code),
-FOREIGN KEY (boarding_ID) REFERENCES Boarding_Pass_For_Flight,
-FOREIGN KEY (flight_num) REFERENCES Boarding_Pass_For_Flight,
-FOREIGN KEY (from_airport_code) REFERENCES Airport_LocatedIn(airport_code),
-FOREIGN KEY (to_airport_code) REFERENCES Airport_LocatedIn(airport_code),
-FOREIGN KEY (tID) REFERENCES Ticket,
-FOREIGN KEY (plane_ID) REFERENCES Plane_Owned_By,
-FOREIGN KEY (airport_code) REFERENCES Airline_Headquartered_In
-);
-
 CREATE TABLE Boarding_Pass_For_Flight(
 boarding_ID INTEGER,
 flight_num INTEGER,
@@ -288,10 +244,26 @@ weight INTEGER,
 seatNumber CHAR(3),
 from_airport_code CHAR(3),
 to_airport_code CHAR(3),
-PRIMARY KEY (boarding_ID, flight_num, from_airport_code, to, airline_code),
+airline_code INTEGER,
+PRIMARY KEY (boarding_ID, flight_num, from_airport_code, to_airport_code, airline_code),
 FOREIGN KEY (from_airport_code) REFERENCES Airport_LocatedIn(airport_code),
 FOREIGN KEY (to_airport_code) REFERENCES Airport_LocatedIn(airport_code),
 FOREIGN KEY (airline_code) REFERENCES Airline_Headquartered_In
+);
+
+CREATE TABLE Is_With(
+boarding_ID INTEGER,
+flight_num INTEGER,
+from_airport_code CHAR(3),
+to_airport_code CHAR(3),
+tID INTEGER,
+plane_ID INTEGER NOT NULL,
+boardingID_airline_code INTEGER,
+plane_airline_code INTEGER,
+PRIMARY KEY (boarding_ID, flight_num, from_airport_code, to_airport_code, tID, boardingID_airline_code),
+FOREIGN KEY (boarding_ID, flight_num, from_airport_code, to_airport_code, boardingID_airline_code) REFERENCES Boarding_Pass_For_Flight,
+FOREIGN KEY (tID) REFERENCES Ticket,
+FOREIGN KEY (plane_ID, plane_airline_code) REFERENCES Plane_Owned_By(plane_ID, airline_code)
 );
 
 CREATE TABLE Comprised_Of(
@@ -302,12 +274,8 @@ to_airport_code CHAR(3),
 airline_code INTEGER,
 tID INTEGER,
 PRIMARY KEY (boarding_ID, flight_num, from_airport_code, to_airport_code, airline_code),
-FOREIGN KEY (boarding_ID) REFERENCES Boarding_Pass_For_Flight,
-FOREIGN KEY (flight_num) REFERENCES Boarding_Pass_For_Flight,
-FOREIGN KEY (from_airport_code) REFERENCES Airport_LocatedIn(airport_code),
-FOREIGN KEY (to_airport_code) REFERENCES Airport_LocatedIn(airport_code),
-FOREIGN KEY (tID) REFERENCES Ticket,
-FOREIGN KEY (boarding_ID) REFERENCES Boarding_Pass_For_Flight
+FOREIGN KEY (boarding_ID, flight_num, from_airport_code, to_airport_code, airline_code) REFERENCES Boarding_Pass_For_Flight,
+FOREIGN KEY (tID) REFERENCES Ticket
 );
 
 
@@ -350,6 +318,21 @@ VALUES ('England', 'English');
 INSERT INTO Country
 VALUES ('Germany', 'German');
 
+INSERT INTO Airline_Headquartered_In
+VALUES (0, 'Lufthansa', 'Germany');
+
+INSERT INTO Airline_Headquartered_In
+VALUES (1, 'West Jet', 'USA');
+
+INSERT INTO Airline_Headquartered_In
+VALUES (2, 'Air Canada', 'Canada');
+
+INSERT INTO Airline_Headquartered_In
+VALUES (3, 'Air France', 'France');
+
+INSERT INTO Airline_Headquartered_In
+VALUES (4, 'Lot', 'Poland');
+
 INSERT INTO Airline_Employee_Employed_With
 VALUES (0, 4, 10.0, 'Jesus Diaz');
 
@@ -365,50 +348,50 @@ VALUES (3, 0, 10.0, 'Ron Jeremy');
 INSERT INTO Airline_Employee_Employed_With
 VALUES (4, 2, 10.0, 'Debbie Dallas');
 
-INSERT INTO BagTag_Luggage_StartingDestination_FinalDestination
+INSERT INTO Airport_LocatedIn
+VALUES ('TOR', 4, 'Toronto', 'Canada', 'Pearson International Airport');
+
+INSERT INTO Airport_LocatedIn
+VALUES ('ADS', 2, 'Addis Ababa', 'India', 'Polyamorous Airport');
+
+INSERT INTO Airport_LocatedIn
+VALUES ('YVR', 8, 'Vancouver', 'Canada', 'Vancouver International Airport');
+
+INSERT INTO Airport_LocatedIn
+VALUES ('SEO', 7, 'Seoul', 'Pakistan', 'Kimchi Airport');
+
+INSERT INTO Airport_LocatedIn
+VALUES ('KRH', 3, 'Karachi', 'Pakistan', 'Kabab International Airport');
+
+INSERT INTO Airport_LocatedIn
+VALUES ('LON', 2, 'London', 'England', 'London Airport');
+
+INSERT INTO Airport_LocatedIn
+VALUES ('LAX', 6, 'Los Angeles', 'USA', 'Los Angeles International Airport');
+
+INSERT INTO Airport_LocatedIn
+VALUES ('WAR', 5, 'Warsaw', 'Poland', 'Warsaw International Airport');
+
+INSERT INTO Airport_LocatedIn
+VALUES ('FRK', 12, 'Frankfurt', 'Germany', 'Frankfurt Airport');
+
+INSERT INTO Airport_LocatedIn
+VALUES ('NYA', 9, 'New York', 'USA', 'Big Apple Airport');
+
+INSERT INTO BagTag_Luggage_StartD_FinalD
 VALUES (0, 40, 'YVR', 'WAR');
 
-INSERT INTO BagTag_Luggage_StartingDestination_FinalDestination
+INSERT INTO BagTag_Luggage_StartD_FinalD
 VALUES (1, 32, 'WAR', 'YVR');
 
-INSERT INTO BagTag_Luggage_StartingDestination_FinalDestination
+INSERT INTO BagTag_Luggage_StartD_FinalD
 VALUES (2, 45, 'YVR', 'LAX');
 
-INSERT INTO BagTag_Luggage_StartingDestination_FinalDestination
+INSERT INTO BagTag_Luggage_StartD_FinalD
 VALUES (3, 22, 'LAX', 'NYA');
 
-INSERT INTO BagTag_Luggage_StartingDestination_FinalDestination
+INSERT INTO BagTag_Luggage_StartD_FinalD
 VALUES (4, 23, 'WAR', 'FRK');
-
-INSERT INTO Airport_LocatedIn
-VALUES ('TOR', 4, 'Toronto', 'Pearson International Airport');
-
-INSERT INTO Airport_LocatedIn
-VALUES ('ADS', 2, 'Addis Ababa', 'Polyamorous Airport');
-
-INSERT INTO Airport_LocatedIn
-VALUES ('YVR', 8, 'Vancouver', 'Vancouver International Airport');
-
-INSERT INTO Airport_LocatedIn
-VALUES ('SEO', 7, 'Seoul', 'Kimchi Airport');
-
-INSERT INTO Airport_LocatedIn
-VALUES ('KRH', 3, 'Karachi', 'Kabab International Airport');
-
-INSERT INTO Airport_LocatedIn
-VALUES ('LON', 2, 'London', 'London Airport');
-
-INSERT INTO Airport_LocatedIn
-VALUES ('LAX', 6, 'Los Angeles', 'Los Angeles International Airport');
-
-INSERT INTO Airport_LocatedIn
-VALUES ('WAR', 5, 'Warsaw', 'Warsaw International Airport');
-
-INSERT INTO Airport_LocatedIn
-VALUES ('FRK', 12, 'Frankfurt', 'Frankfurt Airport');
-
-INSERT INTO Airport_LocatedIn
-VALUES ('NYA', 9, 'New York', 'Big Apple Airport');
 
 INSERT INTO Domestic
 VALUES ('SEO');
@@ -439,21 +422,6 @@ VALUES ('LAX', 5);
 
 INSERT INTO International
 VALUES ('WAR', 5);
-
-INSERT INTO Airline_Headquartered_In
-VALUES (0, 'Lufthansa', 'Germany');
-
-INSERT INTO Airline_Headquartered_In
-VALUES (1, 'West Jet', 'USA');
-
-INSERT INTO Airline_Headquartered_In
-VALUES (2, 'Air Canada', 'Canada');
-
-INSERT INTO Airline_Headquartered_In
-VALUES (3, 'Air France', 'France');
-
-INSERT INTO Airline_Headquartered_In
-VALUES (4, 'Lot', 'Poland');
 
 INSERT INTO Plane_Owned_By
 VALUES (0, 0, 80, 'Bombardier');
@@ -504,7 +472,7 @@ INSERT INTO High_Capacity
 VALUES (0, 0);
 
 INSERT INTO High_Capacity
-VALUES (2, 1);
+VALUES (1, 2);
 
 INSERT INTO High_Capacity
 VALUES (2, 3);
@@ -606,19 +574,19 @@ INSERT INTO Long_Distance_Flights
 VALUES (0, 0, 'WAR');
 
 INSERT INTO Long_Distance_Flights
-VALUES (2, 1, 'YVR');
+VALUES (1, 2, 'YVR');
 
 INSERT INTO Long_Distance_Flights
-VALUES (2, 1, 'KRH');
+VALUES (1, 2, 'KRH');
 
 INSERT INTO Long_Distance_Flights
-VALUES (2, 1, 'TOR');
+VALUES (1, 2, 'TOR');
 
 INSERT INTO Long_Distance_Flights
-VALUES (2, 1, 'LAX');
+VALUES (1, 2, 'LAX');
 
 INSERT INTO Long_Distance_Flights
-VALUES (2, 1, 'WAR');
+VALUES (1, 2, 'WAR');
 
 INSERT INTO Long_Distance_Flights
 VALUES (2, 3, 'YVR');
@@ -710,21 +678,6 @@ VALUES (2, 3);
 INSERT INTO Belongs_To
 VALUES (3, 4);
 
-INSERT INTO Is_Issued
-VALUES (0, 0);
-
-INSERT INTO Is_Issued
-VALUES (1, 0);
-
-INSERT INTO Is_Issued
-VALUES (2, 1);
-
-INSERT INTO Is_Issued
-VALUES (3, 2);
-
-INSERT INTO Is_Issued
-VALUES (4, 3);
-
 INSERT INTO Ticket
 VALUES (0, '1A1', 'Economy', 300.0);
 
@@ -754,6 +707,21 @@ VALUES (8, '3E3', 'Economy', 670.0);
 
 INSERT INTO Ticket
 VALUES (9, '4J8', 'Economy', 550.0);
+
+INSERT INTO Is_Issued
+VALUES (0, 0);
+
+INSERT INTO Is_Issued
+VALUES (1, 0);
+
+INSERT INTO Is_Issued
+VALUES (2, 1);
+
+INSERT INTO Is_Issued
+VALUES (3, 2);
+
+INSERT INTO Is_Issued
+VALUES (4, 3);
 
 INSERT INTO Customer_Purchase
 VALUES (0, 0, 300.0, 'Credit Card');
@@ -785,50 +753,35 @@ VALUES (8, 3, 0, 603, 'Debit Card');
 INSERT INTO Discounted_Purchase
 VALUES (9, 4, 2, 495.0, 'Credit Card');
 
-INSERT INTO Add
+INSERT INTO Add_Ticket
 VALUES (0, 0);
 
-INSERT INTO Add
+INSERT INTO Add_Ticket
 VALUES (1, 1);
 
-INSERT INTO Add
+INSERT INTO Add_Ticket
 VALUES (2, 2);
 
-INSERT INTO Add
+INSERT INTO Add_Ticket
 VALUES (3, 3);
 
-INSERT INTO Add
+INSERT INTO Add_Ticket
 VALUES (4, 4);
 
-INSERT INTO Add
+INSERT INTO Add_Ticket
 VALUES (5, 0);
 
-INSERT INTO Add
+INSERT INTO Add_Ticket
 VALUES (6, 1);
 
-INSERT INTO Add
+INSERT INTO Add_Ticket
 VALUES (7, 2);
 
-INSERT INTO Add
+INSERT INTO Add_Ticket
 VALUES (8, 3);
 
-INSERT INTO Add
+INSERT INTO Add_Ticket
 VALUES (9, 4);
-
-INSERT INTO Posts
-VALUES (5, 'Star Alliance');
-
-INSERT INTO Posts
-VALUES (6, 'Superficial Alliance');
-
-INSERT INTO Posts
-VALUES (7, 'Pretty Alliance');
-
-INSERT INTO Posts
-VALUES (8, 'Pretty Alliance');
-
-INSERT INTO Posts
-VALUES (9, 'Star Alliance');
 
 INSERT INTO Alliance
 VALUES ('Star Alliance');
@@ -844,6 +797,21 @@ VALUES ('Underworld Alliance');
 
 INSERT INTO Alliance
 VALUES ('Migration Alliance');
+
+INSERT INTO Posts
+VALUES (5, 'Star Alliance');
+
+INSERT INTO Posts
+VALUES (6, 'Superficial Alliance');
+
+INSERT INTO Posts
+VALUES (7, 'Pretty Alliance');
+
+INSERT INTO Posts
+VALUES (8, 'Pretty Alliance');
+
+INSERT INTO Posts
+VALUES (9, 'Star Alliance');
 
 INSERT INTO Is_In
 VALUES ('Star Alliance', 0);
@@ -890,65 +858,65 @@ VALUES ('KRH', 'YVR');
 INSERT INTO Going
 VALUES ('TOR', 'KRH');
 
-INSERT INTO With
-VALUES (0, 0, 'LAX', 'YVR', 0, 0, 0);
-
-INSERT INTO With
-VALUES (1, 1, 'WAR', 'LAX', 1, 1, 1);
-
-INSERT INTO With
-VALUES (2, 2, 'WAR', 'TOR', 2, 2, 2);
-
-INSERT INTO With
-VALUES (3, 3, 'TOR', 'YVR', 3, 3, 3);
-
-INSERT INTO With
-VALUES (4, 4, 'LAX', 'TOR', 4, 4, 4);
-
-INSERT INTO With
-VALUES (5, 5, 'LON', 'TOR', 5, 5, 5);
-
-INSERT INTO With
-VALUES (6, 6, 'WAR', 'LON', 6, 6, 6);
-
-INSERT INTO With
-VALUES (7, 7, 'LON', 'LAX', 7, 7, 7);
-
-INSERT INTO With
-VALUES (8, 8, 'KRH', 'YVR', 8, 8, 8);
-
-INSERT INTO With
-VALUES (8, 8, 'TOR', 'KRH', 8, 8, 8);
+INSERT INTO Boarding_Pass_For_Flight
+VALUES (0, 0, 23, '1A1', 'LAX', 'YVR', 0);
 
 INSERT INTO Boarding_Pass_For_Flight
-VALUES (0, 0, 'LAX', 'YVR', 0, 23, '1A1');
+VALUES (1, 1, 18, '1X1', 'WAR', 'LAX', 1);
 
 INSERT INTO Boarding_Pass_For_Flight
-VALUES (1, 1, 'WAR', 'LAX', 1, 18, '1X1');
+VALUES (2, 2, 22, '6B3', 'WAR', 'TOR', 2);
 
 INSERT INTO Boarding_Pass_For_Flight
-VALUES (2, 2, 'WAR', 'TOR', 2, 22, '6B3');
+VALUES (3, 3, 18, '8F2', 'TOR', 'YVR', 3);
 
 INSERT INTO Boarding_Pass_For_Flight
-VALUES (3, 3, 'TOR', 'YVR', 3, 18, '8F2');
+VALUES (4, 4, 22, '1D7', 'LAX', 'TOR', 4);
 
 INSERT INTO Boarding_Pass_For_Flight
-VALUES (4, 4, 'LAX', 'TOR', 4, 22, '1D7');
+VALUES (5, 5, 26, '5G5', 'LON', 'TOR', 0);
 
 INSERT INTO Boarding_Pass_For_Flight
-VALUES (5, 5, 'LON', 'TOR', 5, 26, '5G5');
+VALUES (6, 6, 16, '1I1', 'WAR', 'LON', 1);
 
 INSERT INTO Boarding_Pass_For_Flight
-VALUES (6, 6, 'WAR', 'LON', 6, 16, '1I1');
+VALUES (7, 7, 21, '0O0', 'LON', 'LAX', 2);
 
 INSERT INTO Boarding_Pass_For_Flight
-VALUES (7, 7, 'LON', 'LAX', 7, 21, '0O0');
+VALUES (8, 8, 32, '3E3', 'KRH', 'YVR', 3);
 
 INSERT INTO Boarding_Pass_For_Flight
-VALUES (8, 8, 'KRH', 'YVR', 8, 32, '3E3');
+VALUES (9, 9, 28, '4J8', 'TOR', 'KRH', 4);
 
-INSERT INTO Boarding_Pass_For_Flight
-VALUES (9, 9, 'TOR', 'KRH', 9, 28, '4J8');
+INSERT INTO Is_With
+VALUES (0, 0, 'LAX', 'YVR', 0, 0, 0, 0);
+
+INSERT INTO Is_With
+VALUES (1, 1, 'WAR', 'LAX', 1, 0, 1, 1);
+
+INSERT INTO Is_With
+VALUES (2, 2, 'WAR', 'TOR', 2, 1, 2, 2);
+
+INSERT INTO Is_With
+VALUES (3, 3, 'TOR', 'YVR', 3, 2, 3, 3);
+
+INSERT INTO Is_With
+VALUES (4, 4, 'LAX', 'TOR', 4, 3, 4, 4);
+
+INSERT INTO Is_With
+VALUES (5, 5, 'LON', 'TOR', 5, 0, 0, 3);
+
+INSERT INTO Is_With
+VALUES (6, 6, 'WAR', 'LON', 6, 1, 1, 3);
+
+INSERT INTO Is_With
+VALUES (7, 7, 'LON', 'LAX', 7, 4, 2, 3);
+
+INSERT INTO Is_With
+VALUES (8, 8, 'KRH', 'YVR', 8, 0, 3, 4);
+
+INSERT INTO Is_With
+VALUES (9, 9, 'TOR', 'KRH', 9, 1, 4, 4);
 
 INSERT INTO Comprised_Of
 VALUES (0, 0, 'LAX', 'YVR', 0, 0);
@@ -966,19 +934,19 @@ INSERT INTO Comprised_Of
 VALUES (4, 4, 'LAX', 'TOR', 4, 4);
 
 INSERT INTO Comprised_Of
-VALUES (5, 5, 'LON', 'TOR', 5, 5);
+VALUES (5, 5, 'LON', 'TOR', 0, 5);
 
 INSERT INTO Comprised_Of
-VALUES (6, 6, 'WAR', 'LON', 6, 6);
+VALUES (6, 6, 'WAR', 'LON', 1, 6);
 
 INSERT INTO Comprised_Of
-VALUES (7, 7, 'LON', 'LAX', 7, 7);
+VALUES (7, 7, 'LON', 'LAX', 2, 7);
 
 INSERT INTO Comprised_Of
-VALUES (8, 8, 'KRH', 'YVR', 8, 8);
+VALUES (8, 8, 'KRH', 'YVR', 3, 8);
 
 INSERT INTO Comprised_Of
-VALUES (9, 9, 'TOR', 'KRH', 9, 9);
+VALUES (9, 9, 'TOR', 'KRH', 4, 9);
 
 INSERT INTO Customer_Login
 VALUES ('Abracadabrar Musa', 0, 'iworkout...guys...iworkout');
