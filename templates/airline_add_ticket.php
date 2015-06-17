@@ -3,7 +3,7 @@
 		<?php
 		require('oci_query_header.php');
 
-		$query = "SELECT plane_ID, capacity, company, p.airline_code 
+		$query = "SELECT p.plane_ID, p.capacity, p.company, p.airline_code 
 				  FROM Airline_Headquartered_In a, Plane_Owned_By p
 				  WHERE ".$_COOKIE['id']." = p.airline_code";
 		$result = executePlainSQL($query);
