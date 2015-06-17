@@ -8,7 +8,7 @@
 				  WHERE a.airline_code = p.airline_code";
 		$result = executePlainSQL($query);
 		while(($row = oci_fetch_row($result)) != false) {
-			$option = '<input type="radio" name="plane" value="'.$row[1].'">'.$row[0]", ".$row[1].", ".$row[2].'<br>';
+			$option = '<input type="radio" name="plane" value="'.$row[1].'">'.$row[0].", ".$row[1].", ".$row[2].'<br>';
 			//$option = '<option name="plane" value="'.$row[1].'">'.$row[0].", ".$row[1].", ".$row[2].'</option>';
 			echo $option;
 		}
