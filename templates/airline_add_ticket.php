@@ -13,7 +13,6 @@
 			echo $option;
 		}
 		?>
-	</select>
 	<label>Economy Ticket Price</label>
 	<p>$<input type="number" name="price"></p>
 	<label>Number of First Class tickets</label><br>
