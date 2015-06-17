@@ -40,16 +40,14 @@
     ?>
     <br>
   <label>Set Discount </label>
-  <p>%<input type="number" name="discountvalue"></p>
+  <p>%<input type="text" name="discountvalue"></p>
   <input type="submit" value="Submit">
 </form>
 
 
 <script>
   $("#disc_form").submit(function() {
-
     var url = $(this).attr("action"); // the script where you handle the form input.
-
     $.ajax({
            type: "POST",
            url: url,

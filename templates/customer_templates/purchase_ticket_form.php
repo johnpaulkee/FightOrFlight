@@ -65,23 +65,24 @@ $success = False;
 
 function printResult($result) { //prints results from a select statement
 
-echo "<form name='purhcase_tickets_form' method='post' action='customer_templates/purchase_tickets.php' id='purchase_ticket_form'>";
+echo "<form name='purchase_tickets_form' method='post' action='customer_templates/purchase_tickets.php' id='purchase_ticket_form'>";
   
 	echo "<h3><center> Starting destination to Final destination </center></h3>";
 
   while (($row = oci_fetch_row($result)) != false) {
     echo "<div class = 'col-md-6'>";
-    $option1 = '<input type="checkbox" name="starting_point" value="'.$row[1].'">'.$row[0].", ".$row[1].", ".$row[2].'<br>';
+    $option1 = '<input type="checkbox" name="starting_point" value="'.$row[0].'">'.$row[0].", ".$row[1].", ".$row[2].'<br>';
     echo $option1;
     echo "</div>";
 
     echo "<div class = 'col-md-6'>";
-    $option2 = '<input type="checkbox" name="ending_point" value="'.$row[1].'">'.$row[0].", ".$row[1].", ".$row[2].'<br>';
+    $option2 = '<input type="checkbox" name="ending_point" value="'.$row[0].'">'.$row[0].", ".$row[1].", ".$row[2].'<br>';
     echo $option2;
     echo "</div>";
   }
-  echo "<center> <input type='submit' name='submit' value='Search'> </center>";
+  echo "<center> <button class='btn btn-default' type='submit' name='submit'> Search </button> </center>";
   echo "</form>";
+  echo "<div id='formresult'></div>";
 }
 
 // Connect Oracle...
@@ -166,3 +167,24 @@ echo htmlentities($e['message']);
 }
 
 ?>
+
+<script>
+	
+	$("#purchase_ticket_form").submit(function() {
+
+    var url = $(this).attr("action"); // the script where you handle the form input.
+
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: $("#purchase_ticket_form").serialize(), // serializes the form's elements.
+           success: function(data)
+           {	
+              $("#formresult").html(data); // show response from the php script.
+           }
+         });
+
+    return false; // avoid to execute the actual submit of the form.
+});
+</script>
+
