@@ -60,7 +60,7 @@ if ($db_conn) {
 	$result2 = executePlainSQL($drop_narrowed_view);
 	$create_view = "CREATE VIEW cheap_tickets AS SELECT MIN(t.price) as minPrice, t.tID FROM Ticket t, outbound_tickets o WHERE t.tID = o.tID GROUP BY t.tID";
 	$result3 = executePlainSQL($create_view);
-	$query = "SELECT MIN(minPrice), tID FROM cheap_tickets";
+	$query = "SELECT MIN(minPrice), tID FROM cheap_tickets GROUP BY tID";
 	$result4 = executePlainSQL($query);
 	printResult($result4);
 	// while(($row = oci_fetch_row($result)) != false){
