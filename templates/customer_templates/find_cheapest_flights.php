@@ -87,10 +87,6 @@ if ($db_conn) {
 	$query = "SELECT t.tID FROM Ticket t, Comprised_Of c WHERE t.tID = c.tID AND c.from_airport_code = '".$airport."' AND t.price = (SELECT MIN(minPrice) FROM cheap_tickets c)";
 	$result4 = executePlainSQL($query);
 	createTable($result4);
-	// while(($row = oci_fetch_row($result)) != false){
-	// 	echo "<p>".$row[0].", ".$row[1].", ".$row[2].", ".$row[4]."</p>";
-	// 	echo "<br>";
-	// }
 }
 
 ?>
