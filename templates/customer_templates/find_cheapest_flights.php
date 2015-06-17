@@ -95,7 +95,7 @@ if ($db_conn) {
 	$query = "SELECT MIN(t.price) as minPrice, t.tID, c.to_airport_code, a.city 
 	FROM Ticket t, Comprised_Of c, Airport_LocatedIn a 
 	WHERE t.tID = c.tID AND a.airport_code = c.to_airport_code
-	GROUP BY t.price
+	GROUP BY t.price, t.tID, c.to_airport_code, a.city
 	HAVING c.from_airport_code = '".$airport."'" ;
 	$result = executePlainSQL($query);
 	echo $result;
