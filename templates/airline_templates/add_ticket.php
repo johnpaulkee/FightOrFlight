@@ -145,19 +145,19 @@ function executePlainSQL($cmdstr) {
         $query4 = "INSERT INTO Is_With VALUES ('".$boardingprimary."', '".$flightprimary."', '".$from."', '".$to."', '".$primarykey."', '".$planeID."', '".$_COOKIE['id']."', '".$_COOKIE['id']."')";
         $result4 = executePlainSQL($result4);
       $weight = $weight + 2;
-   for($i=0; $i<$first_num; $i++){
-    $seat = generateSeat();
-    $primarykey = $primarykey + 1;
-    $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'First', '".$first_price."')";
-    $result = executePlainSQL($query);
-  }
-  $weight = $weight + 3;
-  for($i=0; $i<$business_num; $i++){
-    $seat = generateSeat();
-    $primarykey = $primarykey + 1;
-    $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
-    $result = executePlainSQL($query);
-  }
+  //  for($i=0; $i<$first_num; $i++){
+  //   $seat = generateSeat();
+  //   $primarykey = $primarykey + 1;
+  //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'First', '".$first_price."')";
+  //   $result = executePlainSQL($query);
+  // }
+  // $weight = $weight + 3;
+  // for($i=0; $i<$business_num; $i++){
+  //   $seat = generateSeat();
+  //   $primarykey = $primarykey + 1;
+  //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
+  //   $result = executePlainSQL($query);
+  // }
       $query1 = "SELECT * FROM Ticket";
       $result1 = executePlainSQL($query1);
       printResult($result1);
