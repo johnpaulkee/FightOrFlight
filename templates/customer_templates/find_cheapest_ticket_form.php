@@ -37,23 +37,23 @@
 
 <div id="formresult"></div>
 
-<script>
+// <script>
 	
-	$("#cheapest_form").submit(function() {
+// 	$("#cheapest_form").submit(function() {
 
-    var url = $(this).attr("action"); // the script where you handle the form input.
+//     var url = $(this).attr("action"); // the script where you handle the form input.
 
-    $.ajax({
-           type: "POST",
-           url: url,
-           data: $("#cheapest_form").serialize(), // serializes the form's elements.
-           success: function(data)
-           {	
-           		alert("SUCCESS");
-              $("#formresult").html(data); // show response from the php script.
-           }
-         });
+//     $.ajax({
+//            type: "POST",
+//            url: url,
+//            data: $("#cheapest_form").serialize(), // serializes the form's elements.
+//            success: function(data)
+//            {	
+//            		alert("SUCCESS");
+//               $("#formresult").html(data); // show response from the php script.
+//            }
+//          });
 
-    return false; // avoid to execute the actual submit of the form.
-});
-</script>
+//     return false; // avoid to execute the actual submit of the form.
+// });
+// </script>
