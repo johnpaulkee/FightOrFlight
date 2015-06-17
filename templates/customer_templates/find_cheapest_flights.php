@@ -2,7 +2,7 @@
 <?php
 $success = True; //keep track of errors so it redirects the page only if there are no errors
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
-$city = $_POST['city'];
+$airport = $_POST['airport'];
 
 function executePlainSQL($cmdstr) { 
 	//echo "<br>running ".$cmdstr."<br>";
@@ -92,34 +92,13 @@ function printResult($result) { //prints results from a select statement
 
 // Connect Oracle...
 if ($db_conn) {
-	echo '<form name="select_airport" method="post" action="../templates/customer_templates/find_cheapest_flights.php" id="find_cheap_flights">';
-	$query = "SELECT DISTINCT airport_code FROM Airport_LocatedIn WHERE city='".$city."'";
+	$query = "SELECT MIN(price) as minPrice, tID, to_airport_code, a.city FROM Ticket t, Comprised_Of c, Airport_LocatedIn a WHERE t.tID = c.tID AND c.from_airport_code = '".$airport."' AND a.airport_code = c.to_airport_code";
 	$result = executePlainSQL($query);
-	while(($row = oci_fetch_row($result)) != false) {
-		$input = '<input type="radio" name="airport" value="'.$row[0].'">'.$row[0];
-		echo $input;
+	while(($row = $oci_fetch_row($result)) != false){
+		echo $row[0].", ".$row[1].", ".$row[2].", ".$row[4];
+		echo "<br>";
 	}
-	echo '<input type="submit" name="submit" value="ok">';
-// 	echo '<script>
-	
-// 	$("#cheapest_form").submit(function() {
-
-//     var url = $(this).attr("action"); // the script where you handle the form input.
-
-//     $.ajax({
-//            type: "POST",
-//            url: url,
-//            data: $("#cheapest_form").serialize(),
-//            success: function(data)
-//            {	
-//            		alert("SUCCESS");
-//               $("#formresult").html(data); // show response from the php script.
-//            }
-//          });
-
-//     return false; // avoid to execute the actual submit of the form.
-// });
-// </script>';
+	}
 }
 
 ?>
