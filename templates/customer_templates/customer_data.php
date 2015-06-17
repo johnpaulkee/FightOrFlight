@@ -90,7 +90,7 @@ $success = False;
 }
 
 function printResult($result) { //prints results from a select statement
-	echo "<h3><center> Hello Customer, here are your details: </center></h3>";
+	echo "<p> User details: </p>";
 
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
@@ -112,6 +112,28 @@ function printResult($result) { //prints results from a select statement
 	echo "</table>";
 
 }
+
+function printTickets($result) { //prints results from a select statement
+	echo "<p> Your Purchased Tickets </p>";
+	echo "<table class = 'table table-striped'>";
+	echo "<thead>";
+	echo "<tr>";
+	echo "<th>Seat</th>"; 
+	echo "<th>Class</th>"; 
+	echo "</tr>";
+	echo "</thead>";
+	echo "<tbody>";
+	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+		echo "<tr>";
+		echo "<td>" . $row[0] . "</td>";
+		echo "<td>" . $row[1] . "</td>";
+		echo "</tr>";
+	}
+	echo "</tbody>";
+	echo "</table>";
+}
+
+
 
 // Connect Oracle...
 if ($db_conn) {
@@ -179,9 +201,18 @@ OCICommit($db_conn);
 
 if ($_POST && $success) {
 	header("location: oracle-test.php");
-} else {$query = "SELECT * FROM customer_login WHERE username = '".$_COOKIE['username']."'";
+} else {
+	$query = "SELECT * FROM customer_login WHERE username = '".$_COOKIE['username']."'";
 	$result = executePlainSQL($query);
 	printResult($result);
+
+	$query2 = "SELECT t.seat, t.class
+			   FROM customer_login cl, customer_purchase cp, ticket t 
+			   WHERE cl.username = '".$_COOKIE['username']."' and
+			   		 cp.cust_ID = cl.cust_ID and
+			   		 t.tID = cp.tID";
+	$result2 = executePlainSQL($query2);
+	printTickets($result2);
 }
 
 //Commit to save changes...

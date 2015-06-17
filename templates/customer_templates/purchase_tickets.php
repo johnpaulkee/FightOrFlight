@@ -17,7 +17,7 @@ function printResult($result) { //prints results from a select statement
 	echo "<form name='purchase_tickets1' method='post' action='customer_templates/update_customer_tickets.php' id='purchase_ticket'>";
 
 	while (($row = oci_fetch_row($result)) != false) {
-		$option1 = '<input type="radio" name="purchase_choice" value="'.$row[0].'">'.$row[0].", ".$row[1].", $".$row[2].'<br>';
+		$option1 = '<input type="radio" name="purchase_choice" value="'.$row[3].'">'.$row[0].", ".$row[1].", $".$row[2].'<br>';
 		echo $option1;
 	}
 	echo "</form>";
@@ -27,7 +27,8 @@ function printResult($result) { //prints results from a select statement
 
 function printIntermediateResult($result) { //prints results from a select statement
 	while (($row = oci_fetch_row($result)) != false) {
-		$option1 = '<input type="radio" name="purchase_choice" value="'.$row[0].'">'.$row[0].", ".$row[1].", $".$row[2].", ".$row[3].", ".$row[4].", $".$row[5].", $".$row[6].'<br>';
+		$option1 = '<input type="radio" name="purchase_choice" value="'.$row[7].',,'.$row[8].'">'.$row[0].", ".$row[1].", $".$row[2].", ".$row[3].", ".$row[4].", $".$row[5].", $".$row[6].'<br>';
+		// list($tid1, $tid2) = explode(",",$_POST['ahq']);
 		echo $option1;
 	}
 	echo "</form>";
@@ -61,7 +62,7 @@ function executePlainSQL($cmdstr) {
 // Connect Oracle...
 if ($db_conn) {
 	echo "<h3><center> Here are the available tickets that you can purchase: </center></h3>";
-	$query1 = "SELECT c.from_airport_code, c.to_airport_code, t.price
+	$query1 = "SELECT c.from_airport_code, c.to_airport_code, t.price, t.tID
 			   FROM Comprised_Of c, Ticket t
 			   WHERE from_airport_code = '$startingpoint' and 
 			   		 to_airport_code = '$endingpoint' and 
@@ -70,7 +71,7 @@ if ($db_conn) {
 	printResult($result1);
 
 
-	$query2 = "SELECT c1.from_airport_code, c1.to_airport_code, t1.price, c2.from_airport_code, c2.to_airport_code, t2.price, t1.price + t2.price 
+	$query2 = "SELECT c1.from_airport_code, c1.to_airport_code, t1.price, c2.from_airport_code, c2.to_airport_code, t2.price, t1.price + t2.price, t1.tID, t2.tID 
 		      FROM Comprised_Of c1, Comprised_Of c2, Ticket t1, Ticket t2 
 		      WHERE c1.to_airport_code = c2.from_airport_code and 
 		      	    c1.from_airport_code = '$startingpoint' and 
