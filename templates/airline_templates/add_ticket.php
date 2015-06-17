@@ -132,7 +132,7 @@ function executePlainSQL($cmdstr) {
   // }
       $query1 = "SELECT * FROM Ticket";
       $result1 = executePlainSQL($query1);
-      printResult($result1);
+      // printResult($result1);
     }
 
     ?>
