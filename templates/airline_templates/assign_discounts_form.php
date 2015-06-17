@@ -2,6 +2,7 @@
   <label> Select Airline </label>
   <select class="form-control" name="employeeid">
     <?php
+    
     function executePlainSQL($cmdstr) { 
       //echo "<br>running ".$cmdstr."<br>";
       $db_con = OCILogon("ora_i4u9a", "a34129122", "ug");
@@ -43,7 +44,7 @@
 <div id="formresult">
   
 </div>
-<!-- 
+
 <script>
   $("#disc_form").submit(function() {
 
@@ -62,4 +63,4 @@
 
     return false; // avoid to execute the actual submit of the form.
 });
-</script> -->
+</script>
