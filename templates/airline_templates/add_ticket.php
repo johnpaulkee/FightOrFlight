@@ -4,12 +4,12 @@ $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 
 
   // Define user and pass
-$capacity = ucfirst($_POST['plane']);
-$price = ucfirst($_POST['price']);
-$first_num = ucfirst($_POST['first_class']);
-$first_price = ucfirst($_POST['first_class_price']);
-$business_num = ucfirst($_POST['business']);
-$business_price = ucfirst($_POST['business_price']);
+list($capacity, $planeID) = explode(",", $_POST['plane']);
+$price = $_POST['price'];
+$first_num = $_POST['first_class'];
+$first_price = $_POST['first_class_price'];
+$business_num = $_POST['business'];
+$business_price = $_POST['business_price'];
 $economy = $capacity - $first_num - $business_num;
 $to = $_POST['to'];
 $from = $_POST['from'];
@@ -138,8 +138,12 @@ function executePlainSQL($cmdstr) {
         $flightprimary = $flightprimary + 1;
         $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
         $result = executePlainSQL($query);
-        //$query2 = "INSERT INTO Boarding_Pass_For_Flight VALUES ('".$boardingprimary."', '".$flightprimary."', '".$weight."', '".$seat."', '".$from."', '".$to."', "$_COOKIE['id']."')";
-      }
+        $query2 = "INSERT INTO Boarding_Pass_For_Flight VALUES ('".$boardingprimary."', '".$flightprimary."', '".$weight."', '".$seat."', '".$from."', '".$to."', "$_COOKIE['id']."')";
+        $result2 = executePlainSQL($query2);
+        $query3 = "INSERT INTO Add_Ticket VALUES ('".$primarykey."', '".$_COOKIE['id']."')";
+        $result3 = executePlainSQL($query3);
+        $query4 = "INSERT INTO Is_With VALUES ('".$boardingprimary."', '".$flightprimary."', '".$from."', '".$to."', '".$primarykey."', '".$planeID."', '".$_COOKIE['id']."', '".$_COOKIE['id']."')";
+        $result4 = executePlainSQL($result4);
       $weight = $weight + 2;
    for($i=0; $i<$first_num; $i++){
     $seat = generateSeat();
