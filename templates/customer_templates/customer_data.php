@@ -213,6 +213,9 @@ if ($_POST && $success) {
 			   		 t.tID = cp.tID";
 	$result2 = executePlainSQL($query2);
 	printTickets($result2);
+
+	$query3 = "SELECT * FROM Customer";
+	
 }
 
 //Commit to save changes...
