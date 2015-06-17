@@ -1,7 +1,7 @@
 <form name="loyal_form" method="post" action="airline_templates/find_loyal_customers.php" id="loyal_form">
 	<label> Find Most Loyal Customers Based On: </label><br>
-	<input type="radio" name="method" value="SUM"> Revenue
-	<input type="radio" name="method" value="COUNT"> Tickets Bought
+	<input type="radio" name="method" value="SUM"> Revenue<br>
+	<input type="radio" name="method" value="COUNT"> Tickets Bought<br>
 	<input type="submit" name="submit" value="OK">
 </form>
 
