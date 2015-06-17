@@ -1,6 +1,11 @@
 <form name="cheap_form" method="post" action="../templates/customer_templates/find_cheapest_ticket.php" id="cheapest_form">
 	<label>Where are you?</label>
 	<?php
+	$type = $_COOKIE['type'];
+    if ($type != "../templates/customer") {
+      header("Location: not_authorized.html");
+      die();
+    }
 		function executePlainSQL($cmdstr) { 
       	//echo "<br>running ".$cmdstr."<br>";
   		$db_con = OCILogon("ora_i4u9a", "a34129122", "ug");
