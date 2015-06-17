@@ -123,13 +123,13 @@ function executePlainSQL($cmdstr) {
       }
    for($i=0; $i<$first_num; $i++){
     $seat = generateSeat();
-    $primarykey = $primarykey + 1;
+    $primarykey = $GLOBALS['primarykey'] + 1;
     $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'First', '".$first_price."')";
     $result = executePlainSQL($query);
   }
-  for($o=0; $i<$business_num; $i++){
+  for($i=0; $i<$business_num; $i++){
     $seat = generateSeat();
-    $primarykey = $primarykey + 1;
+    $primarykey = $GLOBALS['primarykey'] + 1;
     $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
     $result = executePlainSQL($query);
   }
