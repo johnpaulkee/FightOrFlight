@@ -45,7 +45,7 @@
            success: function(data)
            {	
            		alert("SUCCESS");
-              $("#formresult").html(data); // show response from the php script.
+              $("#formresult").html("Test"); // show response from the php script.
            }
          });
 

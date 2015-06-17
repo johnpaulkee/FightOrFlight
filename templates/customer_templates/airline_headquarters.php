@@ -43,7 +43,7 @@ include "head.php";
            success: function(data)
            {	
            		alert("SUCCESS");
-              $("#formresult").html("<p> Test </p>"); // show response from the php script.
+              $("#formresult").html(data); // show response from the php script.
            }
          });
 
