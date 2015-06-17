@@ -24,21 +24,21 @@
 	<label>Business Ticket Price</label><br>
     <p>$
     <input type="number" name="business_price"></p>
-    <!-- <label>From           To</label><br>
+    <label>From           To</label><br>
     <?php
-    	require('oci_query_header.php');
+  //   	require('oci_query_header.php');
 
-    	$query = "SELECT airport_code FROM Airport_LocatedIn";
-    	$result = executePlainSQL($query);
-    	while(($row = oci_fetch_row($result)) != false) {
-			$from = '<input type="radio" name="from" value="'.$row[0].'">'.$row[0].'<br>';
-			$to = '<input type="radio" name="to" value="'.$row[0].'">'.$row[0].'<br>';
-			echo "<p>";
-			echo $from;
-			echo $to;
-			echo "</p>";
-		}
-    ?> -->
+  //   	$query = "SELECT airport_code FROM Airport_LocatedIn";
+  //   	$result = executePlainSQL($query);
+  //   	while(($row = oci_fetch_row($result)) != false) {
+		// 	$from = '<input type="radio" name="from" value="'.$row[0].'">'.$row[0].'<br>';
+		// 	$to = '<input type="radio" name="to" value="'.$row[0].'">'.$row[0].'<br>';
+		// 	echo "<p>";
+		// 	echo $from;
+		// 	echo $to;
+		// 	echo "</p>";
+		// }
+    ?> 
     <input type="submit" name="Submit" value="create">
 </form>
 <div id="formresult"></div>
