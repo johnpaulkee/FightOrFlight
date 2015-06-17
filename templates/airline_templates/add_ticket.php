@@ -86,10 +86,10 @@ if ($db_conn) {
     }
     $s3 = ($s3 + 1) % 10;
     $seat = $s1.$s2.$s3;
-    $query = "INSERT INTO Tickets(seat, class, price) VALUES ('".$seat."', 'Economy', '".$price."')";
+    $query = "INSERT INTO Ticket(seat, class, price) VALUES ('".$seat."', 'Economy', '".$price."')";
     $result = executePlainSQL($query);
   }
-  $query = "SELECT * FROM Tickets";
+  $query = "SELECT * FROM Ticket";
   $result = executePlainSQL($query);
   echo $result;
   printResult($result);
