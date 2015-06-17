@@ -37,8 +37,8 @@
       ?>
       </div>
       <div class="panel-body scroller" id="form_generation">
-   
-        </div>
+        <p> TODO: include airline details </p>
+      </div>
       </div>
     </div>
     
