@@ -137,6 +137,7 @@ function executePlainSQL($cmdstr) {
       $result1 = executePlainSQL($query1);
       printResult($result1);
       oci_commit($db_conn);
+      OCILogoff($db_conn);
     }
 
     ?>
