@@ -108,10 +108,12 @@ function executePlainSQL($cmdstr) {
 
 // Connect Oracle...
     if ($db_conn) {
-      // $query = "SELECT MAX(tID) FROM TICKET";
-      // $result = executePlainSQL($query);
-      // $row = oci_fetch_row($result);
-      // $primarykey=$row[0] + 1;
+      $query = "SELECT MAX(tID) FROM TICKET";
+      $result = executePlainSQL($query);
+      echo ($result);
+      $row = oci_fetch_row($result);
+      echo ($row);
+      $primarykey=$row[0] + 1;
       // for($i=0; $i<$economy; $i++){
       //   $seat = generateSeat();
       //   $primarykey = $primarykey + 1;
