@@ -63,7 +63,7 @@ function createTable($entry){
 	echo "</thead>";
 	echo "<tbody>";
 	while(($row = oci_fetch_row($entry)) != false){
-		$query = "SELECT tID, price, city FROM Ticket t, Comprised_Of c, Airport_LocatedIn a WHERE t.tID = '".$row[0]."' AND t.tID = c.tID AND a.airport_code = c.to_airport_code";
+		$query = "SELECT t.tID, t.price, a.city FROM Ticket t, Comprised_Of c, Airport_LocatedIn a WHERE t.tID = '".$row[0]."' AND t.tID = c.tID AND a.airport_code = c.to_airport_code";
 		$result = executePlainSQL($query);
 		while(($row = oci_fetch_row($result)) != false) {
 			echo "<tr>";
