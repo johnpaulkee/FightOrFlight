@@ -100,7 +100,7 @@ ai<html>
 
       $("#headquarter_in").click(function() {
         $("#form_generation").empty();
-        $("#form_generation").load("tester.php");
+        $("#form_generation").load("airline_templates/headquarter_in.php");
       });
 
       $("#airport_details").click(function() {
