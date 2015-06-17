@@ -58,7 +58,7 @@ if ($db_conn) {
 	$result1 = executePlainSQL($view_query);
 	$drop_narrowed_view = "DROP VIEW cheap_tickets";
 	$result2 = executePlainSQL($drop_narrowed_view);
-	$create_view = "CREATE VIEW cheap_tickets AS SELECT MIN(t.price) as minPrice, t.tID FROM Ticket t, outbound_tickets o WHERE t.tID = o.tID GROUP BY t.tID"
+	$create_view = "CREATE VIEW cheap_tickets AS SELECT MIN(t.price) as minPrice, t.tID FROM Ticket t, outbound_tickets o WHERE t.tID = o.tID GROUP BY t.tID";
 	$result3 = executePlainSQL($create_view);
 	$query = "SELECT MIN(minPrice), tID FROM cheap_tickets";
 	$result4 = executePlainSQL($query);
