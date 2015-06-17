@@ -26,8 +26,6 @@
     <input type="number" name="business_price"></p>
     <label>From           To</label><br>
     <?php
-    	require('oci_query_header.php');
-
     	$query = "SELECT airport_code FROM Airport_LocatedIn";
     	$result = executePlainSQL($query);
     	echo $result;
