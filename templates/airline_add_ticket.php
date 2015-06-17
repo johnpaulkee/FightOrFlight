@@ -27,13 +27,9 @@
 
 		$query = "SELECT plane_ID, capacity, company, p.airline_code FROM Airline_Headquartered_In a, Plane_Owned_By p WHERE a.airline_code = p.airline_code";
 		$result = executePlainSQL($query);
-		echo $result;
 		while(($row = oci_fetch_row($result)) != false) {
 			$option = '<option value="'.$row[1]'">'.$row[0].", ".$row[1].", ".$row[2].'</option>';
-			echo $option;
 		}
-		oci_free_statement($statement);
-		oci_close($db_con);
 		?>
 	</select>
 </form>
