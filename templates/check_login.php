@@ -59,6 +59,9 @@
 		$cookie_name = "username";
 		$cookie_value = $username;
 		setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/');
+		$cookie_type_n = "type";
+		$cookie_type_v = $type;
+		setcookie($cookie_type_n, $cookie_type_v, time() + (86400 * 30), '/');
 		do{
 			if($redirect == 0){
 				$_POST["type"]="customer";
