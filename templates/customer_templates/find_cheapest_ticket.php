@@ -105,22 +105,22 @@ if ($db_conn) {
 	echo '<script>
 
 	
-	$("#select_airport").submit(function() {
+	$("#find_cheap_flights").submit(function() {
 
-    var url = $(this).attr("action"); // the script where you handle the form input.
+    var url = $(this).attr("action");
 
     $.ajax({
            type: "POST",
            url: url,
-           data: $("#select_airport").serialize(),
+           data: $("#find_cheap_flights").serialize(),
            success: function(data)
            {	
            		alert("SUCCESS");
-              $("#formresult").html(data); // show response from the php script.
+              $("#formresult").html(data);
            }
          });
 
-    return false; // avoid to execute the actual submit of the form.
+    return false;
 });
 </script>';
 }
