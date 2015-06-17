@@ -28,7 +28,7 @@
  	   	$query="SELECT city FROM Airport_Located_In";
   		$result = executePlainSQL($query);
   		while(($row = oci_fetch_row($result)) != false) {
-  			$input = '<input type="radio" name="city" value="'.$row[0].'">'.$row[0];
+  			$input = '<input type="radio" name="city" value="'.$row[0].'">'.$row[0].'<br>';
   			echo $input;
   		}
 	?>
