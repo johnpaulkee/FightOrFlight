@@ -26,25 +26,33 @@ function executePlainSQL($cmdstr) {
 }
 
 function executeBoundSQL($cmdstr, $list) {
-	global $db_conn, $success;
-	$statement = OCIParse($db_conn, $cmdstr);
+/* Sometimes a same statement will be excuted for severl times, only
+the value of variables need to be changed.
+In this case you don't need to create the statement several times; 
+using bind variables can make the statement be shared and just 
+parsed once. This is also very useful in protecting against SQL injection. See example code below for       how this functions is used */
 
-	if (!$statement) {
-		echo "<br>Cannot parse the following command: " . $cmdstr . "<br>";
-		$e = OCI_Error($db_conn);
-		echo htmlentities($e['message']);
-		$success = False;
-	}
+global $db_conn, $success;
+$statement = OCIParse($db_conn, $cmdstr);
 
-	foreach ($list as $tuple) {
-		foreach ($tuple as $bind => $val) {
-			OCIBindByName($statement, $bind, $val);
-			unset ($val); 
-		}
+if (!$statement) {
+	echo "<br>Cannot parse the following command: " . $cmdstr . "<br>";
+	$e = OCI_Error($db_conn);
+	echo htmlentities($e['message']);
+	$success = False;
+}
 
-		$r = OCIExecute($statement, OCI_DEFAULT);
-		if (!$r) {
-			echo "<br>Cannot execute the following command: " . $cmdstr . "<br>";
+foreach ($list as $tuple) {
+	foreach ($tuple as $bind => $val) {
+//echo $val;
+//echo "<br>".$bind."<br>";
+		OCIBindByName($statement, $bind, $val);
+unset ($val); //make sure you do not remove this. Otherwise $val will remain in an array object wrapper which will not be recognized by Oracle as a proper datatype
+
+}
+$r = OCIExecute($statement, OCI_DEFAULT);
+if (!$r) {
+	echo "<br>Cannot execute the following command: " . $cmdstr . "<br>";
 $e = OCI_Error($statement); // For OCIExecute errors pass the statementhandle
 echo htmlentities($e['message']);
 echo "<br>";
@@ -54,37 +62,36 @@ $success = False;
 
 }
 
-function printResult($result) { //prints results from a select statement
-	echo "<h3><center> Hello Customer, here are your details: </center></h3>";
-	echo "<h3><center> This should be an update or something with Customer </center> </h3>";
+function printFrequentFlyerData($result) { //prints results from a select statement
+	echo "<p> User details: </p>";
+
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
 	echo "<tr>";
-	echo "<th>Cust_ID</th>";
-	echo "<th>Airline_Code</th>";
+	echo "<th>Airline</th>"; 
 	echo "<th>Points</th>";
 	echo "</tr>";
 	echo "</thead>";
 	echo "<tbody>";
-
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
 		echo "<tr>";
 		echo "<td>" . $row[0] . "</td>";
 		echo "<td>" . $row[1] . "</td>";
-		echo "<td>" . $row[2] . "</td>";
-		echo "<td>" . $row[3] . "</td>";
-		echo "<td>" . $row[4] . "</td>";
 		echo "</tr>";
 	}
 	echo "</tbody>";
 	echo "</table>";
-}
 
+}
+// Connect Oracle...
 if ($db_conn) {
+
 	if (array_key_exists('reset', $_POST)) {
+// Drop old table...
 		echo "<br> dropping table <br>";
 		executePlainSQL("Drop table tab1");
 
+// Create new table...
 		echo "<br> creating new table <br>";
 		executePlainSQL("create table tab1 (nid number, name varchar2(30), primary key (nid))");
 		OCICommit($db_conn);
@@ -143,8 +150,20 @@ OCICommit($db_conn);
 if ($_POST && $success) {
 	header("location: oracle-test.php");
 } else {
-	$result = executePlainSQL("SELECT * from frequent_flyer");
-	printResult($result);
+	$query_freq_flyer = "SELECT a.airline_name, f.points
+						   FROM customer_login cl, frequent_flyer f, Airline_Headquartered_In a
+						   WHERE f.cust_ID = cl.cust_ID and
+						   		 a.airline_code = f.airline_code and
+								 cl.username = '".$_COOKIE['username']."'";
+	$user_details = executePlainSQL($query_freq_flyer);
+	printFrequentFlyerData($user_details);
+
+	// CREATE TABLE Airline_Headquartered_In(
+	// airline_code INTEGER,
+	// airline_name VARCHAR2(255) NOT NULL,
+	// name VARCHAR2(2airline_code55) NOT NULL,
+	// PRIMARY KEY (),
+	// FOREIGN KEY (name) REFERENCES Country(name)
 }
 
 //Commit to save changes...

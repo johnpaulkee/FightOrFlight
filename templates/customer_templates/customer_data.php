@@ -1,31 +1,4 @@
-<!-- 
-<p>If you wish to reset the table press on the reset button. If this is the first time you're running this page, you MUST use reset</p>
-<form method="POST" action="oracle-test.php">
-
-	<p><input type="submit" value="Reset" name="reset"></p>
-</form>
-
-<p>Insert values into tab1 below:</p>
-<p><font size="2"> Number&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-	Name</font></p>
-<form method="POST" action="oracle-test.php">
-		<p><input type="text" name="insNo" size="6"><input type="text" name="insName" 
-			size="18">
-			<input type="submit" value="insert" name="insertsubmit"></p>
-</form>
-
-<p> Update the name by inserting the old and new values below: </p>
-<p><font size="2"> Old Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-	New Name</font></p>
-
-<form method="POST" action="oracle-test.php">
-	<p><input type="text" name="oldName" size="6"><input type="text" name="newName" 
-		size="18">
-		<input type="submit" value="update" name="updatesubmit"></p>
-		<input type="submit" value="run hardcoded queries" name="dostuff"></p>
-	</form> -->
-
-	<?php
+<?php
 $success = True; //keep track of errors so it redirects the page only if there are no errors
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 
