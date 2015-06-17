@@ -15,7 +15,7 @@
         <li><a href="javascript:void(0)" id = "purchase_ticket">Purchase Tickets</a></li>
         <li><a href="javascript:void(0)" id = "freq_flyer">Become a Frequent Flyer</a></li>
         <li><a href="javascript:void(0)" id = "check_points">Check Points</a></li>
-        <li><a href="javascript:void(0)" id = "update_cred">Update Credit Card Info</a></li>
+        <li><a href="javascript:void(0)" id = "find_cheapest_ticket">Find Cheapest Outbound Flight</a></li>
         <li><a href="javascript:void(0)" id = "lugg_weight">Check Luggage Weight</a></li>
         <li><a href="javascript:void(0)" id = "bp_details">Boarding Pass Details</a></li>
         <li><a href="javascript:void(0)" id = "find_airline_head">Find Airline Headquarters</a></li>
