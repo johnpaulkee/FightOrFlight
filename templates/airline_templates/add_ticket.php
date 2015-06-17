@@ -1,4 +1,5 @@
 <?php
+require('eci_query_header.php');
 $success = True; //keep track of errors so it redirects the page only if there are no errors
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 
