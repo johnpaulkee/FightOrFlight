@@ -92,7 +92,7 @@ function printResult($result) { //prints results from a select statement
 
 // Connect Oracle...
 if ($db_conn) {
-	echo '<form name="select_airport" method="post" action="find_cheapest_flights.php" id="find_cheap_flights">'
+	echo '<form name="select_airport" method="post" action="find_cheapest_flights.php" id="find_cheap_flights">';
 	$query = "SELECT DISTINCT airport_code FROM Aiport_Located_In WHERE city='".$GLOBAL['city']."'";
 	$result = executePlainSQL($query);
 	while(($row = oci_fetch_row($result)) != false) {
