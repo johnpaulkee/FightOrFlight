@@ -55,7 +55,7 @@
     $.ajax({
            type: "POST",
            url: url,
-           data: $("#hq_form").serialize(), // serializes the form's elements.
+           data: $("#disc_form").serialize(), // serializes the form's elements.
            success: function(data)
            {  
               alert("SUCCESS");
