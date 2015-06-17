@@ -41,13 +41,13 @@
 	<label>Economy Ticket Price</label>
 	<div>
 	<p>$<input type="number" name="price"></p>
-	<label>Number of First Class tickets</label>
+	<label>Number of First Class tickets</label><br>
 	<input type="number" name="first_class">
 	<label>First Class Ticket Price</label>
 	<div><p>$</p>
 	<input type="number" name="first_class_price">
 	</div>
-	<label>Number of Business tickets</label>
+	<label>Number of Business tickets</label><br>
 	<input type="number" name="business">
 	<label>Business Ticket Price
     </div><p>$</p>
