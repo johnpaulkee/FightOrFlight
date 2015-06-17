@@ -1,4 +1,4 @@
-<form name = "form2" method = "post" action="../templates/airline_templates/addHq.php" id="disc_form">
+<form name = "form2" method = "post" action="../templates/airline_templates/assignDiscount.php" id="disc_form">
   <label> Select Airline </label>
   <select class="form-control" name="employeeid">
     <?php

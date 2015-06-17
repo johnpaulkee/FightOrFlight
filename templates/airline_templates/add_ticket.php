@@ -102,8 +102,8 @@ function executePlainSQL($cmdstr) {
       if ($s2 == "J") {
         $s1 = (($s1 + 1)%10);
       }
-      $seat = $s1.$s2.$s3;
-      return $seat;
+      $return = $s1.$s2.$s3;
+      return $return;
     }
 
 // Connect Oracle...
@@ -130,11 +130,11 @@ function executePlainSQL($cmdstr) {
   //   $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Business', '".$business_price."')";
   //   $result = executePlainSQL($query);
   // }
-      $query1 = "SELECT * FROM Ticket";
-      $result1 = executePlainSQL($query1);
-      echo $result1;
-      echo $result;
-      //printResult($result1);
+      // $query1 = "SELECT * FROM Ticket";
+      // $result1 = executePlainSQL($query1);
+      // echo $result1;
+      // echo $result;
+      // //printResult($result1);
     }
 
     ?>

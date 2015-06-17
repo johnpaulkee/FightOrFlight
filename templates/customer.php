@@ -62,7 +62,7 @@
       });
 
       $("#purchase_ticket").click(function() {
-        $("#form_generation").load("../templates/customer_templates/purchase_tickets.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/purchase_ticket_form.php").fadeIn('slow');
       });
 
       $("#freq_flyer").click(function() {
