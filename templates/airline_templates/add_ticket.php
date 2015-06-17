@@ -15,9 +15,31 @@ $economy = $capacity - $first_num - $business_num;
 
 // Connect Oracle...
 if ($db_conn) {
-  $query = "INSERT INTO Tickets airline_name, name from Airline_Headquartered_In where airline_name LIKE'%".$airline."%'";
-  $result = executePlainSQL($query);
-  printResult($result);
+  $k = 0;
+  $s1 = 0;
+  $s2 = "A";
+  $s3 = 0;
+  for(int i=0; i<$economy; i++){
+    if($s2 == "A"){
+      $s2="B";
+    } else if ($s2 == "B"){
+      $s2 = "C";
+    } else if ($s2 == "C") {
+      $s2 = "D";
+    } else if ($s2 == "D"){
+      $s2 = "E";
+    } else if ($s2 == "E"){
+      $s2 = "F";
+    }
+    if($k%6 == 0){
+      $s1 = $s1 + 1;
+      $s2 = "A";
+    }
+    $s3 = ($s3 + 1) % 10;
+    $seat = $s1.$s2.$s3;
+    $query = "INSERT INTO Tickets(seat, class, price) VALUES ('".$seat."', 'Economy', '".$price."')";
+    $result = executePlainSQL($query);
+  }
 }
 
 ?>
