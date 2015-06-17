@@ -67,7 +67,7 @@
 
       $("#assign_discounts").click(function() {
         $("#form_generation").empty();
-        $("#form_generation").load("airline_templates/headquarter_in_form.php");
+        $("#form_generation").load("airline_templates/assign_discounts_form.php");
       });
 
       $("#update_freq_flyer").click(function() {
