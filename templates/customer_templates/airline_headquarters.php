@@ -38,11 +38,10 @@ include "head.php";
 
     $.ajax({
            type: "POST",
-           url: $(this).attr("action"),
+           url: url,
            data: $("#airline_head_form").serialize(), // serializes the form's elements.
            success: function(data)
            {
-           		alert("SUCCESsdfsS");
               $("#formresult").html(data); // show response from the php script.
            }
          });
