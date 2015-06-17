@@ -43,9 +43,6 @@ function printResult($result) { //prints results from a select statement
 		echo "<tr>";
 		echo "<td>" . $row[0] . "</td>";
 		echo "<td>" . $row[1] . "</td>";
-		echo "<td>" . $row[2] . "</td>";
-		echo "<td>" . $row[3] . "</td>";
-		echo "<td>" . $row[4] . "</td>";
 		echo "</tr>";
 	}
 	echo "</tbody>";
@@ -61,8 +58,7 @@ if ($db_conn) {
 	$result1 = executePlainSQL($view_query);
 	$query = "SELECT MIN(t.price) as minPrice, t.tID FROM Ticket t, outbound_tickets o WHERE t.tID = o.tID GROUP BY t.tID";
 	$result2 = executePlainSQL($query);
-	echo $result1;
-	echo $result2;
+	printResult($result2);
 	// while(($row = oci_fetch_row($result)) != false){
 	// 	echo "<p>".$row[0].", ".$row[1].", ".$row[2].", ".$row[4]."</p>";
 	// 	echo "<br>";
