@@ -11,6 +11,8 @@ $first_price = ucfirst($_POST['first_class_price']);
 $business_num = ucfirst($_POST['business']);
 $business_price = ucfirst($_POST['business_price']);
 $economy = $capacity - $first_num - $business_num;
+$to = $_POST['to'];
+$from = $_POST['from'];
 
 $k = 0;
 $s1 = 0;
@@ -110,23 +112,42 @@ function executePlainSQL($cmdstr) {
     if ($db_conn) {
       $query = "SELECT MAX(tID) FROM TICKET";
       $result = executePlainSQL($query);
-      echo ($result);
       $row = oci_fetch_row($result);
       echo ($row[0]);
       $primarykey=$row[0] + 1;
+      $boardingpk = "SELECT MAX(boardingID) FROM Boarding_Pass_For_Flight";
+      $bpkresult = executePlainSQL($boardingpk);
+      $bpkrow = oci_fetch_row($bpkresult);
+      $boardingprimary = $row[0];
+      $flightpk = "SELECT MAX(flight_num) FROM Boarding_Pass_For_Flight";
+      $fpkresult = executePlainSQL($flightpk);
+      $fpkrow = oci_fetch_row($fpkresult);
+      $flightprimary = $fpkrow[0];
+      if ($capacity <= 40){
+        $weight = 16;
+      } else if ($capacity <= 80) {
+        $weight = 19;
+      } else {
+        $weight = 23;
+      }
       for($i=0; $i<$economy; $i++){
         $seat = generateSeat();
         echo $seat;
         $primarykey = $primarykey + 1;
+        $boardingprimary = $boardingprimary + 1;
+        $flightprimary = $flightprimary + 1;
         $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
         $result = executePlainSQL($query);
+        //$query2 = "INSERT INTO Boarding_Pass_For_Flight VALUES ('".$boardingprimary."', '".$flightprimary."', '".$weight."', '".$seat."', '".$from."', '".$to."', "$_COOKIE['id']."')";
       }
+      $weight = $weight + 2;
    for($i=0; $i<$first_num; $i++){
     $seat = generateSeat();
     $primarykey = $primarykey + 1;
     $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'First', '".$first_price."')";
     $result = executePlainSQL($query);
   }
+  $weight = $weight + 3;
   for($i=0; $i<$business_num; $i++){
     $seat = generateSeat();
     $primarykey = $primarykey + 1;
