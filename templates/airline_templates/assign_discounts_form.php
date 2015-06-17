@@ -1,5 +1,9 @@
 <?php
-    
+    $type = $_COOKIE['type'];
+      if ($type != "airline") {
+          header("Location: ../templates/not_authorized.html");
+          die();
+      }
     function executePlainSQL($cmdstr) { 
       //echo "<br>running ".$cmdstr."<br>";
       $db_con = OCILogon("ora_i4u9a", "a34129122", "ug");

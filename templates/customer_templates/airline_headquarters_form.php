@@ -4,6 +4,11 @@
 
 <?php
 include "head.php";
+$type = $_COOKIE['type'];
+    if ($type != "customer") {
+      header("Location: ../templates/not_authorized.html");
+      die();
+    }
 ?>
 
 <table class="table table-striped"> 

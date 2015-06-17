@@ -2,6 +2,11 @@
   <label> Select Airline </label>
   <select class="form-control" name="aln">
     <?php
+    $type = $_COOKIE['type'];
+      if ($type != "airline") {
+          header("Location: ../templates/not_authorized.html");
+          die();
+      }
     require('../oci_query_header.php');
 
     $query = "SELECT airline_code, airline_name, name 

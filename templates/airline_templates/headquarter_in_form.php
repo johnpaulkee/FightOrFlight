@@ -3,6 +3,11 @@
   <select class="form-control" name="aln">
     <?php
     require('../oci_query_header.php');
+    $type = $_COOKIE['type'];
+      if ($type != "airline") {
+          header("Location: ../templates/not_authorized.html");
+          die();
+      }
 
     $query = "SELECT airline_code, airline_name, name 
           FROM Airline_Headquartered_In";
