@@ -94,7 +94,7 @@ function printResult($result) { //prints results from a select statement
 if ($db_conn) {
 	$query = "SELECT MIN(price) as minPrice, tID, to_airport_code, a.city FROM Ticket t, Comprised_Of c, Airport_LocatedIn a WHERE t.tID = c.tID AND c.from_airport_code = '".$airport."' AND a.airport_code = c.to_airport_code";
 	$result = executePlainSQL($query);
-	while(($row = $oci_fetch_row($result)) != false){
+	while(($row = oci_fetch_row($result)) != false){
 		echo $row[0].", ".$row[1].", ".$row[2].", ".$row[4];
 		echo "<br>";
 	}
