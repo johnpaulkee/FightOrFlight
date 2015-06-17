@@ -78,7 +78,7 @@
       });
 
       $("#find_cheapest_ticket").click(function() {
-        $("#form_generation").load("../templates/customer_templates/find_cheapest_ticket.php").fadeIn('slow');
+        $("#form_generation").load("../templates/customer_templates/find_cheapest_ticket_form.php").fadeIn('slow');
       });
 
       $("#lugg_weight").click(function() {
