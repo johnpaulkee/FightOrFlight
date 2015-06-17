@@ -230,10 +230,22 @@ if ($_POST && $success) {
 	$user_details = executePlainSQL($query_user_details);
 	printResult($user_details);
 
-	$query_cred_card = "SELECT c.credit_card_number 
+	$drop_cred_view = "DROP VIEW cred_card_details";
+	$drop_cred_result = executePlainSQL($drop_cred_view);
+	$create_cred_view = "CREATE VIEW cred_card_details as  
+						SELECT c.credit_card_number 
 						FROM customer c, customer_login cl 
 						WHERE c.cust_ID = cl.cust_ID and cl.username = '".$_COOKIE['username']."'";
-    $cred_card = executePlainSQL($query_cred_card);
+	$cred_view_result = executePlainSQL($create_cred_view);
+
+	// TODO - update with user input
+	$update_cred = "UPDATE cred_card_details
+					SET credit_card_number='333222111'";
+	$update_cred_result = executePlainSQL($update_cred);
+
+	$query = "SELECT credit_card_number FROM cred_card_details";
+    $cred_card = executePlainSQL($query);
+
     printCredCardDetails($cred_card);
 
 	$query_tickets = "SELECT t.seat, t.class, p.capacity, p.company
@@ -246,7 +258,6 @@ if ($_POST && $success) {
 
 	$tickets_planes = executePlainSQL($query_tickets);
 	printTicketAndPlaneDetails($tickets_planes);
-
 
 	echo "<p> TODO: Update credit card info </p>";
 	echo "<p> TODO: Add bag tag details for the ticket </p>";
