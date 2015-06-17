@@ -1,11 +1,5 @@
 <html>
-  <?php include 'head.php'; 
-    $type = $_COOKIE['type'];
-    if ($type != "customer") {
-      header("Location: not_authorized.php");
-      die();
-    }
-  ?>
+  <?php include 'head.php'; ?>
   <body>
 
     <div class="menu">
@@ -18,7 +12,6 @@
       <!-- Menu -->
       <ul>
         <li><a href="javascript:void(0)" id = "cust_info">My Account</a></li>
-        <li><a href="javascript:void(0)" id = "update_cred">Update Credit Card Info</a></li>
         <li><a href="javascript:void(0)" id = "freq_flyer">Frequent Flyer Settings</a></li>
         <li><a href="javascript:void(0)" id = "find_cheapest_flights">Find Cheapest Ticket From Your Location</a></li>
         <li><a href="javascript:void(0)" id = "purchase_ticket">Purchase Tickets</a></li>
@@ -80,11 +73,6 @@
 
       $("#find_cheapest_flights").click(function() {
         $("#form_generation").load("../templates/customer_templates/find_cheapest_ticket_form.php").fadeIn('slow');
-      });
-
-
-      $("#update_cred").click(function() {
-        $("#form_generation").load("../templates/customer_templates/cred_card.php").fadeIn('slow');
       });
 
       $("#lugg_weight").click(function() {
