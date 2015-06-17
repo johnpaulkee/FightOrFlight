@@ -92,14 +92,13 @@ function printResult($result) { //prints results from a select statement
 
 // Connect Oracle...
 if ($db_conn) {
-	// $query = "SELECT MIN(price) as minPrice, tID, to_airport_code, a.city FROM Ticket t, Comprised_Of c, Airport_LocatedIn a WHERE t.tID = c.tID AND c.from_airport_code = '".$airport."' AND a.airport_code = c.to_airport_code";
-	// $result = executePlainSQL($query);
-	// echo $result;
+	$query = "SELECT MIN(price) as minPrice, tID, to_airport_code, a.city FROM Ticket t, Comprised_Of c, Airport_LocatedIn a WHERE t.tID = c.tID AND c.from_airport_code = '".$airport."' AND a.airport_code = c.to_airport_code";
+	$result = executePlainSQL($query);
+	echo $result;
 	// while(($row = oci_fetch_row($result)) != false){
 	// 	echo "<p>".$row[0].", ".$row[1].", ".$row[2].", ".$row[4]."</p>";
 	// 	echo "<br>";
 	// }
 	}
-}
 
 ?>
