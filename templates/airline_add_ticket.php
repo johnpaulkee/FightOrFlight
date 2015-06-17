@@ -2,6 +2,11 @@
 	<label> Select Plane </label><br>
 		<?php
 		require('oci_query_header.php');
+		$type = $_COOKIE['type'];
+    	if ($type != "airline") {
+      		header("Location: ../templates/not_authorized.html");
+      		die();
+    	}
 
 		$query = "SELECT p.plane_ID, p.capacity, p.company, p.airline_code 
 				  FROM Plane_Owned_By p
