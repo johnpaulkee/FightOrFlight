@@ -1,29 +1,4 @@
-<html>
 
-<?php
-include "head.php";
-?>
-
-<table class="table table-striped"> 
-  <tablewidth="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
-  <tr>
-    <form name="form1" method="post" action="check_login.php">
-      <td>
-        <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
-          <tr>
-            <td>Please type in the Airline Name</td>
-            <td>:</td>
-            <td><input name="airlinename" type="text" id="airline"></td>
-          </tr>
-          <tr>
-            <td><input type="submit" name="Submit" value="Login"></td>
-          </tr>
-        </table>
-      </td>
-    </form>
-  </tr>
-</table>
-</html>
 <?php
 $success = True; //keep track of errors so it redirects the page only if there are no errors
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
@@ -89,15 +64,15 @@ $success = False;
 }
 
 function printResult($result) { //prints results from a select statement
-	echo "<h3><center> Here are the available tickets that you can purchase: </center></h3>";
+	echo "<h3><center> Select your starting destination and your final destination </center></h3>";
 
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
 	echo "<tr>";
-	echo "<th>tID</th>";
-	echo "<th>Seat Location</th>";
-	echo "<th>Class</th>";
-	echo "<th>Price</th>";
+	echo "<th>Airport Code</th>";
+	echo "<th>Airport Name</th>";
+	echo "<th>City</th>";
+	echo "<th>Country</th>";
 	echo "</tr>";
 	echo "</thead>";
 	echo "<tbody>";
@@ -112,6 +87,8 @@ function printResult($result) { //prints results from a select statement
 	}
 	echo "</tbody>";
 	echo "</table>";
+
+  
 
 }
 
