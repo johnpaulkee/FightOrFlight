@@ -1,6 +1,5 @@
 <form name = "form2" method = "post" action="airline_templates/add_ticket.php" id="ticket_form">
 	<label> Select Plane </label>
-	<select class="form-control">
 		<?php
 		require('oci_query_header.php');
 
@@ -9,11 +8,11 @@
 				  WHERE a.airline_code = p.airline_code";
 		$result = executePlainSQL($query);
 		while(($row = oci_fetch_row($result)) != false) {
-			$option = '<option name="plane" value="'.$row[1].'">'.$row[0].", ".$row[1].", ".$row[2].'</option>';
+			$option = '<input type="radio" name="plane" value="'.$row[1].'">'.$row[0].", ".$row[1].", ".$row[2].'<br>';
+			//$option = '<option name="plane" value="'.$row[1].'">'.$row[0].", ".$row[1].", ".$row[2].'</option>';
 			echo $option;
 		}
 		?>
-	</select>
 	<label>Economy Ticket Price</label>
 	<p>$<input type="number" name="price"></p>
 	<label>Number of First Class tickets</label><br>
@@ -28,8 +27,8 @@
     <input type="number" name="business_price"></p>
     <input type="submit" name="Submit" value="create">
 </form>
+<div id="formresult"></div>
 
-<!--
 <script>
 	
 	$("#ticket_form").submit(function() {
@@ -50,5 +49,3 @@
     return false; // avoid to execute the actual submit of the form.
 });
 </script>
-
--->
