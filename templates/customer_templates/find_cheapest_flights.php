@@ -95,7 +95,7 @@ if ($db_conn) {
 	$query = "SELECT MIN(t.price) as minPrice, t.tID, c.to_airport_code, a.city 
 	FROM Ticket t, Comprised_Of c, Airport_LocatedIn a 
 	WHERE t.tID = c.tID AND c.from_airport_code = '".$airport."' AND a.airport_code = c.to_airport_code
-	GROUP BY price";
+	GROUP BY t.price";
 	$result = executePlainSQL($query);
 	echo $result;
 	// while(($row = oci_fetch_row($result)) != false){
