@@ -29,14 +29,14 @@
     	$query = "SELECT airport_code FROM Airport_LocatedIn";
     	$result = executePlainSQL($query);
     	echo $result;
-  //   	while(($row = oci_fetch_row($result)) != false) {
-		// 	$from = '<input type="radio" name="from" value="'.$row[0].'">'.$row[0].'<br>';
-		// 	$to = '<input type="radio" name="to" value="'.$row[0].'">'.$row[0].'<br>';
-		// 	echo "<p>";
-		// 	echo $from;
-		// 	echo $to;
-		// 	echo "</p>";
-		// }
+    	while(($row = oci_fetch_row($result)) != false) {
+			$from = '<input type="radio" name="from" value="'.$row[0].'">'.$row[0].'<br>';
+			$to = '<input type="radio" name="to" value="'.$row[0].'">'.$row[0].'<br>';
+			echo "<p>";
+			echo $from;
+			echo $to;
+			echo "</p>";
+		}
     ?> 
     <input type="submit" name="Submit" value="create">
 </form>
