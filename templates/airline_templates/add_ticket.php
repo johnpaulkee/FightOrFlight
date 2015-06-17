@@ -98,8 +98,8 @@ function executePlainSQL($cmdstr) {
       $s3 = (($s3+1)%10);
       if($s3 == 0){
         $s2 = nextLetter($s2);
-        echo "s2 is :".$s2;
       }
+      echo "s2 is :".$s2;
       if ($s2 == "J") {
         $s1 = (($s1 + 1)%10);
       }
@@ -117,7 +117,7 @@ function executePlainSQL($cmdstr) {
       $primarykey=$row[0] + 1;
       for($i=0; $i<$economy; $i++){
         $seat = generateSeat();
-        //echo $seat;
+        echo $seat;
         $primarykey = $primarykey + 1;
         $query = "INSERT INTO Ticket(tID, seat, class, price) VALUES ('".$primarykey."', '".$seat."', 'Economy', '".$price."')";
         $result = executePlainSQL($query);
