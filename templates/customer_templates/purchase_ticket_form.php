@@ -64,11 +64,14 @@ $success = False;
 }
 
 function printResult($result) { //prints results from a select statement
+
+echo "<form name='purhcase_tickets_form' method='post' action='customer_templates/purchase_tickets.php' id='purchase_ticket_form'>";
+  
 	echo "<h3><center> Starting destination to Final destination </center></h3>";
 
   while (($row = oci_fetch_row($result)) != false) {
     echo "<div class = 'col-md-6'>";
-    $option1 = '<input type="checkbox" name="ending_point" value="'.$row[1].'">'.$row[0].", ".$row[1].", ".$row[2].'<br>';
+    $option1 = '<input type="checkbox" name="starting_point" value="'.$row[1].'">'.$row[0].", ".$row[1].", ".$row[2].'<br>';
     echo $option1;
     echo "</div>";
 
@@ -78,6 +81,7 @@ function printResult($result) { //prints results from a select statement
     echo "</div>";
   }
   echo "<center> <input type='submit' name='submit' value='Search'> </center>";
+  echo "</form>";
 }
 
 // Connect Oracle...
