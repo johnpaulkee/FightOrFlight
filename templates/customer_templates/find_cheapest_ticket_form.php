@@ -1,4 +1,4 @@
-<form name="cheap_form" method="post" action="find_cheapest_ticket.php" id="cheapest_form">
+<form name="cheap_form" method="post" action="../templates/customer_templates/find_cheapest_ticket.php" id="cheapest_form">
 	<label>Where are you?</label>
 	<?php
 		function executePlainSQL($cmdstr) { 
