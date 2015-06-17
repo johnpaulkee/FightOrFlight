@@ -95,15 +95,15 @@ function executePlainSQL($cmdstr) {
     }
 
     function generateSeat() {
-      $s3 = (($s3+1)%10);
-      if($s3 == 0){
-        $s2 = nextLetter($s2);
+      $GLOBALS['s3'] = (($GLOBALS['s3']+1)%10);
+      if($GLOBALS['s3'] == 0){
+        $GLOBALS['s2'] = nextLetter($GLOBALS['s2']);
       }
-      echo "s2 is :".$s2;
-      if ($s2 == "J") {
-        $s1 = (($s1 + 1)%10);
+      echo "s2 is :".$GLOBALS['s2'];
+      if ($GLOBALS['s2'] == "J") {
+        $GLOBALS['s1'] = (($GLOBALS['s1'] + 1)%10);
       }
-      $return = $s1.$s2.$s3;
+      $return = $GLOBALS['s1'].$GLOBALS['s2'].$GLOBALS['s3'];
       return $return;
     }
 
