@@ -91,7 +91,7 @@ function executePlainSQL($cmdstr) {
       } else {
         $letter = "A";
       }
-      return $result;
+      return $letter;
     }
 
     function generateSeat() {
