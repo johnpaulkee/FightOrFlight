@@ -77,7 +77,7 @@ function printResult($result) { //prints results from a select statement
   echo "<th>Name</th>"; 
   echo "<th>Username</th>";
   echo "<th>Password</th>";
-  echo "<th>Blacklisted</th>";
+  echo "<th>Employed By</th>";
   echo "</tr>";
   echo "</thead>";
   echo "<tbody>";
@@ -94,75 +94,31 @@ function printResult($result) { //prints results from a select statement
 
 }
 
-function printTicketAndPlaneDetails($result) { //prints results from a select statement
-  echo "<p> Your Tickets and it's Plane Details </p>";
+function printAirlineResult($result) { //prints results from a select statement
+  echo "<p> Airline details: </p>";
+
   echo "<table class = 'table table-striped'>";
   echo "<thead>";
   echo "<tr>";
-  echo "<th>Ticket ID</th>"; 
-  echo "<th>Seat</th>"; 
-  echo "<th>Class</th>"; 
-  echo "<th>From</th>"; 
-  echo "<th>To</th>";
+  echo "<th>Airline Code</th>"; 
+  echo "<th>Airline Name</th>";
+  echo "<th>Headquarter Location</th>";
   echo "</tr>";
   echo "</thead>";
   echo "<tbody>";
-    // t.tID, t.seat, t.class, bpff.from_airport_code, bpff.to_airport_code
   while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
     echo "<tr>";
     echo "<td>" . $row[0] . "</td>";
     echo "<td>" . $row[1] . "</td>";
     echo "<td>" . $row[2] . "</td>";
-    echo "<td>" . $row[3] . "</td>";
-    echo "<td>" . $row[4] . "</td>";
     echo "</tr>";
   }
   echo "</tbody>";
   echo "</table>";
+
 }
 
-function printCredCardDetails($result) { //prints results from a select statement
-  echo "<p> Your Credit Card Info </p>";
-  echo "<table class = 'table table-striped'>";
-  echo "<thead>";
-  echo "<tr>";
-  echo "<th>Credit Card</th>"; 
-  echo "</tr>";
-  echo "</thead>";
-  echo "<tbody>";
-  while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-    echo "<tr>";
-    echo "<td>" . $row[0] . "</td>";
-    echo "</tr>";
-  }
-  echo "</tbody>";
-  echo "</table>";
-}
 
-function printBagTagDetails($result) { //prints results from a select statement
-  echo "<p> Your Bag Tag Info </p>";
-  echo "<table class = 'table table-striped'>";
-  echo "<thead>";
-  echo "<tr>";
-  echo "<th>BagTag ID</th>"; 
-  echo "<th>Weight (kg)</th>"; 
-  echo "<th>Source Airline Code</th>"; 
-  echo "<th>Dest Airline Code</th>"; 
-  echo "</tr>";
-  echo "</thead>";
-  echo "<tbody>";
-  //bt.bID, lr.weight, btlsf.source_airport_code, btlsf.destination_airport_code
-  while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-    echo "<tr>";
-    echo "<td>" . $row[0] . "</td>";
-    echo "<td>" . $row[1] . "</td>";
-    echo "<td>" . $row[2] . "</td>";
-    echo "<td>" . $row[3] . "</td>";
-    echo "</tr>";
-  }
-  echo "</tbody>";
-  echo "</table>";
-}
 // Connect Oracle...
 if ($db_conn) {
 
@@ -236,6 +192,12 @@ if ($_POST && $success) {
   WHERE c.employeeID = al.employeeID and al.username = '".$_COOKIE['username']."' and airline.airline_code = c.airline_code";
   $user_details = executePlainSQL($query_user_details);
   printResult($user_details);
+
+  $query_airline_details = "SELECT airline.airline_code, airline.airline_name, airline.name
+  FROM Airline_Employee_Login al, Airline_Employee_Employed_With c, Airline_Headquartered_In airline
+  WHERE c.employeeID = al.employeeID and al.username = '".$_COOKIE['username']."' and airline.airline_code = c.airline_code";
+  $airline_details = executePlainSQL($query_airline_details);
+  printAirlineResult($airline_details);
 
 
 }
