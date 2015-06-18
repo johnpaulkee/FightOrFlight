@@ -20,8 +20,6 @@
         <li><a href="javascript:void(0)" id="my_account">My Account</a></li>
         <li><a href="javascript:void(0)" id="sell_ticket">Sell Ticket</a></li>
         <li><a href="javascript:void(0)" id="customer_details">Customer Details</a></li>
-        <li><a href="javascript:void(0)" id="airline_details">Airline Details</a></li>
-        <li><a href="javascript:void(0)" id="aircraft_details">Aircraft Details</a></li>    
         <li><a href="javascript:void(0)" id="baggage_details">Customer Baggage Details</a></li>    
         <li><a href="javascript:void(0)" id="discount_details">Personal Discount Details</a></li>    
         <li><a href="javascript:void(0)" id="purchase_discounted_ticket">Purchase Discounted Ticket</a></li>  
