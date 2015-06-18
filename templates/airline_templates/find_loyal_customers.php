@@ -98,9 +98,9 @@ if ($db_conn) {
 	$viewresult = executePlainSQL($createview);
 	echo ($viewresult);
 	if($method == "quantity") {
-		$query = "SELECT MAX(num_tickets), cust_ID FROM valuableCustomers";
+		$query = "SELECT num_tickets, cust_ID FROM valuableCustomers v1 WHERE v1.num_tickets >= ALL (SELECT num_tickets FROM valuableCustomers)";
 	} else {
-		$query = "SELECT MAX(revenue), cust_ID FROM valuableCustomers";
+		$query = "SELECT revenue, cust_ID FROM valuableCustomers v1 WHERE v1.revenue >= ALL (SELECT revenue FROM valuableCustomers)";
 	}
 	$result = executePlainSQL($query);
 	createTable($result);
