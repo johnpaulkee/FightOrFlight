@@ -82,7 +82,7 @@ function createTable($entry){
 if ($db_conn) {
 	$drop_view = "DROP VIEW outbound_tickets";
 	$result0 = executePlainSQL($drop_view);
-	$view_query = "CREATE VIEW outbound_tickets as SELECT t1.tID FROM Ticket t1, Comprised_Of c1 WHERE t1.tID = c1.tID AND c1.from_airport_code = '".$airport."'";
+	$view_query = "CREATE VIEW outbound_tickets as (SELECT t1.tID FROM Ticket t1, Comprised_Of c1 WHERE t1.tID = c1.tID AND c1.from_airport_code = '".$airport."') MINUS (SELECT t2.tID FROM Customer_Purchase cp, Discounted_Purchase dp, Ticket t2, Comprised_Of c2 WHERE t2.tID = c2.tID AND c2.from_airport_code = '".$airport."' AND cp.tID = t.tID AND dp.tID = t.tID)";
 	$result1 = executePlainSQL($view_query);
 	$drop_narrowed_view = "DROP VIEW cheap_tickets";
 	$result2 = executePlainSQL($drop_narrowed_view);
