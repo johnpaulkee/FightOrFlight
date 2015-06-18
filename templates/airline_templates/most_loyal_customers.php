@@ -5,16 +5,18 @@
 	<input type="submit" name="submit" value="OK">
 </form>
 
+<div id="formresult"></div>
+
 <script>
 	
-	$("#ticket_form").submit(function() {
+	$("#loyal_form").submit(function() {
 
     var url = $(this).attr("action"); // the script where you handle the form input.
 
     $.ajax({
            type: "POST",
            url: url,
-           data: $("#ticket_form").serialize(), // serializes the form's elements.
+           data: $("#loyal_form").serialize(), // serializes the form's elements.
            success: function(data)
            {	
            		alert("SUCCESS");
