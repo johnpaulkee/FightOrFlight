@@ -119,7 +119,7 @@ function printResult2($result) { //prints results from a select statement
           $query = "SELECT airline_name FROM Airline_Headquartered_In WHERE airline_code =".$_COOKIE['id'];
           $result = executePlainSQL($query);
           $row = oci_fetch_row($result);
-          echo "<p> Hello, ".$row[0]."</p>";
+          echo "<h3><center> Hello, ".$row[0]."</center></p>";
 
           $query1 = "SELECT * FROM Airline_Headquartered_In WHERE airline_code =".$_COOKIE['id'];
           $result1 = executePlainSQL($query1);
