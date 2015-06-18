@@ -60,5 +60,6 @@ if ($db_conn) {
 	}
 }
 
+oci_commit($db_conn);
 
 ?>
