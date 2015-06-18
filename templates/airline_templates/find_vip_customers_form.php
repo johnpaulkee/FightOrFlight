@@ -69,7 +69,7 @@ $query = "SELECT * FROM allCustAirTickets";
 $result = executePlainSQL($query);
 //printResult($result);
 
-$mainQuery = 	"SELECT c.custName
+$mainQuery = 	"SELECT DISTINCT c.custName
 				FROM allCustAirTickets a, Customer c
 				WHERE c.cust_ID=a.custID AND 
 						NOT EXISTS ((SELECT DISTINCT ahi.airline_code
