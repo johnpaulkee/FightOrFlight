@@ -90,6 +90,32 @@ $type = $_COOKIE['type'];
   echo "</table>";
 
 }
+
+function printResult2($result) { //prints results from a select statement
+  echo "<h3><center> Your Tickets </center></h3>";
+  echo "<table class = 'table table-striped'>";
+  echo "<thead>";
+  echo "<tr>";
+  echo "<th>Ticket ID</th>";
+  echo "<th>Seat</th>";
+  echo "<th>Class</th>";
+  echo "<th>Price</th>";
+  echo "</tr>";
+  echo "</thead>";
+  echo "<tbody>";
+
+  while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+    echo "<tr>";
+    echo "<td>" . $row[0] . "</td>";
+    echo "<td>" . $row[1] . "</td>";
+    echo "<td>" . $row[2] . "</td>";
+    echo "<td>" . $row[3] . "</td>";
+    echo "</tr>";
+  }
+  echo "</tbody>";
+  echo "</table>";
+
+}
           $query = "SELECT airline_name FROM Airline_Headquartered_In WHERE airline_code =".$_COOKIE['id'];
           $result = executePlainSQL($query);
           $row = oci_fetch_row($result);
@@ -100,7 +126,8 @@ $type = $_COOKIE['type'];
           printResult1($result1);
 
           $query2 = "SELECT t.tID, t.seat, t.class, t.price FROM Add_Ticket a, Ticket t WHERE a.airline_code=".$_COOKIE['id']." AND a.tID = t.tID";
-
+          $result2 = executePlainSQL($query2);
+          printResult2($result2);
         ?>
       </div>
       </div>
