@@ -34,7 +34,6 @@ function printResult($result) { //prints results from a select statement
   }
   echo "</tbody>";
   echo "</table>";
-  echo $result;
 
 }
 
@@ -65,8 +64,6 @@ function executePlainSQL($cmdstr) {
 if ($db_conn) {
   $query = "SELECT * from Airport_LocatedIn where airport_code='".$acode."'";
   $result = executePlainSQL($query);
-  echo $result;
-  echo $acode;
   printResult($result);
 }
 
