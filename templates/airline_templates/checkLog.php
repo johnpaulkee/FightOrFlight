@@ -36,10 +36,10 @@ function printResult($result) { //prints results from a select statement
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
 	echo "<tr>";
-	echo "<th>CustID</th>";
+	echo "<th>Log Date</th>";
 	echo "<th>Airline Code</th>";echo "<th>Airline Code</th>";	
 	echo "<th>Airline Name</th>";
-	echo "<th>Ticket ID</th>";
+	echo "<th>Country</th>";
 	echo "</tr>";
 	echo "</thead>";
 	echo "<tbody>";
