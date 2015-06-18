@@ -38,7 +38,7 @@ function createTable($entry){
 	echo "<thead>";
 	echo "<tr>";
 	echo "<th>cust_ID</th>";
-	echo "<th>quantity</th>";
+	echo "<th>" . $method . "</th>";
 	echo "<th>custName</th>";
 	echo "</tr>";
 	echo "</thead>";
