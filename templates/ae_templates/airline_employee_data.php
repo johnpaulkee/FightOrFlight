@@ -273,7 +273,7 @@ if ($_POST && $success) {
                 dp.tID = t.tID and
                 ii.tID = t.tID and 
                 ii.bID = blsf.bt_ID and
-                alusername = '".$_COOKIE['username']."'";     
+                al.username = '".$_COOKIE['username']."'";     
 
   $bagtag = executePlainSQL($query_bagtag);
   printBagTagDetails($bagtag);
