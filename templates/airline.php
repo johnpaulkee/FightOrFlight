@@ -135,7 +135,11 @@ function printResult2($result) { //prints results from a select statement
           $query5 = "SELECT COUNT(*) FROM Add_Ticket at WHERE at.airline_code=".$_COOKIE['id'];
           $result5 = executePlainSQL($query5);
           $row5 = oci_fetch_row($result5);
-          echo "<h3> You have sold ".$row4[0]." out of your ".$row5[0]." tickets so far.";
+          echo "<h3><center> You have sold ".$row4[0]." out of your ".$row5[0]." tickets so far. </center></h3>";
+          $query6 = "SELECT SUM (price) FROM Add_Ticket at WHERE at.airline_code=".$_COOKIE['id'];
+          $result6 = executePlainSQL($query6);
+          $row6 = oci_fetch_row($result6);
+          echo "<h3><center> You have earned $".$row6[0]." in revenue so far. </center></h3>";
         ?>
       </div>
       </div>
