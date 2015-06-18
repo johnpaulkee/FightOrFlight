@@ -37,7 +37,7 @@ if ($db_conn) {
 	echo $plane_ID;
 	echo "airline_code";
 	echo $airline_code;
-	$query = "DELETE FROM Plane_Owned_By p WHERE p.airline_code ='".$airline_code."' AND p.plane_ID = '".$plane_ID."' CASCADE CONSTRAINTS";
+	$query = "DELETE FROM Plane_Owned_By p WHERE p.airline_code ='".$airline_code."' AND p.plane_ID = '".$plane_ID."'";
 	$result = executePlainSQL($query);
 }
 
