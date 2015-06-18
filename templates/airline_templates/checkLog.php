@@ -32,8 +32,7 @@ function executePlainSQL($cmdstr) {
 }
 
 function printResult($result) { //prints results from a select statement
-	echo "<h3><center> Here is your view: </center></h3>";
-	echo "<h3><center> This should be an update or something with Customer to the Credit Card </center> </h3>";
+	echo "<h3><center> Logs </center> </h3>";
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
 	echo "<tr>";
