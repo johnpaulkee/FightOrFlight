@@ -39,11 +39,15 @@ if ($db_conn) {
 	if(($row = oci_fetch_row($result)) != false) {
 		echo "<h3> This plane is scheduled to fly with tickets currently on the market. Retiring this plane will remove all tickets associated with this plane. Are you sure you want to continue?</h3>";
 	}
-	echo '<input type="submit" name="confirm" value="confirm,'.$values.'"';
+	echo '<input type="submit" name="confirm" value="confirm">';
 	echo '</form>';
 
 	echo '<div id="formresult"></div>';
 	echo '<script>
+
+	$.post("airline_templates/confirm_deletion.php", { plane_ID: '.$plane_ID.', airline_code: '.$airline_code.' }, function(result) {
+    alert("successfully posted key1=value1&key2=value2 to airline_templates/confirm_deletion.php");
+	});
 
 	
 	$("#confirm_delete").submit(function() {
