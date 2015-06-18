@@ -33,7 +33,7 @@ function executePlainSQL($cmdstr) {
 }
 // Connect Oracle...
 if ($db_conn) {
-	echo '<form name="confirm" action="airline_templates/confirm_deletion.php" method="post" id="confirm_delete">';
+	echo '<form name="confirm" action="airline_templates/confirm_delete.php" method="post" id="confirm_delete">';
 	$query = "SELECT * FROM Plane_Owned_By p WHERE p.airline_code='".$airline_code."' AND p.plane_ID = '".$plane_ID."' AND p.plane_ID IN (SELECT plane_ID FROM Is_With) AND p.airline_code IN (SELECT airline_code FROM Is_With)";
 	$result = executePlainSQL($query);
 	if(($row = oci_fetch_row($result)) != false) {
@@ -45,8 +45,8 @@ if ($db_conn) {
 	echo '<div id="formresult"></div>';
 	echo '<script>
 
-	$.post("airline_templates/confirm_deletion.php", { plane_ID: '.$plane_ID.', airline_code: '.$airline_code.' }, function(result) {
-    alert("successfully posted key1=value1&key2=value2 to airline_templates/confirm_deletion.php");
+	$.post("airline_templates/confirm_delete.php", { plane_ID: '.$plane_ID.', airline_code: '.$airline_code.' }, function(result) {
+    alert("successfully posted key1=value1&key2=value2 to airline_templates/confirm_delete.php");
 	});
 
 	
