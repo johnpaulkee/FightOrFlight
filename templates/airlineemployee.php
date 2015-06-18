@@ -23,11 +23,9 @@
         <li><a href="javascript:void(0)" id="airline_details">Airline Details</a></li>
         <li><a href="javascript:void(0)" id="aircraft_details">Aircraft Details</a></li>    
         <li><a href="javascript:void(0)" id="baggage_details">Customer Baggage Details</a></li>    
-        <li><a href="javascript:void(0)" id="discount_details">Discount Details</a></li>    
+        <li><a href="javascript:void(0)" id="discount_details">Personal Discount Details</a></li>    
         <li><a href="javascript:void(0)" id="purchase_discounted_ticket">Purchase Discounted Ticket</a></li>  
         <li><a href="javascript:void(0)" id="purchased_ticket_details">Purchased Ticket Details</a></li>    
-        <li><a href="javascript:void(0)" id="airline_aircraft_details">Airline Aircraft Details</a></li>    
-        <li><a href="javascript:void(0)" id="headquarter_location">Airline Headquarter Location</a></li>    
         <li><a href="javascript:void(0)" id="boarding_pass_details">Boarding Pass Details</a></li> 
       </ul>
     </div>
