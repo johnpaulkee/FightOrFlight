@@ -33,39 +33,12 @@ function executePlainSQL($cmdstr) {
 	return $statement;
 }
 
-function printResult($result) { //prints results from a select statement
-	echo "<h3><center> Hello Customer, here are your details: </center></h3>";
-	echo "<h3><center> This should be an update or something with Customer to the Credit Card </center> </h3>";
-	echo "<table class = 'table table-striped'>";
-	echo "<thead>";
-	echo "<tr>";
-	echo "<th>CustID</th>";
-	echo "<th>Credit Card Number</th>";
-	echo "</tr>";
-	echo "</thead>";
-	echo "<tbody>";
-
-	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-		echo "<tr>";
-		echo "<td>" . $row[0] . "</td>";
-		echo "<td>" . $row[1] . "</td>";
-		echo "<td>" . $row[2] . "</td>";
-		echo "<td>" . $row[3] . "</td>";
-		echo "<td>" . $row[4] . "</td>";
-		echo "</tr>";
-	}
-	echo "</tbody>";
-	echo "</table>";
-
-}
-
-function createTable($entry){
-	echo "<p>Your most loyal customers are: </p>";
+function createTable($entry, $p1){
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
 	echo "<tr>";
 	echo "<th>cust_ID</th>";
-	echo "<th>".$method."</th>";
+	echo "<th>".$p1."</th>";
 	echo "<th>custName</th>";
 	echo "</tr>";
 	echo "</thead>";
@@ -96,14 +69,13 @@ if ($db_conn) {
 				   		 at.airline_code = '".$_COOKIE['id']."'
 				   GROUP BY c.cust_ID";
 	$viewresult = executePlainSQL($createview);
-	echo ($viewresult);
 	if($method == "quantity") {
-		$query = "SELECT MAX(num_tickets), cust_ID FROM valuableCustomers";
+		$query = "SELECT num_tickets, cust_ID FROM valuableCustomers v1 WHERE v1.num_tickets >= ALL (SELECT num_tickets FROM valuableCustomers)";
 	} else {
-		$query = "SELECT MAX(revenue), cust_ID FROM valuableCustomers";
+		$query = "SELECT revenue, cust_ID FROM valuableCustomers v1 WHERE v1.revenue >= ALL (SELECT revenue FROM valuableCustomers)";
 	}
 	$result = executePlainSQL($query);
-	createTable($result);
+	createTable($result, $method);
 	//$query = "SELECT cust_ID, custName FROM Customer c WHERE c.cust_ID IN"
 }
 

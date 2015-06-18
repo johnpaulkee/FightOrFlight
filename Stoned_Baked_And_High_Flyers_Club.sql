@@ -233,7 +233,6 @@ payment_total NUMBER,
 payment_type VARCHAR2(255),
 PRIMARY KEY (tID),
 FOREIGN KEY (employeeID, airline_code) REFERENCES Airline_Employee_Employed_With
--- TODO: Correct discount constraint
 );
 
 CREATE TABLE Add_Ticket(
