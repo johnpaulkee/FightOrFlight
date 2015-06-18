@@ -8,7 +8,7 @@ $success = True; //keep track of errors so it redirects the page only if there a
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 ?>
 
-<form name="form2" method="post" action="../templates/airline_templates/getAirportDetails.php">
+<form name="form2" method="post" action="../templates/airline_templates/getAirportDetails.php" id="details">
   <label> Select Airport Code </label>
   <select class="form-control" name="apt" >
     <?php
@@ -66,3 +66,27 @@ if ($db_conn) {
   printResult($result);
 }
 ?>
+
+<div id="formresult"></div>
+
+<script>
+
+  
+  $("#details").submit(function() {
+
+    var url = $(this).attr("action");
+
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: $("#details").serialize(),
+           success: function(data)
+           {  
+              alert("SUCCESS");
+              $("#formresult").html(data);
+           }
+         });
+
+    return false;
+});
+</script>
