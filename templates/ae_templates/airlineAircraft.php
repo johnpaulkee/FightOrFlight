@@ -9,7 +9,7 @@ $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 
 
   // Define user and pass
-$airlinename = $_POST['airlinename'];
+$airlinename = ucfirst($_POST['airlinename']);
 
 
 function printResult($result) { //prints results from a select statement
@@ -65,7 +65,7 @@ function executePlainSQL($cmdstr) {
 
 // Connect Oracle...
 if ($db_conn) {
-  $query = "SELECT airline.airline_code, airline.airline_name, aircraft.plane_ID, aircraft.capacity, aircraft.company from Airline_Headquartered_In airline, Plane_Owned_By aircraft where airline.airline_name LIKE ='%".$airlinename."%' and aircraft.airline_code = airline.airline_code";
+  $query = "SELECT airline.airline_code, airline.airline_name, aircraft.plane_ID, aircraft.capacity, aircraft.company from Airline_Headquartered_In airline, Plane_Owned_By aircraft where airline.airline_name LIKE '%".$airlinename."%' and aircraft.airline_code = airline.airline_code";
   $result = executePlainSQL($query);
 
   printResult($result);

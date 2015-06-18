@@ -1,0 +1,2 @@
+SELECT * FROM Plane_Owned_By WHERE airline_code = 1
+/

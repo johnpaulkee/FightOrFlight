@@ -18,7 +18,7 @@ $type = $_COOKIE['type'];
     <!-- Menu -->
     <ul>
       <li><a href="javascript:void(0)" id="add_ticket">Add Tickets</a> </li>
-      <li><a href="javascript:void(0)" id="distribute_boarding_pass">Distribute boarding passes </a> </li>
+      <li><a href="javascript:void(0)" id="find_vip_customers">Find V.I.P Customers</a> </li>
       <li><a href="javascript:void(0)" id="check_details">View Airline Employee Details </a> </li>
       <li><a href="javascript:void(0)" id="assign_discounts">Assign Airline Employee Discount</a> </li>
       <li><a href="javascript:void(0)" id="update_freq_flyer">Update Customer Frequent Flyer Points</a> </li>
@@ -26,6 +26,7 @@ $type = $_COOKIE['type'];
       <li><a href="javascript:void(0)" id="headquarter_in">Set Headquarters</a> </li>
       <li><a href="javascript:void(0)" id="airport_details">View Airport Details </a> </li>
       <li><a href="javascript:void(0)" id="loyal_cust">Find Loyal Customers </a></li>
+      <li><a href="javascript:void(0)" id="trash_plane">Retire Aircraft</a></li>
     </ul>
   </div>
 
@@ -62,9 +63,9 @@ $type = $_COOKIE['type'];
         $("#form_generation").load("airline_add_ticket.php");
       });
 
-      $("#distribute_boarding_pass").click(function() {
+      $("#find_vip_customers").click(function() {
         $("#form_generation").empty();
-        $("#form_generation").load("airline_templates/headquarter_in_form.php");
+        $("#form_generation").load("airline_templates/find_vip_customers_form.php");
       });
 
       $("#check_details").click(function() {
@@ -100,6 +101,11 @@ $type = $_COOKIE['type'];
       $("#loyal_cust").click(function() {
         $("#form_generation").empty();
         $("#form_generation").load("airline_templates/most_loyal_customers.php");
+      });
+
+      $("#trash_plane").click(function() {
+        $("#form_generation").empty();
+        $("#form_generation").load("airline_templates/retire_aircraft_form.php");
       });
  });
   </script>
