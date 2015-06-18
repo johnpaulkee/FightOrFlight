@@ -1,3 +1,11 @@
+<?php
+$type = $_COOKIE['type'];
+    if ($type != "airline") {
+      header("Location: ../templates/not_authorized.html");
+      die();
+    }
+?>
+
 <form name="loyal_form" method="post" action="airline_templates/find_loyal_customers.php" id="loyal_form">
 	<label> Find Most Loyal Customers Based On: </label><br>
 	<input type="radio" name="method" value="revenue"> Revenue<br>
