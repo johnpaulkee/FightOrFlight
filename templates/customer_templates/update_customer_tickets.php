@@ -58,6 +58,7 @@ if ($db_conn) {
 		$purchase_query = "INSERT INTO Customer_Purchase
 		VALUES ('$val1', '$val3', '$val2', 'Credit Card')";
 		$purchase_result = executePlainSQL($purchase_query);
+		echo "<p> Purchased your direct flight, check your account for details </p>";
 		oci_commit($db_conn);
 	}
 	// Indirect Flights
@@ -76,6 +77,7 @@ if ($db_conn) {
 		$second_purchase_query = "INSERT INTO Customer_Purchase
 						   VALUES ('$val2', '$val5', '$val4', 'Credit Card')";
 		$purchase_result = executePlainSQL($second_purchase_query);
+		echo "<p> Purchased your indirect flights, check your account for details </p>";
 		oci_commit($db_conn);
 	}
 }

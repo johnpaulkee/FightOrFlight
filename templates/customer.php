@@ -22,7 +22,6 @@
         <li><a href="javascript:void(0)" id = "freq_flyer">Frequent Flyer Settings</a></li>
         <li><a href="javascript:void(0)" id = "find_cheapest_flights">Find Cheapest Ticket From Your Location</a></li>
         <li><a href="javascript:void(0)" id = "purchase_ticket">Purchase Tickets</a></li>
-        <li><a href="javascript:void(0)" id = "find_airline_head">Find Airline Headquarters</a></li>
       </ul>
     </div>
 
@@ -75,11 +74,6 @@
       $("#purchase_ticket").click(function() {
         $("#form_generation").load("../templates/customer_templates/purchase_ticket_form.php").fadeIn('slow');
       });
-
-      $("#find_airline_head").click(function() {
-        $("#form_generation").load("../templates/customer_templates/airline_headquarters_form.php").fadeIn('slow');
-      });
-
  });
    </script>
 

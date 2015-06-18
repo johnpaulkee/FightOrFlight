@@ -57,7 +57,6 @@
            data: $("#cheapest_form").serialize(), // serializes the form's elements.
            success: function(data)
            {	
-           		alert("SUCCESS");
               $("#formresult").html(data); // show response from the php script.
            }
          });
