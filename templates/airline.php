@@ -21,8 +21,6 @@ $type = $_COOKIE['type'];
       <li><a href="javascript:void(0)" id="find_vip_customers">Find V.I.P Customers</a> </li>
       <li><a href="javascript:void(0)" id="check_details">View Airline Employee Details </a> </li>
       <li><a href="javascript:void(0)" id="assign_discounts">Assign Airline Employee Discount</a> </li>
-      <li><a href="javascript:void(0)" id="update_freq_flyer">Update Customer Frequent Flyer Points</a> </li>
-      <li><a href="javascript:void(0)" id="join_alliance">Join an Alliance</a> </li>
       <li><a href="javascript:void(0)" id="headquarter_in">Set Headquarters</a> </li>
       <li><a href="javascript:void(0)" id="airport_details">View Airport Details </a> </li>
       <li><a href="javascript:void(0)" id="loyal_cust">Find Loyal Customers </a></li>
