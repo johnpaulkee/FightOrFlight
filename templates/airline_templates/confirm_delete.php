@@ -64,6 +64,7 @@ if ($db_conn) {
 		oci_commit($db_conn);
 	}
 	oci_commit($db_conn);
+	OCILogoff($db_conn);
 }
 
 ?>
