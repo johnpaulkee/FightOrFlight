@@ -41,7 +41,6 @@
            data: $("#hq_form").serialize(), // serializes the form's elements.
            success: function(data)
            {  
-              alert("SUCCESS");
               $("#formresult").html(data); // show response from the php script.
            }
          });
@@ -59,7 +58,6 @@
            data: data, // serializes the form's elements.
            success: function(data)
            {  
-              alert("SUCCESS");
               $("#formresult").html(data); // show response from the php script.
            }
          });

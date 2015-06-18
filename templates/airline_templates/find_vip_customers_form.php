@@ -32,15 +32,11 @@ function executePlainSQL($cmdstr) {
 }
 
 function printResult($result) { //prints results from a select statement
-	echo "<h3><center> Here is your view: </center></h3>";
-	echo "<h3><center> This should be an update or something with Customer to the Credit Card </center> </h3>";
+	echo "<h3><center> VIP: Customers who have travelled via all airlines </center></h3>";
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
 	echo "<tr>";
-	echo "<th>CustID</th>";
-	echo "<th>Airline Code</th>";echo "<th>Airline Code</th>";	
-	echo "<th>Airline Name</th>";
-	echo "<th>Ticket ID</th>";
+	echo "<th>Customer Name</th>";
 	echo "</tr>";
 	echo "</thead>";
 	echo "<tbody>";
@@ -48,9 +44,6 @@ function printResult($result) { //prints results from a select statement
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
 		echo "<tr>";
 		echo "<td>" . $row[0] . "</td>";
-		echo "<td>" . $row[1] . "</td>";
-		echo "<td>" . $row[2] . "</td>";
-		echo "<td>" . $row[3] . "</td>";
 		echo "</tr>";
 	}
 	echo "</tbody>";
