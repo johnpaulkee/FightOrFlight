@@ -18,10 +18,9 @@ function printResult($result) { //prints results from a select statement
   echo "<table class = 'table table-striped'>";
   echo "<thead>";
   echo "<tr>";
-  echo "<th>Airport Code</th>";
-  echo "<th>Number of Domestic Gates</th>";
-  echo "<th>City</th>";
-  echo "<th>Country</th>";
+  echo "<th>Airline Code</th>";
+  echo "<th>Airline Name</th>";
+  echo "<th>Country Name</th>";
   echo "</tr>";
   echo "</thead>";
   echo "<tbody>";
@@ -30,7 +29,6 @@ function printResult($result) { //prints results from a select statement
     echo "<td>" . $row[0] . "</td>";
     echo "<td>" . $row[1] . "</td>";
     echo "<td>" . $row[2] . "</td>";
-    echo "<td>" . $row[3] . "</td>";
     echo "</tr>";
   }
   echo "</tbody>";
