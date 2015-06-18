@@ -99,19 +99,22 @@ function printTicketAndPlaneDetails($result) { //prints results from a select st
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
 	echo "<tr>";
+	echo "<th>Ticket ID</th>"; 
 	echo "<th>Seat</th>"; 
 	echo "<th>Class</th>"; 
-	echo "<th>capacity</th>"; 
-	echo "<th>company</th>";
+	echo "<th>From</th>"; 
+	echo "<th>To</th>";
 	echo "</tr>";
 	echo "</thead>";
 	echo "<tbody>";
+    // t.tID, t.seat, t.class, bpff.from_airport_code, bpff.to_airport_code
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
 		echo "<tr>";
 		echo "<td>" . $row[0] . "</td>";
 		echo "<td>" . $row[1] . "</td>";
 		echo "<td>" . $row[2] . "</td>";
 		echo "<td>" . $row[3] . "</td>";
+		echo "<td>" . $row[4] . "</td>";
 		echo "</tr>";
 	}
 	echo "</tbody>";
@@ -136,6 +139,30 @@ function printCredCardDetails($result) { //prints results from a select statemen
 	echo "</table>";
 }
 
+function printBagTagDetails($result) { //prints results from a select statement
+	echo "<p> Your Bag Tag Info </p>";
+	echo "<table class = 'table table-striped'>";
+	echo "<thead>";
+	echo "<tr>";
+	echo "<th>BagTag ID</th>"; 
+	echo "<th>Weight (kg)</th>"; 
+	echo "<th>Source Airline Code</th>"; 
+	echo "<th>Dest Airline Code</th>"; 
+	echo "</tr>";
+	echo "</thead>";
+	echo "<tbody>";
+	//bt.bID, lr.weight, btlsf.source_airport_code, btlsf.destination_airport_code
+	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+		echo "<tr>";
+		echo "<td>" . $row[0] . "</td>";
+		echo "<td>" . $row[1] . "</td>";
+		echo "<td>" . $row[2] . "</td>";
+		echo "<td>" . $row[3] . "</td>";
+		echo "</tr>";
+	}
+	echo "</tbody>";
+	echo "</table>";
+}
 // Connect Oracle...
 if ($db_conn) {
 
@@ -203,12 +230,14 @@ OCICommit($db_conn);
 if ($_POST && $success) {
 	header("location: oracle-test.php");
 } else {
+	// Customer details
 	$query_user_details = "SELECT c.custName, cl.username, cl.password, c.blacklisted 
 	FROM customer_login cl, customer c 
 	WHERE c.cust_ID = cl.cust_ID and cl.username = '".$_COOKIE['username']."'";
 	$user_details = executePlainSQL($query_user_details);
 	printResult($user_details);
 
+	// Credit Card Details
 	$drop_cred_view = "DROP VIEW cred_card_details";
 	$drop_cred_result = executePlainSQL($drop_cred_view);
 	$create_cred_view = "CREATE VIEW cred_card_details as  
@@ -216,39 +245,39 @@ if ($_POST && $success) {
 	FROM customer c, customer_login cl 
 	WHERE c.cust_ID = cl.cust_ID and cl.username = '".$_COOKIE['username']."'";
 	$cred_view_result = executePlainSQL($create_cred_view);
-
-	// TODO - update with user input
-	$update_cred = "UPDATE cred_card_details
-	SET credit_card_number='333222111'";
-	$update_cred_result = executePlainSQL($update_cred);
-
 	$query = "SELECT credit_card_number FROM cred_card_details";
 	$cred_card = executePlainSQL($query);
-
 	printCredCardDetails($cred_card);
 
-	$query_tickets = "SELECT t.seat, t.class, p.capacity, p.company
-	FROM customer_login cl, customer_purchase cp, ticket t, plane_owned_by p, is_with i
-	WHERE cp.cust_ID = cl.cust_ID and 
-	t.tID = i.tID and
-	i.plane_ID = p.plane_ID and
-	t.tID = cp.tID and
-	cl.username = '".$_COOKIE['username']."'";
+	// Ticket Details
+	$query_tickets =   "SELECT t.tID, t.seat, t.class, bpff.from_airport_code, bpff.to_airport_code
+						FROM Customer_Login cl, Customer c, Customer_Purchase cp, Ticket t, Comprised_of co, Boarding_Pass_For_Flight bpff
+						WHERE cl.cust_ID = c.cust_ID and
+							  c.cust_ID = cp.cust_ID and
+							  cp.tID = t.tID and
+							  co.tID = t.tID and
+							  co.boarding_ID = bpff.boarding_ID and
+							  co.flight_num = bpff.flight_num and
+							  co.from_airport_code = bpff.from_airport_code and
+							  co.to_airport_code = bpff.to_airport_code and
+							  cl.username = '".$_COOKIE['username']."'";
 
+	// (boarding_ID, flight_num, from_airport_code, to_airport_code, airline_code),
 	$tickets_planes = executePlainSQL($query_tickets);
 	printTicketAndPlaneDetails($tickets_planes);
 
-	echo "<p> TODO: Update credit card info </p>";
-	echo "<p> TODO: Add bag tag details for the ticket </p>";
+	// Bag tag
+	   $query_bagtag = "SELECT blsf.bt_id, blsf.weight, blsf.source_airport_code, blsf.destination_airport_code
+						FROM Customer_Login cl, Customer c, Customer_Purchase cp, Ticket t, Is_Issued ii, BagTag_Luggage_StartD_FinalD blsf
+						WHERE cl.cust_ID = c.cust_ID and
+							  c.cust_ID = cp.cust_ID and
+							  cp.tID = t.tID and
+							  ii.tID = t.tID and 
+							  ii.bID = blsf.bt_ID and
+							  cl.username = '".$_COOKIE['username']."'";	   
 
-	//BagTag_Luggage_StartD_FinalD
-	// bt_id INTEGER,
-	// weight INTEGER NOT NULL,
-	// source_airport_code CHAR(3) NOT NULL,
-	// destination_airport_code CHAR(3) NOT NULL,
-	echo "<p> TODO: Add boarding pass  details for the ticket </p>";
-	echo "<p> TODO: Add check points if frequent flyer for the ticket </p>";
-	echo "<p> TODO: Add check luggage weight </p>";
+	$bagtag = executePlainSQL($query_bagtag);
+	printBagTagDetails($bagtag);
 }
 
 //Commit to save changes...

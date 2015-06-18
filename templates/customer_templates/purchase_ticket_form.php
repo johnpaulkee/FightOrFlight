@@ -174,11 +174,8 @@ echo htmlentities($e['message']);
 ?>
 
 <script>
-	
 	$("#purchase_ticket_form").submit(function() {
-
     var url = $(this).attr("action"); // the script where you handle the form input.
-
     $.ajax({
            type: "POST",
            url: url,
@@ -188,7 +185,6 @@ echo htmlentities($e['message']);
               $("#formresult").html(data); // show response from the php script.
            }
          });
-
     return false; // avoid to execute the actual submit of the form.
 });
 </script>

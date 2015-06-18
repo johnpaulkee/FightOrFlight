@@ -86,7 +86,7 @@
 
       $("#aircraft_details").click(function() {
         $("#form_generation").empty();
-        $("#form_generation").load("../templates/ae_templates/airline_aircraft_details.php");
+        $("#form_generation").load("../templates/ae_templates/airline_aircraft_details_form.php");
       });
 
       $("#baggage_details").click(function() {

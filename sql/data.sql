@@ -52,13 +52,13 @@ UNIQUE (employeeID, airline_code)
 );
 
 CREATE TABLE Airport_LocatedIn(
-	airport_code CHAR(3),
-	num_of_domestic_gates INTEGER,
-	city VARCHAR2(255),
-	country_name VARCHAR2(255) NOT NULL,
-	airport_name VARCHAR2(255),
-	PRIMARY KEY (airport_code),
-	FOREIGN KEY (country_name) REFERENCES Country(name)
+airport_code CHAR(3),
+num_of_domestic_gates INTEGER,
+city VARCHAR2(255),
+country_name VARCHAR2(255) NOT NULL,
+airport_name VARCHAR2(255),
+PRIMARY KEY (airport_code),
+FOREIGN KEY (country_name) REFERENCES Country(name)
 );
 
 CREATE TABLE BagTag_Luggage_StartD_FinalD(
@@ -391,7 +391,7 @@ INSERT INTO BagTag_Luggage_StartD_FinalD
 VALUES (3, 22, 'LAX', 'NYA');
 
 INSERT INTO BagTag_Luggage_StartD_FinalD
-VALUES (4, 23, 'WAR', 'FRK');
+VALUES (4, 23, 'TOR', 'YVR');
 
 INSERT INTO Domestic
 VALUES ('SEO');

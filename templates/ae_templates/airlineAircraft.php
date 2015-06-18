@@ -1,6 +1,6 @@
 <?php
 $type = $_COOKIE['type'];
-      if ($type != "airline") {
+      if ($type != "airlineemployee") {
           header("Location: ../templates/not_authorized.html");
           die();
       }
@@ -9,21 +9,19 @@ $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 
 
   // Define user and pass
-$empid = $_POST['employeeid'];
-$discval = $_POST['discountvalue'];
-echo "Vals should be here";
+$airlinename = $_POST['airlinename'];
 
-echo $empid;
-echo $discval;
 
 function printResult($result) { //prints results from a select statement
-  echo "<h3><center> Here are the details for the updated employee discount: </center></h3>";
+  echo "<h3><center> Here are the details for your selected airport: </center></h3>";
   echo "<table class = 'table table-striped'>";
   echo "<thead>";
   echo "<tr>";
-  echo "<th>ID</th>";
-  echo "<th>Employee Name</th>";
-  echo "<th>Discount</th>";
+  echo "<th>Airline Code</th>";
+  echo "<th>Airline Name</th>";
+  echo "<th>Plane ID</th>";
+  echo "<th>Plane Capacity</th>";
+  echo "<th>Plane Company</th>";
   echo "</tr>";
   echo "</thead>";
   echo "<tbody>";
@@ -31,11 +29,14 @@ function printResult($result) { //prints results from a select statement
     echo "<tr>";
     echo "<td>" . $row[0] . "</td>";
     echo "<td>" . $row[1] . "</td>";
-    echo "<td>" . $row[2] . "%</td>";
+    echo "<td>" . $row[2] . "</td>";
+    echo "<td>" . $row[3] . "</td>";
+    echo "<td>" . $row[4] . "</td>";
     echo "</tr>";
   }
   echo "</tbody>";
   echo "</table>";
+  echo $result;
 
 }
 
@@ -64,12 +65,9 @@ function executePlainSQL($cmdstr) {
 
 // Connect Oracle...
 if ($db_conn) {
-  $query = "UPDATE Airline_Employee_Employed_With SET discounts='".$discval."' WHERE employeeID=".$empid."";
+  $query = "SELECT airline.airline_code, airline.airline_name, aircraft.plane_ID, aircraft.capacity, aircraft.company from Airline_Headquartered_In airline, Plane_Owned_By aircraft where airline.airline_name LIKE ='%".$airlinename."%' and aircraft.airline_code = airline.airline_code";
+  $result = executePlainSQL($query);
 
-  $query2 = "SELECT employeeID, employee_name, discounts FROM Airline_Employee_Employed_With WHERE employeeID=".$empid."";
-  $resultalter = executePlainSQL($query);
-  oci_commit(db_conn);
-  $result = executePlainSQL($query2);
   printResult($result);
 }
 
