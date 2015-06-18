@@ -45,7 +45,7 @@ if ($db_conn) {
 	echo '<div id="formresult"></div>';
 	echo '<script>
 
-	$.post("airline_templates/confirm_delete.php", { plane_ID: '.$plane_ID.', airline_code: '.$airline_code.' }, function(result) {
+	$.post("../tempaltes/airline_templates/confirm_delete.php", { plane_ID: '.$plane_ID.', airline_code: '.$airline_code.' }, function(result) {
     alert("successfully posted plane_ID='.$plane_ID.'airline_code='.$airline_code.' to airline_templates/confirm_delete.php");
 	});
 
