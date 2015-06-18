@@ -6,8 +6,8 @@ $type = $_COOKIE['type'];
     }
 $success = True; //keep track of errors so it redirects the page only if there are no errors
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
-$plane_ID = $_POST['plane_ID'];
-$airline_code = $_POST['airline_code'];
+$values = $_POST['plane'];
+list($plane_ID, $airline_code) = explode(",", $values);
 
 function executePlainSQL($cmdstr) { 
 	//echo "<br>running ".$cmdstr."<br>";
