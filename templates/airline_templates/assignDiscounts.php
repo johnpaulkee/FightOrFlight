@@ -17,7 +17,7 @@ echo $empid;
 echo $discval;
 
 function printResult($result) { //prints results from a select statement
-  echo "<h3><center> Here are the details for your selected airport: </center></h3>";
+  echo "<h3><center> Here are the details for the updated employee discount: </center></h3>";
   echo "<table class = 'table table-striped'>";
   echo "<thead>";
   echo "<tr>";
@@ -65,8 +65,10 @@ function executePlainSQL($cmdstr) {
 // Connect Oracle...
 if ($db_conn) {
   $query = "UPDATE Airline_Employee_Employed_With SET discounts='".$discval."' WHERE employeeID=".$empid."";
-  $query2 = "SELECT employeeID, employee_name, discounts FROM Airline_Employee_Employed_With WHERE employeeID=".$GLOBALS['empid']."";
+
+  $query2 = "SELECT employeeID, employee_name, discounts FROM Airline_Employee_Employed_With WHERE employeeID=".$empid."";
   $resultalter = executePlainSQL($query);
+  oci_commit(db_conn);
   $result = executePlainSQL($query2);
   printResult($result);
 }

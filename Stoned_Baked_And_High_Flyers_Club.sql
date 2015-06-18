@@ -1029,4 +1029,12 @@ VALUES ('mooseandbeavers', 2, 'ocanada');
 INSERT INTO Airline_Login
 VALUES ('demo', 1, '123');
 
+-- CREATE TRIGGER categorizeSmallPlane
+-- AFTER INSERT ON Plane_Owned_By
+-- FOR EACH STATEMENT
+-- INSERT INTO
+-- Low_Capacity(plane_ID, airline_code)
+-- SELECT plane_ID, airline_code
+-- FROM Plane_Owned_By p
+-- WHERE p.capacity <= 40;
 
