@@ -37,7 +37,7 @@ $type = $_COOKIE['type'];
 
 <script>
   
-  $("#airline_head_form").submit(function() {
+  $("#airline_aircraft_form").submit(function() {
 
     var url = $(this).attr("action"); // the script where you handle the form input.
 
