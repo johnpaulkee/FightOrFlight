@@ -29,7 +29,7 @@
 ?>
 
 <form name = "discount_form" method = "post" action="airline_templates/assignDiscounts.php" id="disc_form">
-  <label> Select Employee </label>
+  <label> Select Employee to Assign a Discount</label>
   <br>
   <select class="form-control" name="employeeid">
   <?php 

@@ -94,6 +94,33 @@ function printResult($result) { //prints results from a select statement
 
 }
 
+function printTicketDetails($result) {
+	echo "<p> Your Tickets and it's Plane Details </p>";
+	echo "<table class = 'table table-striped'>";
+	echo "<thead>";
+	echo "<tr>";
+	echo "<th>Ticket ID</th>"; 
+	echo "<th>Seat</th>"; 
+	echo "<th>Class</th>"; 
+	echo "<th>From</th>"; 
+	echo "<th>To</th>";
+	echo "</tr>";
+	echo "</thead>";
+	echo "<tbody>";
+	// "SELECT t.tID, t.seat, t.class, bpff.from_airport_code, bpff.to_airport_code
+	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+		echo "<tr>";
+		echo "<td>" . $row[0] . "</td>";
+		echo "<td>" . $row[1] . "</td>";
+		echo "<td>" . $row[2] . "</td>";
+		echo "<td>" . $row[3] . "</td>";
+		echo "<td>" . $row[4] . "</td>";
+		echo "</tr>";
+	}
+	echo "</tbody>";
+	echo "</table>";
+}
+
 function printTicketAndPlaneDetails($result) { //prints results from a select statement
 	echo "<p> Your Tickets and it's Plane Details </p>";
 	echo "<table class = 'table table-striped'>";
@@ -107,7 +134,7 @@ function printTicketAndPlaneDetails($result) { //prints results from a select st
 	echo "</tr>";
 	echo "</thead>";
 	echo "<tbody>";
-    // t.tID, t.seat, t.class, bpff.from_airport_code, bpff.to_airport_code
+	// "SELECT t.tID, t.seat, t.class, bpff.from_airport_code, bpff.to_airport_code
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
 		echo "<tr>";
 		echo "<td>" . $row[0] . "</td>";
@@ -145,7 +172,7 @@ function printBagTagDetails($result) { //prints results from a select statement
 	echo "<thead>";
 	echo "<tr>";
 	echo "<th>BagTag ID</th>"; 
-	echo "<th>Weight (kg)</th>"; 
+	echo "<th>Weight</th>"; 
 	echo "<th>Source Airline Code</th>"; 
 	echo "<th>Dest Airline Code</th>"; 
 	echo "</tr>";
@@ -249,7 +276,7 @@ if ($_POST && $success) {
 	$cred_card = executePlainSQL($query);
 	printCredCardDetails($cred_card);
 
-	// Ticket Details
+	// Ticket and Other Details
 	$query_tickets =   "SELECT t.tID, t.seat, t.class, bpff.from_airport_code, bpff.to_airport_code
 						FROM Customer_Login cl, Customer c, Customer_Purchase cp, Ticket t, Comprised_of co, Boarding_Pass_For_Flight bpff
 						WHERE cl.cust_ID = c.cust_ID and
@@ -262,7 +289,6 @@ if ($_POST && $success) {
 							  co.to_airport_code = bpff.to_airport_code and
 							  cl.username = '".$_COOKIE['username']."'";
 
-	// (boarding_ID, flight_num, from_airport_code, to_airport_code, airline_code),
 	$tickets_planes = executePlainSQL($query_tickets);
 	printTicketAndPlaneDetails($tickets_planes);
 

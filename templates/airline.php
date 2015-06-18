@@ -26,6 +26,7 @@ $type = $_COOKIE['type'];
       <li><a href="javascript:void(0)" id="headquarter_in">Set Headquarters</a> </li>
       <li><a href="javascript:void(0)" id="airport_details">View Airport Details </a> </li>
       <li><a href="javascript:void(0)" id="loyal_cust">Find Loyal Customers </a></li>
+      <li><a href="javascript:void(0)" id="trash_plane">Retire Aircraft</a></li>
     </ul>
   </div>
 
@@ -100,6 +101,11 @@ $type = $_COOKIE['type'];
       $("#loyal_cust").click(function() {
         $("#form_generation").empty();
         $("#form_generation").load("airline_templates/most_loyal_customers.php");
+      });
+
+      $("#trash_plane").click(function() {
+        $("#form_generation").empty();
+        $("#form_generation").load("airline_templates/retire_aircraft_form.php");
       });
  });
   </script>
