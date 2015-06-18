@@ -33,6 +33,7 @@
       	$result = executePlainSQL($query);
       	echo $result;
       	echo "peepeepoopoo";
+      	echo '<input type="submit" name="submit" value="retire">';
       	while(($row = oci_fetch_row($result)) != false) {
       		$input = '<input type="radio" name="plane" value="'.$row[0].','.$row[1].'">'.$row[1].', '.$row[2].', '.$row[3];
       		echo $input;
