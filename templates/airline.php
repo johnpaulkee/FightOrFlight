@@ -68,7 +68,7 @@ $type = $_COOKIE['type'];
     }
 
     function printResult1($result) { //prints results from a select statement
-  echo "<h3><center> Is this you? </center></h3>";
+  echo "<p> Is this you? </p>";
   echo "<table class = 'table table-striped'>";
   echo "<thead>";
   echo "<tr>";
@@ -92,7 +92,7 @@ $type = $_COOKIE['type'];
 }
 
 function printResult2($result) { //prints results from a select statement
-  echo "<h3><center> Your Tickets </center></h3>";
+  echo "<p> Your Tickets </p>";
   echo "<table class = 'table table-striped'>";
   echo "<thead>";
   echo "<tr>";
@@ -135,11 +135,11 @@ function printResult2($result) { //prints results from a select statement
           $query5 = "SELECT COUNT(*) FROM Add_Ticket at WHERE at.airline_code=".$_COOKIE['id'];
           $result5 = executePlainSQL($query5);
           $row5 = oci_fetch_row($result5);
-          echo "<h3><center> You have sold ".$row4[0]." out of your ".$row5[0]." tickets so far. </center></h3>";
+          echo "<p>You have sold ".$row4[0]." out of your ".$row5[0]." tickets so far.</p>";
           $query6 = "SELECT SUM (t.price) FROM Add_Ticket at, Ticket t WHERE at.airline_code=".$_COOKIE['id']." AND at.tID = t.tID";
           $result6 = executePlainSQL($query6);
           $row6 = oci_fetch_row($result6);
-          echo "<h3><center> You have earned $".$row6[0]." in revenue so far. </center></h3>";
+          echo "<p> You have earned $".$row6[0]." in revenue so far. </p>";
         ?>
       </div>
       </div>
