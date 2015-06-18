@@ -150,6 +150,7 @@ function executePlainSQL($cmdstr) {
         $result4 = executePlainSQL($query4);
         $query5 = "INSERT INTO Comprised_Of VALUES ('".$boardingprimary."', '".$flightprimary."', '".$from."', '".$to."', '".$_COOKIE['id']."', '".$primarykey."')";
         $result5 = executePlainSQL($query5);
+        echo $query5;
       }
       $weight = $weight + 2;
    for($i=0; $i<$first_num; $i++){
@@ -167,6 +168,7 @@ function executePlainSQL($cmdstr) {
     $result4 = executePlainSQL($query4);
     $query5 = "INSERT INTO Comprised_Of VALUES ('".$boardingprimary."', '".$flightprimary."', '".$from."', '".$to."', '".$_COOKIE['id']."', '".$primarykey."')";
     $result5 = executePlainSQL($query5);
+    echo $query5;
   }
   $weight = $weight + 3;
   for($i=0; $i<$business_num; $i++){
@@ -184,6 +186,7 @@ function executePlainSQL($cmdstr) {
     $result4 = executePlainSQL($query4);
     $query5 = "INSERT INTO Comprised_Of VALUES ('".$boardingprimary."', '".$flightprimary."', '".$from."', '".$to."', '".$_COOKIE['id']."', '".$primarykey."')";
     $result5 = executePlainSQL($query5);
+    echo $query5;
   }
       $query1 = "SELECT * FROM Ticket";
       $result1 = executePlainSQL($query1);
