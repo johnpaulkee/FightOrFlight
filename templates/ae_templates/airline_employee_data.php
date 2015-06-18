@@ -121,6 +121,32 @@ function printTicketAndPlaneDetails($result) { //prints results from a select st
   echo "</table>";
 }
 
+
+function printBagTagDetails($result) { //prints results from a select statement
+  echo "<p> Your Bag Tag Info </p>";
+  echo "<table class = 'table table-striped'>";
+  echo "<thead>";
+  echo "<tr>";
+  echo "<th>BagTag ID</th>"; 
+  echo "<th>Weight (kg)</th>"; 
+  echo "<th>Source Airline Code</th>"; 
+  echo "<th>Dest Airline Code</th>"; 
+  echo "</tr>";
+  echo "</thead>";
+  echo "<tbody>";
+  //bt.bID, lr.weight, btlsf.source_airport_code, btlsf.destination_airport_code
+  while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+    echo "<tr>";
+    echo "<td>" . $row[0] . "</td>";
+    echo "<td>" . $row[1] . "</td>";
+    echo "<td>" . $row[2] . "</td>";
+    echo "<td>" . $row[3] . "</td>";
+    echo "</tr>";
+  }
+  echo "</tbody>";
+  echo "</table>";
+}
+
 function printAirlineResult($result) { //prints results from a select statement
   echo "<p> Airline details: </p>";
 
@@ -240,6 +266,17 @@ if ($_POST && $success) {
   $tickets_planes = executePlainSQL($query_tickets);
   printTicketAndPlaneDetails($tickets_planes);
 
+  $query_bagtag = "SELECT blsf.bt_id, blsf.weight, blsf.source_airport_code, blsf.destination_airport_code
+            FROM Airline_Employee_Login al, Airline_Employee_Employed_With c, Discounted_Purchase dp, Ticket t, Is_Issued ii, BagTag_Luggage_StartD_FinalD blsf
+            WHERE alcust_ID = c.employeeID and
+                c.employeeID = dp.employeeID and
+                dp.tID = t.tID and
+                ii.tID = t.tID and 
+                ii.bID = blsf.bt_ID and
+                alusername = '".$_COOKIE['username']."'";     
+
+  $bagtag = executePlainSQL($query_bagtag);
+  printBagTagDetails($bagtag);
 }
 
 //Commit to save changes...
