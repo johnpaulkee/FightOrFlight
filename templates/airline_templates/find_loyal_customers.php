@@ -33,12 +33,12 @@ function executePlainSQL($cmdstr) {
 	return $statement;
 }
 
-function createTable($entry){
+function createTable($entry, $p1){
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";
 	echo "<tr>";
 	echo "<th>cust_ID</th>";
-	echo $method;
+	echo "<th>".$p1."</th>";
 	echo "<th>custName</th>";
 	echo "</tr>";
 	echo "</thead>";
@@ -75,7 +75,7 @@ if ($db_conn) {
 		$query = "SELECT revenue, cust_ID FROM valuableCustomers v1 WHERE v1.revenue >= ALL (SELECT revenue FROM valuableCustomers)";
 	}
 	$result = executePlainSQL($query);
-	createTable($result);
+	createTable($result, $method);
 	//$query = "SELECT cust_ID, custName FROM Customer c WHERE c.cust_ID IN"
 }
 
