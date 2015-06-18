@@ -59,6 +59,30 @@ function printResult($result) { //prints results from a select statement
 
 }
 
+function createTable($entry){
+	echo "<p>Your most loyal customers are: </p>";
+	echo "<table class = 'table table-striped'>";
+	echo "<thead>";
+	echo "<tr>";
+	echo "<th>cust_ID</th>";
+	echo "<th>".$method."</th>";
+	echo "<th>custName</th>";
+	echo "</tr>";
+	echo "</thead>";
+	echo "<tbody>";
+	while(($row = oci_fetch_row($entry)) != false){
+		$query = "SELECT custName FROM Customer c WHERE c.cust_ID = '".$row[1]."'";
+		$result = executePlainSQL($query);
+		while(($row2 = oci_fetch_row($result)) != false) {
+			echo "<tr>";
+			echo "<td>" . $row[1] . "</td>";
+			echo "<td>" . $row[0] . "</td>";
+			echo "<td>" . $row2[0] . "</td>";
+			echo "</tr>";
+		}
+	}
+}
+
 // Connect Oracle...
 if ($db_conn) {
 	$dropview = "DROP VIEW valuableCustomers";
@@ -74,8 +98,12 @@ if ($db_conn) {
 	$viewresult = executePlainSQL($createview);
 	echo ($viewresult);
 	if($method == "quantity") {
-		$query = "SELECT MAX(num_tickets) FROM valuableCustomers";
+		$query = "SELECT MAX(num_tickets), cust_ID FROM valuableCustomers";
+	} else {
+		$query = "SELECT MAX(revenue), cust_ID FROM valuableCustomers";
 	}
+	$result = executePlainSQL($query);
+	createTable($result);
 	//$query = "SELECT cust_ID, custName FROM Customer c WHERE c.cust_ID IN"
 }
 
