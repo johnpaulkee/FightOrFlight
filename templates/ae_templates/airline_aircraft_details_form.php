@@ -15,7 +15,7 @@ $type = $_COOKIE['type'];
   <tablewidth="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
   <tr>
 
-    <form name="form1" method="post" action="../templates/customer_templates/airlineAircraft.php" id="airline_aircraft_form">
+    <form name="form1" method="post" action="../templates/ae_templates/airlineAircraft.php" id="airline_aircraft_form">
       <td>
         <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
           <tr>
