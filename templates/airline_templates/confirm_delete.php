@@ -43,6 +43,7 @@ if ($db_conn) {
 	$row = oci_fetch_row($result1);
 	echo "row:";
 	echo $row;
+	echo $row[0];
 	if($row != false){
 		$query2 = "DELETE FROM Plane_Owned_By p WHERE p.airline_code ='".$airline_code."' AND p.plane_ID = '".$plane_ID."'";
 		echo $query2;
