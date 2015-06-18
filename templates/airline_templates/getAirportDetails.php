@@ -34,7 +34,6 @@ function printResult($result) { //prints results from a select statement
   }
   echo "</tbody>";
   echo "</table>";
-  echo $result;
 
 }
 

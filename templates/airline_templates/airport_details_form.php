@@ -53,7 +53,6 @@ if ($db_conn) {
            data: $("#details").serialize(),
            success: function(data)
            {  
-              alert("SUCCESS");
               $("#formresult").html(data);
            }
          });
