@@ -29,7 +29,7 @@
 	<label>Business Ticket Price</label><br>
     <p>$
     <input type="number" name="business_price"></p>
-    <label>From           To</label><br>
+    <label>From&nbsp;To</label><br>
     <?php
     	$query = "SELECT airport_code FROM Airport_LocatedIn";
     	$result = executePlainSQL($query);
