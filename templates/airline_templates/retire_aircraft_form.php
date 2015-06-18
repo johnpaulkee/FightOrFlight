@@ -1,5 +1,5 @@
 <form name="retire_plane" action="airline_templates/delete_plane.php" method="post" id="delete_plane">
-	<label> Which plane would you like to retire? </label>
+	<label> Which plane would you like to retire? </label><br>
 	<?php
 		$type = $_COOKIE['type'];
     	if ($type != "airline") {
