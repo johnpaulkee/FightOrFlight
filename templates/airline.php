@@ -128,6 +128,14 @@ function printResult2($result) { //prints results from a select statement
           $query2 = "SELECT t.tID, t.seat, t.class, t.price FROM Add_Ticket a, Ticket t WHERE a.airline_code=".$_COOKIE['id']." AND a.tID = t.tID";
           $result2 = executePlainSQL($query2);
           printResult2($result2);
+
+          $query4 = "SELECT COUNT(*) FROM Customer_Purchase cp, Discounted_Purchase dp, Ticket t, Add_Ticket a WHERE a.airline_code=".$_COOKIE['id']." AND a.tID = t.tID AND t.tID = dp.tID AND cp.tID = t.tID";
+          $result4 = executePlainSQL($query4);
+          $row4 = oci_fetch_row($result4);
+          $query5 = "SELECT COUNT(*) FROM Add_Ticket at WHERE at.airline_code=".$_COOKIE['id'];
+          $result5 = executePlainSQL($query5);
+          $row5 = oci_fetch_row($result5);
+          echo "<h3> You have sold ".$row4[0]." out of your ".$row5[0]." tickets so far.";
         ?>
       </div>
       </div>
