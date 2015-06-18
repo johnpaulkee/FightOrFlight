@@ -58,8 +58,8 @@ if ($db_conn) {
 		$result5 = executePlainSQL($query5);
 
 	}
-}
+	oci_commit($db_conn);
 
-oci_commit($db_conn);
+}
 
 ?>
