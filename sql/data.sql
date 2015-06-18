@@ -391,7 +391,7 @@ INSERT INTO BagTag_Luggage_StartD_FinalD
 VALUES (3, 22, 'LAX', 'NYA');
 
 INSERT INTO BagTag_Luggage_StartD_FinalD
-VALUES (4, 23, 'WAR', 'FRK');
+VALUES (4, 23, 'TOR', 'YVR');
 
 INSERT INTO Domestic
 VALUES ('SEO');

@@ -107,7 +107,7 @@ function printTicketAndPlaneDetails($result) { //prints results from a select st
 	echo "</tr>";
 	echo "</thead>";
 	echo "<tbody>";
-	// "SELECT t.tID, t.seat, t.class, bpff.from_airport_code, bpff.to_airport_code
+    // t.tID, t.seat, t.class, bpff.from_airport_code, bpff.to_airport_code
 	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
 		echo "<tr>";
 		echo "<td>" . $row[0] . "</td>";
@@ -145,7 +145,7 @@ function printBagTagDetails($result) { //prints results from a select statement
 	echo "<thead>";
 	echo "<tr>";
 	echo "<th>BagTag ID</th>"; 
-	echo "<th>Weight</th>"; 
+	echo "<th>Weight (kg)</th>"; 
 	echo "<th>Source Airline Code</th>"; 
 	echo "<th>Dest Airline Code</th>"; 
 	echo "</tr>";
@@ -250,34 +250,34 @@ if ($_POST && $success) {
 	printCredCardDetails($cred_card);
 
 	// Ticket Details
-	$query_tickets =   "SELECT DISTINCT t.tID, t.seat, t.class, bpff.from_airport_code, bpff.to_airport_code
-	FROM customer_login cl, customer_purchase cp, ticket t, Comprised_Of co, Boarding_Pass_For_Flight bpff
-	WHERE 	cp.cust_ID = cl.cust_ID and 
-			cl.username = '".$_COOKIE['username']."' and
-			cp.tID = t.tID and
-			co.tID = t.tID and
-			bpff.boarding_ID = co.boarding_ID and
-			bpff.flight_num = co.flight_num and 
-			bpff.from_airport_code = co.from_airport_code and
-			bpff.to_airport_code = co.to_airport_code and
-			bpff.airline_code = co.airline_code";
+	$query_tickets =   "SELECT t.tID, t.seat, t.class, bpff.from_airport_code, bpff.to_airport_code
+						FROM Customer_Login cl, Customer c, Customer_Purchase cp, Ticket t, Comprised_of co, Boarding_Pass_For_Flight bpff
+						WHERE cl.cust_ID = c.cust_ID and
+							  c.cust_ID = cp.cust_ID and
+							  cp.tID = t.tID and
+							  co.tID = t.tID and
+							  co.boarding_ID = bpff.boarding_ID and
+							  co.flight_num = bpff.flight_num and
+							  co.from_airport_code = bpff.from_airport_code and
+							  co.to_airport_code = bpff.to_airport_code and
+							  cl.username = '".$_COOKIE['username']."'";
 
 	// (boarding_ID, flight_num, from_airport_code, to_airport_code, airline_code),
 	$tickets_planes = executePlainSQL($query_tickets);
 	printTicketAndPlaneDetails($tickets_planes);
 
 	// Bag tag
-	$query_bagtag = "SELECT btlsf.bt_ID, btlsf.weight, btlsf.source_airport_code, btlsf.destination_airport_code
-	FROM Luggage_Represents lr, customer_login cl, Belongs_To bt, BagTag_Luggage_StartD_FinalD btlsf
-	WHERE bt.bID = btlsf.bt_ID and
-	lr.bID = bt.bID and
-	cl.cust_ID = bt.cust_ID and 
-	cl.username = '".$_COOKIE['username']."'";	 	   
+	   $query_bagtag = "SELECT blsf.bt_id, blsf.weight, blsf.source_airport_code, blsf.destination_airport_code
+						FROM Customer_Login cl, Customer c, Customer_Purchase cp, Ticket t, Is_Issued ii, BagTag_Luggage_StartD_FinalD blsf
+						WHERE cl.cust_ID = c.cust_ID and
+							  c.cust_ID = cp.cust_ID and
+							  cp.tID = t.tID and
+							  ii.tID = t.tID and 
+							  ii.bID = blsf.bt_ID and
+							  cl.username = '".$_COOKIE['username']."'";	   
 
 	$bagtag = executePlainSQL($query_bagtag);
 	printBagTagDetails($bagtag);
-
-	echo "<p> TODO: Add boarding pass  details for the ticket </p>";
 }
 
 //Commit to save changes...
