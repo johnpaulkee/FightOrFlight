@@ -1,9 +1,8 @@
-SELECT c.custName
-				FROM allCustAirTickets a, Customer c
-				WHERE c.cust_ID=a.custID AND
-						NOT EXISTS (EXCEPT(SELECT DISTINCT ahi.airline_code
-											FROM Airline_Headquartered_In ahi, SELECT DISTINCT a2.airline_code
-											FROM allCustAirTickets a2
-											WHERE a.custID=a2.custID
-											))
+CREATE OR REPLACE TRIGGER log_hq_update
+  AFTER UPDATE OF name ON Airline_Headquartered_In
+  FOR EACH ROW
+BEGIN
+  INSERT INTO AirlineHQ_log(Log_date, aCode, aName, hqName)
+  VALUES (SYSDATE, :NEW.airline_code, :NEW.airline_name, :NEW.name);
+END;
 /
