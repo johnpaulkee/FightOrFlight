@@ -66,13 +66,13 @@ function printIndirectPurchase($result) { //prints results from a select stateme
 		$sum = $row[6];
 		$tid1 = $row[7];
 		$tid2 = $row[8];
-
-		$option = '<input type="radio" name="ticket_id" value="'.$tid1.'|'.$tid2.'">'.$from1.", ".$to1.", $".$price1.", ".$from2.", ".$to2.", $".$price2.", $".$sum.'<br>';
+		$custID = $row[9];
+		$option = '<input type="radio" name="ticket_id" value="'.$tid1.'|'.$tid2.'|'.$sum.'|'.$custID.'">'.$from1.", ".$to1.", $".$price1.", ".$from2.", ".$to2.", $".$price2.", $".$sum.'<br>';
 		echo $option;
+		echo $custID;
 	}
-	if (($row = oci_fetch_row($result)) == false) {
-			echo "<button class='btn btn-default' type='submit' name='submit'> Purchase Indirect Flight </button>";
-	}	
+
+	echo "<button class='btn btn-default' type='submit' name='submit'> Purchase Indirect Flight </button>";	
 	echo "</form>";
 }
 
@@ -117,7 +117,6 @@ if ($db_conn) {
 	$result = executePlainSQL($not_in_query);
 	printResult($result);
 
-
 	//Direct Flights
 	$direct_query = "SELECT co.from_airport_code, co.to_airport_code, ut.price, ut.tID, c.cust_ID
 			   FROM Comprised_Of co, unpurchased_tickets ut, Customer_Login cl, Customer c
@@ -129,13 +128,14 @@ if ($db_conn) {
 	printDirectPurchase($direct);
 
 	//Indirect Flights
-	$indirect_query = "SELECT c1.from_airport_code, c1.to_airport_code, t1.price, c2.from_airport_code, c2.to_airport_code, t2.price, t1.price + t2.price, t1.tID, t2.tID 
-		      FROM Comprised_Of c1, Comprised_Of c2, unpurchased_tickets t1, unpurchased_tickets t2 
+	$indirect_query = "SELECT c1.from_airport_code, c1.to_airport_code, t1.price, c2.from_airport_code, c2.to_airport_code, t2.price, t1.price + t2.price, t1.tID, t2.tID, c.cust_ID 
+		      FROM Comprised_Of c1, Comprised_Of c2, unpurchased_tickets t1, unpurchased_tickets t2, Customer_Login cl, Customer c 
 		      WHERE c1.to_airport_code = c2.from_airport_code and 
 		      	    c1.from_airport_code = '$startingpoint' and 
 		      	    c1.tid = t1.tid and
 		      	    c2.tid = t2.tid and 
-		      	    c2.to_airport_code = '$endingpoint'";
+		      	    c2.to_airport_code = '$endingpoint' and 
+		      	    cl.username = '$username' and c.cust_ID = cl.cust_ID";
 	$indirect = executePlainSQL($indirect_query);
 	printIndirectPurchase($indirect);
 }
