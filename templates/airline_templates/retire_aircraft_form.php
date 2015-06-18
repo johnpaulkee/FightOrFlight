@@ -42,3 +42,27 @@
 	?>
 	<input type="submit" name="submit" value="retire">
 </form>
+
+<div id="formresult"></div>
+
+<script>
+
+	
+	$("#delete_plane").submit(function() {
+
+    var url = $(this).attr("action");
+
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: $("#delete_plane").serialize(),
+           success: function(data)
+           {	
+           		alert("SUCCESS");
+              $("#formresult").html(data);
+           }
+         });
+
+    return false;
+});
+</script>
