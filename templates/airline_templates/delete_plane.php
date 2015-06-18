@@ -33,17 +33,21 @@ function executePlainSQL($cmdstr) {
 }
 // Connect Oracle...
 if ($db_conn) {
-	echo '<form name="confirm" action="airline_templates/confirm_deletion.php" method="post" id="confirm_delete">';
+	echo '<form name="confirm" action="airline_templates/confirm_delete.php" method="post" id="confirm_delete">';
 	$query = "SELECT * FROM Plane_Owned_By p WHERE p.airline_code='".$airline_code."' AND p.plane_ID = '".$plane_ID."' AND p.plane_ID IN (SELECT plane_ID FROM Is_With) AND p.airline_code IN (SELECT airline_code FROM Is_With)";
 	$result = executePlainSQL($query);
 	if(($row = oci_fetch_row($result)) != false) {
 		echo "<h3> This plane is scheduled to fly with tickets currently on the market. Retiring this plane will remove all tickets associated with this plane. Are you sure you want to continue?</h3>";
 	}
-	echo '<input type="submit" name="confirm" value="confirm,'.$values.'"';
+	echo '<input type="submit" name="confirm" value="confirm">';
 	echo '</form>';
 
 	echo '<div id="formresult"></div>';
 	echo '<script>
+
+	$.post("../templates/airline_templates/confirm_delete.php", { plane_ID: '.$plane_ID.', airline_code: '.$airline_code.' }, function(result) {
+    alert("successfully posted plane_ID='.$plane_ID.'airline_code='.$airline_code.' to airline_templates/confirm_delete.php");
+	});
 
 	
 	$("#confirm_delete").submit(function() {

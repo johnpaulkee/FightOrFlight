@@ -6,8 +6,8 @@ $type = $_COOKIE['type'];
     }
 $success = True; //keep track of errors so it redirects the page only if there are no errors
 $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
-$values = $_POST['confirm'];
-list($plane_ID, $airline_code) = explode(",", $values);
+$plane_ID = $_POST['plane_ID'];
+$airline_code = $_POST['airline_code'];
 
 function executePlainSQL($cmdstr) { 
 	//echo "<br>running ".$cmdstr."<br>";
@@ -33,6 +33,10 @@ function executePlainSQL($cmdstr) {
 }
 // Connect Oracle...
 if ($db_conn) {
+	echo "plane_ID";
+	echo $plane_ID;
+	echo "airline_code";
+	echo $airline_code;
 	$query = "DELETE FROM Plane_Owned_By p WHERE p.airline_code ='".$airline_code."' AND p.plane_ID = '".$plane_ID."' CASCADE CONSTRAINTS";
 	$result = executePlainSQL($query);
 }
