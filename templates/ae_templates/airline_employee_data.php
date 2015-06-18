@@ -69,7 +69,7 @@ $success = False;
 }
 
 function printResult($result) { //prints results from a select statement
-  echo "<p> User details: </p>";
+  echo "<p> Your details: </p>";
 
   echo "<table class = 'table table-striped'>";
   echo "<thead>";
