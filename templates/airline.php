@@ -67,7 +67,7 @@ $type = $_COOKIE['type'];
       return $statement;
     }
 
-    function printResult($result) { //prints results from a select statement
+    function printResult1($result) { //prints results from a select statement
   echo "<h3><center> Is this you? </center></h3>";
   echo "<table class = 'table table-striped'>";
   echo "<thead>";
@@ -97,7 +97,9 @@ $type = $_COOKIE['type'];
 
           $query1 = "SELECT * FROM Airline_Headquartered_In WHERE airline_code =".$_COOKIE['id'];
           $result1 = executePlainSQL($query1);
-          printResult($result1);
+          printResult1($result1);
+
+          $query2 = "SELECT t.tID, t.seat, t.class, t.price FROM Add_Ticket a, Ticket t WHERE a.airline_code=".$_COOKIE['id']." AND a.tID = t.tID";
 
         ?>
       </div>
