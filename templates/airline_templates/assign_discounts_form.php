@@ -46,7 +46,7 @@
     </select>
     <br>
   <label>Set Discount </label>
-  <p>%<input type="number" name="discountvalue"></p>
+  <p>%<input type="number" min="0" name="discountvalue"></p>
   <input type="submit" value="Submit">
 </form>
 <div id="formresult"></div>
