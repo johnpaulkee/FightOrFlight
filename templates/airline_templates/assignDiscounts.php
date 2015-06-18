@@ -11,11 +11,6 @@ $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
   // Define user and pass
 $empid = $_POST['employeeid'];
 $discval = $_POST['discountvalue'];
-echo "Vals should be here";
-
-echo $empid;
-echo $discval;
-
 function printResult($result) { //prints results from a select statement
   echo "<h3><center> Here are the details for the updated employee discount: </center></h3>";
   echo "<table class = 'table table-striped'>";

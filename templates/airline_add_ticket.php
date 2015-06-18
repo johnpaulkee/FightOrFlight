@@ -33,7 +33,6 @@
     <?php
     	$query = "SELECT airport_code FROM Airport_LocatedIn";
     	$result = executePlainSQL($query);
-    	echo $result;
     	while(($row = oci_fetch_row($result)) != false) {
 			$from = '<input type="radio" name="from" value="'.$row[0].'">'.$row[0].'<br>';
 			$to = '<input type="radio" name="to" value="'.$row[0].'">'.$row[0].'<br>';
@@ -63,7 +62,6 @@
            data: $("#ticket_form").serialize(), // serializes the form's elements.
            success: function(data)
            {	
-           		alert("SUCCESS");
               $("#formresult").html(data); // show response from the php script.
            }
          });
