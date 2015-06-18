@@ -79,6 +79,7 @@ function createTable($entry){
 			echo "<td>" . $row[0] . "</td>";
 			echo "<td>" . $row2[0] . "</td>";
 			echo "</tr>";
+			echo $method;
 		}
 	}
 }
