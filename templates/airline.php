@@ -66,10 +66,38 @@ $type = $_COOKIE['type'];
       } else {}
       return $statement;
     }
+
+    function printResult($result) { //prints results from a select statement
+  echo "<h3><center> Hello Customer, here are your details: </center></h3>";
+  echo "<h3><center> This should be an update or something with Customer to the Credit Card </center> </h3>";
+  echo "<table class = 'table table-striped'>";
+  echo "<thead>";
+  echo "<tr>";
+  echo "<th>CustID</th>";
+  echo "<th>Credit Card Number</th>";
+  echo "</tr>";
+  echo "</thead>";
+  echo "<tbody>";
+
+  while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+    echo "<tr>";
+    echo "<td>" . $row[0] . "</td>";
+    echo "<td>" . $row[1] . "</td>";
+    echo "</tr>";
+  }
+  echo "</tbody>";
+  echo "</table>";
+
+}
           $query = "SELECT airline_name FROM Airline_Headquartered_In WHERE airline_code =".$_COOKIE['id'];
           $result = executePlainSQL($query);
           $row = oci_fetch_row($result);
           echo "<p> Hello, ".$row[0]."</p>";
+
+          $query = "SELECT * FROM Airline_Headquartered_In WHERE airline_code =".$_COOKIE['id'];
+          $result = executePlainSQL($query);
+          printResult($result);
+
         ?>
       </div>
       </div>
