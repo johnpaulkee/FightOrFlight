@@ -30,7 +30,7 @@
 		return $statement;
 		}
 
-      	$query = "SELECT * FROM Plane_Owned_By WHERE airline_code = ".$_COOKIE['id'];
+      	$query = "SELECT plane_ID FROM Plane_Owned_By WHERE airline_code = ".$_COOKIE['id'];
       	$result = executePlainSQL($query);
       	while(($row = oci_fetch_row($result)) != false) {
       		$input = '<input type="radio" name="plane" value="'.$row[0].','.$row[1].'">'.$row[1].', '.$row[2].', '.$row[3];
