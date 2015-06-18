@@ -37,7 +37,7 @@ if ($db_conn) {
 	echo $plane_ID;
 	echo "airline_code";
 	echo $airline_code;
-	$query1 = "SELECT capacity FROM Plane_Owned_By WHERE p.airline_code ='".$airline_code."' AND p.plane_ID = '".$plane_ID."'";
+	$query1 = "SELECT capacity FROM Plane_Owned_By WHERE airline_code ='".$airline_code."' AND plane_ID = '".$plane_ID."'";
 	$result1 = executePlainSQL($query1);
 	$row = oci_fetch_row($result1);
 	if($row != false){
