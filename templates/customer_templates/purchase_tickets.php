@@ -44,10 +44,8 @@ function printDirectPurchase($result) { //prints results from a select statement
 		$price = $row[2];
 		$tID = $row[3];
 		$custID = $row[4];
-
 		$option = '<input type="radio" name="purchase_choice" value="'.$tID.'|'.$price.'|'.$custID.'">'.$from.', '.$to.', '.$price.', '.$tID;
 		echo $option;
-		echo $custID;
 	}
 	echo "<br>";
 	echo "<button class='btn btn-default' type='submit' name='submit'> Purchase Direct Flight </button>";
@@ -67,9 +65,9 @@ function printIndirectPurchase($result) { //prints results from a select stateme
 		$tid1 = $row[7];
 		$tid2 = $row[8];
 		$custID = $row[9];
-		$option = '<input type="radio" name="ticket_id" value="'.$tid1.'|'.$tid2.'|'.$sum.'|'.$custID.'">'.$from1.", ".$to1.", $".$price1.", ".$from2.", ".$to2.", $".$price2.", $".$sum.'<br>';
+		$option = '<input type="radio" name="purchase_choice" value="'.$tid1.'|'.$tid2.'|'.$price1.'|'.$price2.'|'.$custID.'">'.$from1.", ".$to1.", $".$price1.", ".$from2.", ".$to2.", $".$price2.", $".$sum.'<br>';
 		echo $option;
-		echo $custID;
+		//SELECT c1.from_airport_code, c1.to_airport_code, t1.price, c2.from_airport_code, c2.to_airport_code, t2.price, t1.price + t2.price, t1.tID, t2.tID, c.cust_ID 
 	}
 
 	echo "<button class='btn btn-default' type='submit' name='submit'> Purchase Indirect Flight </button>";	
@@ -115,7 +113,7 @@ if ($db_conn) {
 	$execute_unpurchased_view = executePlainSQL($create_unpurchased_view);
 	$not_in_query = "SELECT * FROM unpurchased_tickets";
 	$result = executePlainSQL($not_in_query);
-	printResult($result);
+	// printResult($result);
 
 	//Direct Flights
 	$direct_query = "SELECT co.from_airport_code, co.to_airport_code, ut.price, ut.tID, c.cust_ID

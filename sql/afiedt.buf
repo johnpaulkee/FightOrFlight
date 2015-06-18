@@ -5,3 +5,4 @@ BEGIN
   INSERT INTO AirlineHQ_log(Log_date, aCode, aName, hqName)
   VALUES (SYSDATE, :NEW.airline_code, :NEW.airline_name, :NEW.name);
 END;
+/
