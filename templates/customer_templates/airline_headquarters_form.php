@@ -21,7 +21,7 @@ $type = $_COOKIE['type'];
           <tr>
             <td>Please type in the Airline Name</td>
             <td>:</td>
-            <td><input name="airlinename" type="text" id="airline"></td>
+            <td><input name="airlinename" type="text" id="airline" maxlength="255"></td>
           </tr>
           <tr>
             <td><input type="submit" name="Submit" value="search"></td>
