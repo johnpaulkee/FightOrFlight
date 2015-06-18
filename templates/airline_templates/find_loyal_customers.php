@@ -72,6 +72,7 @@ if ($db_conn) {
 				   		 at.airline_code = '".$_COOKIE['id']."'
 				   GROUP BY c.cust_ID";
 	$viewresult = executePlainSQL($createview);
+	echo ($viewresult);
 	if($method == "quantity") {
 		$query = "SELECT MAX(num_tickets) FROM valuableCustomers";
 	}
