@@ -68,13 +68,13 @@ $type = $_COOKIE['type'];
     }
 
     function printResult($result) { //prints results from a select statement
-  echo "<h3><center> Hello Customer, here are your details: </center></h3>";
-  echo "<h3><center> This should be an update or something with Customer to the Credit Card </center> </h3>";
+  echo "<h3> Is this you? </h3>"
   echo "<table class = 'table table-striped'>";
   echo "<thead>";
   echo "<tr>";
-  echo "<th>CustID</th>";
-  echo "<th>Credit Card Number</th>";
+  echo "<th>Your Airline Code</th>";
+  echo "<th>Your Airline Name</th>";
+  echo "<th>Country You're Headquartered In</th>";
   echo "</tr>";
   echo "</thead>";
   echo "<tbody>";
@@ -83,6 +83,7 @@ $type = $_COOKIE['type'];
     echo "<tr>";
     echo "<td>" . $row[0] . "</td>";
     echo "<td>" . $row[1] . "</td>";
+    echo "<td>" . $row[2] . "</td>";
     echo "</tr>";
   }
   echo "</tbody>";
@@ -94,9 +95,9 @@ $type = $_COOKIE['type'];
           $row = oci_fetch_row($result);
           echo "<p> Hello, ".$row[0]."</p>";
 
-          $query = "SELECT * FROM Airline_Headquartered_In WHERE airline_code =".$_COOKIE['id'];
-          $result = executePlainSQL($query);
-          printResult($result);
+          $query1 = "SELECT * FROM Airline_Headquartered_In WHERE airline_code =".$_COOKIE['id'];
+          $result1 = executePlainSQL($query1);
+          printResult($result1);
 
         ?>
       </div>
