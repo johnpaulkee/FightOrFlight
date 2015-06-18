@@ -9,7 +9,7 @@ $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 
 
   // Define user and pass
-$acode = $_POST['airlinename'];
+$airlinename = $_POST['airlinename'];
 
 
 function printResult($result) { //prints results from a select statement
