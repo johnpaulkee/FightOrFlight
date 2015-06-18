@@ -31,6 +31,12 @@ PRIMARY KEY (airline_code),
 FOREIGN KEY (name) REFERENCES Country(name)
 );
 
+CREATE TABLE AirlineHQ_log(
+  Log_date DATE,
+  aCode INTEGER,
+  aName VARCHAR2(255) NOT NULL,
+  hqName VARCHAR2(255) NOT NULL);
+
 CREATE TABLE Airline_Employee_Employed_With(
 employeeID INTEGER,
 airline_code INTEGER NOT NULL,
