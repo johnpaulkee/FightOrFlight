@@ -2,7 +2,7 @@
 	<label> Which plane would you like to retire? </label><br>
 	<?php
 		$type = $_COOKIE['type'];
-    	if ($type != "airline") {
+    	if ($type != "customer") {
      	header("Location: ../templates/not_authorized.html");
       	die();
 
