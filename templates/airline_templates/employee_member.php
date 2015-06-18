@@ -8,7 +8,6 @@ $empid = $_POST['employeeid'];
 
 function printResult($result) { //prints results from a select statement
   echo "<h3><center> Here are the details for your selected employee user: </center></h3>";
-  echo "<h3><center> TODO: primary key for airline code isn't added to the query </center></h3>";
   
   echo "<table class = 'table table-striped'>";
   echo "<thead>";
