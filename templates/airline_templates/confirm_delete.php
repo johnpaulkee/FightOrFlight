@@ -39,28 +39,27 @@ if ($db_conn) {
 	echo $airline_code;
 	$query1 = "SELECT capacity FROM Plane_Owned_By WHERE airline_code ='".$airline_code."' AND plane_ID = '".$plane_ID."'";
 	echo $query1;
-	$result1 = executePlainSQL($query1);
 	$row = oci_fetch_row($result1);
 	$query2 = "DELETE FROM Plane_Owned_By p WHERE p.airline_code ='".$airline_code."' AND p.plane_ID = '".$plane_ID."'";
 	echo $query2;
-	$result2 = executePlainSQL($query2);
 	if($row[0] <= 40){
 		$query3 = "DELETE FROM Low_Capacity WHERE airline_code = '".$airline_code."' AND plane_ID = '".$plane_ID."'";
 		echo $query3;
-		$result3 = executePlainSQL($query3);
 		$query4 = "DELETE FROM Regional_Flights WHERE airline_code = '".$airline_code."' AND plane_ID = '".$plane_ID."'";
 		echo $query4;
-		$result4 = executePlainSQL($query4);
+		oci_commit($db_conn);
 	} else {
 		$query3 = "DELETE FROM High_Capacity WHERE airline_code = '".$airline_code."' AND plane_ID = '".$plane_ID."'";
 		echo $query3;
-		$result3 = executePlainSQL($query3);
 		$query4 = "DELETE FROM Long_Distance_Flights WHERE airline_code = '".$airline_code."' AND plane_ID = '".$plane_ID."'";
 		echo $query4;
-		$result4 = executePlainSQL($query4);
 	}
 	$query5 = "DELETE FROM Is_With WHERE plane_airline_code = '".$airline_code."' AND plane_ID = '".$plane_ID."'";
 	echo $query5;
+	$result1 = executePlainSQL($query1);
+	$result2 = executePlainSQL($query2);
+	$result3 = executePlainSQL($query3);
+	$result4 = executePlainSQL($query4);
 	$result5 = executePlainSQL($query5);
  	oci_commit($db_conn);
 	OCILogoff($db_conn);
