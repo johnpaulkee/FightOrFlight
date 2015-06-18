@@ -65,7 +65,7 @@ function executePlainSQL($cmdstr) {
 
 // Connect Oracle...
 if ($db_conn) {
-  $query = "SELECT airline.airline_code, airline.airline_name, aircraft.plane_ID, aircraft.capacity, aircraft.company from Airline_Headquartered_In airline, Plane_Owned_By aircraft where airline.airline_name LIKE ='%".$airlinename."%' and aircraft.airline_code = airline.airline_code";
+  $query = "SELECT airline.airline_code, airline.airline_name, aircraft.plane_ID, aircraft.capacity, aircraft.company from Airline_Headquartered_In airline, Plane_Owned_By aircraft where airline.airline_name LIKE '%".$airlinename."%' and aircraft.airline_code = airline.airline_code";
   $result = executePlainSQL($query);
 
   printResult($result);
