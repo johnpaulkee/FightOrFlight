@@ -5,6 +5,7 @@
     	if ($type != "airline") {
      	header("Location: ../templates/not_authorized.html");
       	die();
+      }
 
       	function executePlainSQL($cmdstr) { 
 		//echo "<br>running ".$cmdstr."<br>";
@@ -35,8 +36,6 @@
       		$input = '<input type="radio" name="plane" value="'.$row[0].','.$row[1].'">'.$row[1].', '.$row[2].', '.$row[3];
       		echo $input;
       	}
-    }
-    echo "WTF";
 	?>
 	<input type="submit" name="submit" value="retire">
 </form>
