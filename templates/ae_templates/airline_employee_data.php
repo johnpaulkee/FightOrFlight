@@ -94,6 +94,33 @@ function printResult($result) { //prints results from a select statement
 
 }
 
+function printTicketAndPlaneDetails($result) { //prints results from a select statement
+  echo "<p> Your Tickets and it's Plane Details </p>";
+  echo "<table class = 'table table-striped'>";
+  echo "<thead>";
+  echo "<tr>";
+  echo "<th>Ticket ID</th>"; 
+  echo "<th>Seat</th>"; 
+  echo "<th>Class</th>"; 
+  echo "<th>From</th>"; 
+  echo "<th>To</th>";
+  echo "</tr>";
+  echo "</thead>";
+  echo "<tbody>";
+    // t.tID, t.seat, t.class, bpff.from_airport_code, bpff.to_airport_code
+  while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+    echo "<tr>";
+    echo "<td>" . $row[0] . "</td>";
+    echo "<td>" . $row[1] . "</td>";
+    echo "<td>" . $row[2] . "</td>";
+    echo "<td>" . $row[3] . "</td>";
+    echo "<td>" . $row[4] . "</td>";
+    echo "</tr>";
+  }
+  echo "</tbody>";
+  echo "</table>";
+}
+
 function printAirlineResult($result) { //prints results from a select statement
   echo "<p> Airline details: </p>";
 
@@ -199,6 +226,19 @@ if ($_POST && $success) {
   $airline_details = executePlainSQL($query_airline_details);
   printAirlineResult($airline_details);
 
+  $query_tickets =   "SELECT t.tID, t.seat, t.class, bpff.from_airport_code, bpff.to_airport_code
+            FROM Airline_Employee_Login al, Airline_Employee_Employed_With c, Discounted_Purchase dp, Ticket t, Comprised_of co, Boarding_Pass_For_Flight bpff
+            WHERE al.employeeID = c.employeeID and
+                c.employeeID = dp.employeeID and
+                dp.tID = t.tID and
+                co.tID = t.tID and
+                co.boarding_ID = bpff.boarding_ID and
+                co.flight_num = bpff.flight_num and
+                co.from_airport_code = bpff.from_airport_code and
+                co.to_airport_code = bpff.to_airport_code and
+                al.username = '".$_COOKIE['username']."'";
+  $tickets_planes = executePlainSQL($query_tickets);
+  printTicketAndPlaneDetails($tickets_planes);
 
 }
 
