@@ -35,8 +35,6 @@ $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
 if ($db_conn) {
   $query = "SELECT * from Airport_LocatedIn";
   $result = executePlainSQL($query);
-  echo $result;
-  //echo $airline;
 }
 ?>
 
