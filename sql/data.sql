@@ -31,20 +31,11 @@ PRIMARY KEY (airline_code),
 FOREIGN KEY (name) REFERENCES Country(name)
 );
 
-DROP TABLE AirlineHQ_log;
 CREATE TABLE AirlineHQ_log(
   Log_date DATE,
   aCode INTEGER,
   aName VARCHAR2(255) NOT NULL,
   hqName VARCHAR2(255) NOT NULL);
-
-CREATE OR REPLACE TRIGGER log_hq_update
-  AFTER UPDATE OF name ON Airline_Headquartered_In
-  FOR EACH ROW
-BEGIN
-  INSERT INTO AirlineHQ_log(Log_date, aCode, aName, hqName)
-  VALUES (SYSDATE, :NEW.airline_code, :NEW.airline_name, :NEW.name);
-END;
 
 CREATE TABLE Airline_Employee_Employed_With(
 employeeID INTEGER,
