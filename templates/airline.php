@@ -68,7 +68,7 @@ $type = $_COOKIE['type'];
     }
 
     function printResult($result) { //prints results from a select statement
-  echo "<h3> Is this you? </h3>";
+  echo "<h3><center> Is this you? </center></h3>";
   echo "<table class = 'table table-striped'>";
   echo "<thead>";
   echo "<tr>";
