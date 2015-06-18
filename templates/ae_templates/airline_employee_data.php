@@ -268,7 +268,7 @@ if ($_POST && $success) {
 
   $query_bagtag = "SELECT blsf.bt_id, blsf.weight, blsf.source_airport_code, blsf.destination_airport_code
             FROM Airline_Employee_Login al, Airline_Employee_Employed_With c, Discounted_Purchase dp, Ticket t, Is_Issued ii, BagTag_Luggage_StartD_FinalD blsf
-            WHERE alcust_ID = c.employeeID and
+            WHERE al.employeeID = c.employeeID and
                 c.employeeID = dp.employeeID and
                 dp.tID = t.tID and
                 ii.tID = t.tID and 
