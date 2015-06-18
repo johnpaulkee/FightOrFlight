@@ -53,7 +53,6 @@ function executePlainSQL($cmdstr) {
 
 // Connect Oracle...
 if ($db_conn) {
-  echo $empid;
   $query = "SELECT employee_name, discounts
             FROM Airline_Employee_Employed_With 
             WHERE employeeid='$empid'";
