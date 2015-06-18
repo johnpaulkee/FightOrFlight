@@ -64,7 +64,7 @@ if ($db_conn) {
 	$dropview = "DROP VIEW valuableCustomers";
 	$dropresult = executePlainSQL($dropview);
 	$createview = "CREATE VIEW valuableCustomers AS 
-				   SELECT COUNT(t.tID) as num_tickets, SUM(t.price) as revenue
+				   SELECT COUNT(t.tID) as num_tickets, SUM(t.price) as revenue, c.cust_ID
 				   FROM Customer c, Customer_Purchase cp, Ticket t, Add_Ticket at 
 				   WHERE c.cust_ID = cp.cust_ID AND 
 				   		 cp.tID = t.tID AND
@@ -72,7 +72,9 @@ if ($db_conn) {
 				   		 at.airline_code = '".$_COOKIE['id']."'
 				   GROUP BY c.cust_ID";
 	$viewresult = executePlainSQL($createview);
-	echo ($viewresult);
+	if($method == "quantity") {
+		$query = "SELECT MAX(num_tickets) FROM valuableCustomers";
+	}
 	//$query = "SELECT cust_ID, custName FROM Customer c WHERE c.cust_ID IN"
 }
 
