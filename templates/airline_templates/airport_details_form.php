@@ -45,7 +45,7 @@ if ($db_conn) {
 <script>
 
   
-  $("#getAirportDetails").submit(function() {
+  $("#details").submit(function() {
 
     var url = $(this).attr("action");
 
