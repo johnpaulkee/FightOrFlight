@@ -231,7 +231,7 @@ if ($_POST && $success) {
   header("location: oracle-test.php");
 } else {
   // Customer details
-  $query_user_details = "SELECT c.employee_name, al.username, cl.password, airline.airline_name
+  $query_user_details = "SELECT c.employee_name, al.username, al.password, airline.airline_name
   FROM Airline_Employee_Login al, Airline_Employee_Employed_With c, Airline_Headquartered_In airline
   WHERE c.employeeID = al.employeeID and al.username = '".$_COOKIE['username']."' and airline.airline_code = c.airline_code";
   $user_details = executePlainSQL($query_user_details);
