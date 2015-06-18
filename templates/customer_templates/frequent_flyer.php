@@ -68,7 +68,7 @@ $success = False;
 }
 
 function printFrequentFlyerData($result) { //prints results from a select statement
-	echo "<p> User details: </p>";
+	echo "<p> Frequent Flyer details: </p>";
 
 	echo "<table class = 'table table-striped'>";
 	echo "<thead>";

@@ -84,7 +84,6 @@ if ($db_conn) {
            data: $("#find_cheap_flights").serialize(),
            success: function(data)
            {	
-           		alert("SUCCESS");
               $("#formresult").html(data);
            }
          });

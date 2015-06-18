@@ -50,6 +50,7 @@ function printDirectPurchase($result) { //prints results from a select statement
 	echo "<br>";
 	echo "<button class='btn btn-default' type='submit' name='submit'> Purchase Direct Flight </button>";
 	echo "</form>";
+	echo "<div id='formresult'></div>";
 }
 function printIndirectPurchase($result) { //prints results from a select statement
 	echo "<form name='purchase_tickets2' method='post' action='customer_templates/update_customer_tickets.php' id='purchase_ticket'>";
@@ -67,11 +68,11 @@ function printIndirectPurchase($result) { //prints results from a select stateme
 		$custID = $row[9];
 		$option = '<input type="radio" name="purchase_choice" value="'.$tid1.'|'.$tid2.'|'.$price1.'|'.$price2.'|'.$custID.'">'.$from1.", ".$to1.", $".$price1.", ".$from2.", ".$to2.", $".$price2.", $".$sum.'<br>';
 		echo $option;
-		//SELECT c1.from_airport_code, c1.to_airport_code, t1.price, c2.from_airport_code, c2.to_airport_code, t2.price, t1.price + t2.price, t1.tID, t2.tID, c.cust_ID 
 	}
 
 	echo "<button class='btn btn-default' type='submit' name='submit'> Purchase Indirect Flight </button>";	
 	echo "</form>";
+	 echo "<div id='formresult'></div>";
 }
 
 function executePlainSQL($cmdstr) { 
@@ -138,3 +139,4 @@ if ($db_conn) {
 	printIndirectPurchase($indirect);
 }
 ?>
+
