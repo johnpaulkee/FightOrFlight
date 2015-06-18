@@ -56,9 +56,9 @@ if ($db_conn) {
 	}
 	$query5 = "DELETE FROM Is_With WHERE plane_airline_code = '".$airline_code."' AND plane_ID = '".$plane_ID."'";
 	echo $query5;
-	$result1 = executePlainSQL($query1);
 	$result2 = executePlainSQL($query2);
 	$result3 = executePlainSQL($query3);
+	$result1 = executePlainSQL($query1);
 	$result4 = executePlainSQL($query4);
 	$result5 = executePlainSQL($query5);
  	oci_commit($db_conn);
