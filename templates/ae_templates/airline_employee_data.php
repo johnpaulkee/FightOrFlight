@@ -196,8 +196,8 @@ if ($_POST && $success) {
   $query_airline_details = "SELECT airline.airline_code, airline.airline_name, airline.name
   FROM Airline_Employee_Login al, Airline_Employee_Employed_With c, Airline_Headquartered_In airline
   WHERE c.employeeID = al.employeeID and al.username = '".$_COOKIE['username']."' and airline.airline_code = c.airline_code";
-  $user_details = executePlainSQL($query_user_details);
-  printAirlineResult($user_details);
+  $airline_details = executePlainSQL($query_airline_details);
+  printAirlineResult($airline_details);
 
 
 }
