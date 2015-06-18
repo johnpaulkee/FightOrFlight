@@ -25,7 +25,7 @@
   <p>$<input type="text" name="hq" maxlength="255"></p>
   <input type="submit" value="Submit">
 </form>
-
+<a href="javascript:void(0)" class="btn btn-primary" id="check_log">Check Log Details</a>
 <div id="formresult">
   
 </div>
@@ -39,6 +39,24 @@
            type: "POST",
            url: url,
            data: $("#hq_form").serialize(), // serializes the form's elements.
+           success: function(data)
+           {  
+              alert("SUCCESS");
+              $("#formresult").html(data); // show response from the php script.
+           }
+         });
+
+    return false; // avoid to execute the actual submit of the form.
+});
+
+    $("#check_log").click(function() {
+
+    var url = "../templates/airline_templates/checkLog.php"; // the script where you handle the form input.
+    var data = "check log successfull";
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: data, // serializes the form's elements.
            success: function(data)
            {  
               alert("SUCCESS");
