@@ -197,7 +197,6 @@ payment_total NUMBER,
 payment_type VARCHAR2(255),
 PRIMARY KEY (tID),
 FOREIGN KEY (employeeID, airline_code) REFERENCES Airline_Employee_Employed_With
--- TODO: Correct discount constraint
 );
 
 CREATE TABLE Add_Ticket(
@@ -296,6 +295,9 @@ VALUES (4, 'N', 'Paula Abdul', NULL);
 
 INSERT INTO Country
 VALUES ('Canada', 'English');
+
+INSERT INTO Country
+VALUES ('North Korea', 'Korean');
 
 INSERT INTO Country
 VALUES ('USA', 'English');
