@@ -6,6 +6,9 @@
      	header("Location: ../templates/not_authorized.html");
       	die();
       }
+      $success = True; //keep track of errors so it redirects the page only if there are no errors
+	  $db_conn = OCILogon("ora_i4u9a", "a34129122", "ug");
+
 
       	function executePlainSQL($cmdstr) { 
 		//echo "<br>running ".$cmdstr."<br>";
@@ -30,7 +33,7 @@
 		return $statement;
 		}
 
-      	$query = "SELECT plane_ID FROM Plane_Owned_By WHERE airline_code = ".$_COOKIE['id'];
+      	$query = "SELECT * FROM Plane_Owned_By WHERE airline_code = ".$_COOKIE['id'];
       	$result = executePlainSQL($query);
       	while(($row = oci_fetch_row($result)) != false) {
       		$input = '<input type="radio" name="plane" value="'.$row[0].','.$row[1].'">'.$row[1].', '.$row[2].', '.$row[3];
